@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertTables {
+public class InsertTables {  //insert to tables
+	
 	
 	public static void InsertUser(Connection con,String username, String password, boolean connected, String firstName, String surname, String email) {
 		try {

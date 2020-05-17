@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class GenerateTables {
+public class GenerateTables {  // creating the tables if theey are not exists
 	
 	public  GenerateTables(Connection con) {
 		generateUser(con);
 		generateEmployee(con);
 		generateCustomer(con);
+		//add them here
+		
 	}
 	
 	public void generateUser (Connection con) {
@@ -55,6 +57,7 @@ public class GenerateTables {
             System.out.println("VendorError: " + ex.getErrorCode());
             }
 		System.out.println("*Generated a employee table");
+
 	}
 	
 	public void generateCustomer(Connection con) {
