@@ -23,7 +23,7 @@ public class SqlMain {
             
             //-------------------------------------------------------------------------
             new GenerateTables(con);
-            //new InsertDefaultTables(con);
+            new InsertDefaultTables(con);
             //----------------------------------------------------------------------------
      	} catch (SQLException ex) 
      	    {/* handle any errors*/
