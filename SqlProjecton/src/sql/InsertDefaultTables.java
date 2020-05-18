@@ -1,14 +1,6 @@
 package sql;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import entities.Employee;
-import entities.SalesPattern;
-import entities.User;
 import enums.Affiliation;
 
 public class InsertDefaultTables {
@@ -20,75 +12,31 @@ public class InsertDefaultTables {
 	}
 
 	public void InsertDefaultUser(Connection con) {
-		User user = new User("user", "r", false, "firstName", "surname", "email");
-		InsertTables.insertUser(con, user);
+		String[] fields = { "username", "password", "connected", "firstName", "surname", "email" };
+		Object[] values = { "user", "r", false, "firstName", "surname", "email" };
+		InsertTables.insertUser(con, fields, values);
 	}
 
 	public void InsertDefaultEmployee(Connection con) {
-		Employee employee = new Employee("eUserName", "11", false, "Moshe", "Cahana", "Mail@mai.com", "222222555",
-				"role", Affiliation.Marketing);
-		InsertTables.insertEmployee(con, employee);
+
+		String[] fields = { "username", "password", "connected", "firstName", "surname", "email" };
+		Object[] values = { "eUserName", "11", false, "Moshe", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, fields, values);
+
+		String[] fields2 = { "role", "affiliation", "fkUsername" };
+		Object[] values2 = { "role", Affiliation.Marketing.toString(), "eUserName" };
+		InsertTables.insertEmployee(con, fields2, values2);
 	}
 
 	public void InsertDefaultSalesPattern(Connection con) {
-		int id = generateKeyForTable(con, "sales_pattern","salesPatternID");
-		if (id == -1) {
-			System.out.println("Error!, cannot generat id");
-		} else {
-			SalesPattern sp = new SalesPattern(null, null, id, "2/2/20", "3/3/23");
-			InsertTables.insertSalesPattern(con, sp);
-		}
-		id = generateKeyForTable(con, "sales_pattern","salesPatternID");
-		if (id == -1) {
-			System.out.println("Error!, cannot generat id");
-		} else {
-			SalesPattern sp = new SalesPattern(null, null, id, "4/4/20", "3/3/25");
-			InsertTables.insertSalesPattern(con, sp);
-		}
-		id = generateKeyForTable(con, "sales_pattern","salesPatternID");
-		if (id == -1) {
-			System.out.println("Error!, cannot generat id");
-		} else {
-			SalesPattern sp = new SalesPattern(null, null, id, "1/1/10", "9/9/25");
-			InsertTables.insertSalesPattern(con, sp);
-		}
-	}
+		String[] fields = { "startTime", "endTime" };
+		Object[] values = { "2/2/20", "3/3/23" };
+		InsertTables.insertSalesPattern(con, fields, values);
+		Object[] values2 = { "1/1/20", "4/4/23" };
+		InsertTables.insertSalesPattern(con, fields, values2);
+		Object[] values3 = { "5/5/20", "6/6/23" };
+		InsertTables.insertSalesPattern(con, fields, values3);
 
-	private int generateKeyForTable(Connection con, String tableName,String pkField) {
-		ResultSet rs = null;
-		int lastid = -1;
-		try {
-			Statement stmt = con.createStatement();
-
-			//
-			// Example of using Statement.getGeneratedKeys()
-			// to retrieve the value of an auto-increment
-			// value
-			//
-
-//			rs = stmt.executeQuery("SELECT MAX(" + pkField + ") AS id FROM " + tableName);
-//			lastid = rs.getInt("id");			
-			rs = stmt.executeQuery("select MAX("+pkField+") as last_id from " + tableName);
-			if (!rs.next())
-				lastid = 1;
-			else {
-				lastid = rs.getInt(1);
-				lastid++;
-			}
-//			lastid = rs.getInt(1);
-//			System.out.println("last id is->" + lastid);
-//			if (lastid == 0)
-//				lastid = 1;
-//			else
-//				lastid++;
-		} catch (SQLException ex) {/* handle any errors */
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		System.out.println("Key returned from getGeneratedKeys():" + lastid);
-
-		return lastid;
 	}
 
 }

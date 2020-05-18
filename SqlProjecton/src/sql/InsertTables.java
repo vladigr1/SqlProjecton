@@ -1,28 +1,15 @@
 package sql;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import entities.Employee;
-import entities.SalesPattern;
-import entities.User;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class InsertTables { // insert to tables
 
-	public static void insertRow(Connection con, String tableName, Object[] values) {
+	private static void insertRow(Connection con, String tableName, String[] fields, Object[] values) {
 		try {
-			Statement statement = con.createStatement();
-
-			ResultSet results = statement.executeQuery("SELECT * FROM " + tableName);
-
 			// Get result test metadata
-
-			ResultSetMetaData metadata = results.getMetaData();
-			int columnCount = metadata.getColumnCount();
 			System.out.println("inserting row to table -> " + tableName);
 			StringBuilder valueString = new StringBuilder();
 			for (int i = 0; i < values.length; i++) {
@@ -30,29 +17,29 @@ public class InsertTables { // insert to tables
 			}
 			System.out.println("values -> " + valueString.toString());
 
-//			if (values.length != columnCount)
-//				throw new Exception("ERROR: there are more values than coloms in table->" + tableName);
+			if (values.length != fields.length)
+				throw new Exception("ERROR: there are more values than coloms in table->" + tableName);
 
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO " + tableName + " (");
-			for (int i = 1; i <= columnCount; i++) {
-				String columnName = metadata.getColumnName(i);
-				if (i == columnCount) {
-					sb.append(columnName + ") VALUES (");
+			for (int i = 0; i < fields.length; i++) {
+				if (i == fields.length - 1) {
+					sb.append(fields[i] + ") VALUES (");
 				} else {
-					sb.append(columnName + ", ");
+					sb.append(fields[i] + ", ");
 				}
 			}
-			for (int i = 1; i <= columnCount; i++) {
-				if (i == columnCount) {
+//			System.out.println("String builder->"+sb.toString());
+			for (int i = 0; i < values.length; i++) {
+				if (i == values.length - 1) {
 					sb.append("?)");
 				} else {
 					sb.append("?, ");
-					;
 				}
 			}
+//			System.out.println("String builder->"+sb.toString());
 			PreparedStatement ps = con.prepareStatement(sb.toString());
-			for (int i = 1; i <= columnCount; ++i) {
+			for (int i = 1; i <= fields.length; ++i) {
 				ps.setObject(i, values[i - 1]);
 			}
 			ps.execute();
@@ -61,26 +48,23 @@ public class InsertTables { // insert to tables
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
 
 	}
 
-	public static void insertUser(Connection con, User user) {
-		insertRow(con, "user", new Object[] { user.getUsername(), user.getPassword(), user.isConnected() ? "1" : "0",
-				user.getFirstName(), user.getSurname(), user.getEmail() });
+	public static void insertUser(Connection con, String[] fields, Object[] values) {
+		insertRow(con, "user", fields, values);
 	}
 
-	public static void insertEmployee(Connection con, Employee employee) {
-		insertUser(con, employee);
-		insertRow(con, "employee", new Object[] { employee.getEmployeeID(), employee.getRole(),
-				employee.getAffiliation().toString(), employee.getUsername() });
+	public static void insertEmployee(Connection con, String[] fields, Object[] values) {
+		insertRow(con, "employee", fields, values);
 
 	}
-	
-	public static void insertSalesPattern(Connection con, SalesPattern sp) {
-		insertRow(con, "sales_pattern", new Object[] {sp.getSalesPatternID(),sp.getStartTime(),sp.getEndTime()});
+
+	public static void insertSalesPattern(Connection con, String[] fields, Object[] values) {
+		insertRow(con, "sales_pattern", fields, values);
 	}
-	
-	
 
 }
