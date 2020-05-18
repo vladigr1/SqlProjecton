@@ -54,17 +54,21 @@ public class InsertTables { // insert to tables
 
 	}
 
-	public static void insertUser(Connection con, String[] fields, Object[] values) {
-		insertRow(con, "user", fields, values);
+	public static void insertUser(Connection con, Object[] values) {
+		insertRow(con, "user", FieldIndicatorForInsert.User(), values);
+	}
+	
+	public static void insertCustomer(Connection con, Object[] values) {
+		insertRow(con, "customer", FieldIndicatorForInsert.Customer(), values);
 	}
 
-	public static void insertEmployee(Connection con, String[] fields, Object[] values) {
-		insertRow(con, "employee", fields, values);
+	public static void insertEmployee(Connection con, Object[] values) {
+		insertRow(con, "employee", FieldIndicatorForInsert.Employee(), values);
 
 	}
 
-	public static void insertSalesPattern(Connection con, String[] fields, Object[] values) {
-		insertRow(con, "sales_pattern", fields, values);
+	public static void insertSalesPattern(Connection con, Object[] values) {
+		insertRow(con, "sales_pattern", FieldIndicatorForInsert.SalePattern(), values);
 	}
 
 }

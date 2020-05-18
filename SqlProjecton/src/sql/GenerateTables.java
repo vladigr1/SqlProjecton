@@ -65,7 +65,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		String tableName = "customer";
 		String values =
 				"( " + "customerID varchar(32) NOT NULL ,"
-				+ " creditCard varchar(16) NOT NULL ," 
+				+ " creditCard varchar(32) NOT NULL ," 
 				+ " fkUsername varchar(32) NOT NULL ,"
 				+ " PRIMARY KEY (customerID) ,"
 				+ " KEY customer_ibfk_1 (fkUsername) ,"
