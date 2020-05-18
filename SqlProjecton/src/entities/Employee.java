@@ -9,12 +9,13 @@ public class Employee extends User {
 	private String role;
 	private Affiliation affiliation;
 
-	public Employee() {
-		super();
-	}
+//	public Employee() {
+//		super();
+//	}
 
-	public Employee(String employeeID, String role, Affiliation affiliation) {
-		super();
+	public Employee(String username, String password, boolean connected, String firstName, String surname, String email,
+			String employeeID, String role, Affiliation affiliation) {
+		super(username, password, connected, firstName, surname, email);
 		this.employeeID = employeeID;
 		this.role = role;
 		this.affiliation = affiliation;
@@ -23,10 +24,10 @@ public class Employee extends User {
 	public String getEmployeeID() {
 		return employeeID;
 	}
-
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
-	}
+// it will break primary key of SQL
+//	public void setEmployeeID(String employeeID) {
+//		this.employeeID = employeeID;
+//	}
 
 	public String getRole() {
 		return role;

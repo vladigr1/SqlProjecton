@@ -17,8 +17,8 @@ public enum Affiliation {
 		}
 	},
 	Supplier {
-		public String toString() {
-			return "Supplier";
-		}
+	public String toString() {
+		return "Supplier";
+	}
 	};
 }
