@@ -3,6 +3,8 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.ProductName;
+
 public class ProductInStation extends Product {
 
 	// create hash code and equals after have sale form eldad
