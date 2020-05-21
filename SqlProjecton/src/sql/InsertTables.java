@@ -88,5 +88,9 @@ public class InsertTables { // insert to tables
 	public static void insertHomeFuelOrder(Connection con, Object[] values) {
 		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
 	}
+	
+	public static void insertShipmentMethod(Connection con, Object[] values) {
+		insertRow(con, "ShipmentMethod", FieldIndicatorForInsert.ShipmentMethod(), values);
+	}
 
 }

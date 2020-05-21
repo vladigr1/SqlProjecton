@@ -23,9 +23,14 @@ public class FieldIndicatorForInsert {
 		return new String[]{"dismissed", "fkmanageID" };
 	}
 	
-	public static String[] HomeFuelOrder() {
-		return new String[]{"dutime", "fkcustomerID" };
+	public static String[] ShipmentMethod() {
+		return new String[]{"shipmentName","shipmentPrice", "shipmentMultiplier","shipmentType" };
 	}
+	
+	public static String[] HomeFuelOrder() {
+		return new String[]{"dutime", "fkcustomerID","fkshipmentName"};
+	}
+	
 	
 	
 }

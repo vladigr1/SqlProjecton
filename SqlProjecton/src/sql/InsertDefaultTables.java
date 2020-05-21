@@ -6,17 +6,19 @@ import java.util.Date;
 import com.sun.jmx.snmp.Timestamp;
 
 import enums.Affiliation;
+import enums.ShipmentType;
 
 public class InsertDefaultTables {
 
 	public InsertDefaultTables(Connection con) {
-		/*
-		 * insertDefaultUser(con); insertDefaultEmployee(con);
-		 * insertDefaultCustomer(con); insertDefaultSalesPattern(con);
-		 * insertDefaultFuelStationManager(con);
-		 */
-		//insertDefaultNotification(con);
+		
+		  insertDefaultUser(con); insertDefaultEmployee(con);
+		  insertDefaultCustomer(con); insertDefaultSalesPattern(con);
+		  insertDefaultFuelStationManager(con);
+		 
+		insertDefaultNotification(con);
 		insertDefaultHomeFuelOrder(con);
+		insertDefaultShipmentType(con);
 	}
 
 	public void insertDefaultUser(Connection con) {
@@ -79,16 +81,26 @@ public class InsertDefaultTables {
 		
 	}
 	
+	public void insertDefaultShipmentType(Connection con) {
+		Object[] values3 = {"vladiregular",50.5 , 1.3, ShipmentType.regular.toString() };
+		InsertTables.insertShipmentMethod(con, values3);
+	}
+	
 	public void insertDefaultHomeFuelOrder(Connection con) {
 		String username = "hfCusUserName";
 		String customerID = "123456";
+		String fkshipmentName = "vladiExpress";
 		Object[] values = {username , "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 		
 		Object[] values2 = { customerID ,username , "hfcreditCard" };
 		InsertTables.insertCustomer(con, values2);
 		
-		Object[] values3 = { new Date(System.currentTimeMillis()), customerID };
-		InsertTables.insertHomeFuelOrder(con, values3);
+		Object[] values3 = {fkshipmentName,50.5 , 1.3, ShipmentType.urgent.toString() };
+		InsertTables.insertShipmentMethod(con, values3);
+		
+		Object[] values4 = { new Date(System.currentTimeMillis()), customerID, fkshipmentName };
+		InsertTables.insertHomeFuelOrder(con, values4);
 	}
+	
 }

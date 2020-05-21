@@ -8,13 +8,14 @@ public class GenerateTables { // creating the tables if they are not exists
 
 	public GenerateTables(Connection con) {
 
-		/*
-		 * generateUser(con); generateEmployee(con); generateCustomer(con);
-		 * generateSalePattern(con);
-		 */
+		
+		  generateUser(con); generateEmployee(con); generateCustomer(con);
+		  generateSalePattern(con);
+		 
 
-		//generateFuelStationManager(con);
-		//generateNotification(con);
+		generateFuelStationManager(con);
+		generateNotification(con);
+		generateShipmentMethod(con);
 		generateHomeFuelOrder(con);
 		// add them here
 
@@ -101,16 +102,34 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " REFERENCES fuelStationManager (FSmanagerID) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
 	}
+	
+	public void generateShipmentMethod(Connection con) {
+		String tableName = "ShipmentMethod";
+		String values = "( " 
+				+ " shipmentName varchar(32) NOT NULL ," 
+				+ " shipmentPrice float NOT NULL ," 
+				+ " shipmentMultiplier float NOT NULL ,"
+				+ " shipmentType varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (shipmentName) )";
+		generateTable(con, tableName, values);
+	}
+	
 	public void generateHomeFuelOrder(Connection con) {
 		String tableName = "homeFuelOrder";
 		String values = "( " 
 				+ " homeFuelOrderID int NOT NULL AUTO_INCREMENT ," 
 				+ " dutime TIMESTAMP NOT NULL ,"
-				+ " fkcustomerID varchar(32) NOT NULL ," 
+				+ " fkcustomerID varchar(32) NOT NULL ,"
+				+ " fkshipmentName varchar(32) NOT NULL ," 
 				+ " PRIMARY KEY (homeFuelOrderID) ,"
 				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
-				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_2 (fkshipmentName) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_2 FOREIGN KEY (fkshipmentName) "
+				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
 	}
+	
+	
 }
