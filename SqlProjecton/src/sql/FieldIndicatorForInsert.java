@@ -18,4 +18,14 @@ public class FieldIndicatorForInsert {
 	public static String[] FuelStationManager() {
 		return new String[]{"phoneNo", "fkemployeeID" };
 	}
+	
+	public static String[] Notification() {
+		return new String[]{"dismissed", "fkmanageID" };
+	}
+	
+	public static String[] HomeFuelOrder() {
+		return new String[]{"dutime", "fkcustomerID" };
+	}
+	
+	
 }

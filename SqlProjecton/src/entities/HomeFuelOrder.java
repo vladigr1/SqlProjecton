@@ -1,5 +1,7 @@
 package entities;
 
-public class HomeFuelOrder {
+import java.util.Date;
 
+public class HomeFuelOrder {
+	Date dueTime;
 }

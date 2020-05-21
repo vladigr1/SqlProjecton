@@ -77,8 +77,16 @@ public class InsertTables { // insert to tables
 		insertRow(con, "sales_pattern", FieldIndicatorForInsert.SalePattern(), values);
 	}
 	
-	public static void insertFuelStationManager(Connection con, Object[] values) {
-		insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
+	public static int insertFuelStationManager(Connection con, Object[] values) {
+		return insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
+	}
+	
+	public static void insertNotification(Connection con, Object[] values) {
+		insertRow(con, "notification", FieldIndicatorForInsert.Notification(), values);
+	}
+	
+	public static void insertHomeFuelOrder(Connection con, Object[] values) {
+		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
 	}
 
 }

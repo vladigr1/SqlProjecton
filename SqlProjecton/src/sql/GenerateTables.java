@@ -8,12 +8,14 @@ public class GenerateTables { // creating the tables if they are not exists
 
 	public GenerateTables(Connection con) {
 
-		generateUser(con);
-		generateEmployee(con);
-		generateCustomer(con);
-		generateSalePattern(con);
+		/*
+		 * generateUser(con); generateEmployee(con); generateCustomer(con);
+		 * generateSalePattern(con);
+		 */
 
-		generateFuelStationManager(con);
+		//generateFuelStationManager(con);
+		//generateNotification(con);
+		generateHomeFuelOrder(con);
 		// add them here
 
 	}
@@ -56,7 +58,9 @@ public class GenerateTables { // creating the tables if they are not exists
 
 	public void generateCustomer(Connection con) {
 		String tableName = "customer";
-		String values = "( " + "customerID varchar(32) NOT NULL ," + " creditCard varchar(32) NOT NULL ,"
+		String values = "( " 
+				+ "customerID varchar(32) NOT NULL ," 
+				+ " creditCard varchar(32) NOT NULL ,"
 				+ " fkUsername varchar(32) NOT NULL ," + " PRIMARY KEY (customerID) ,"
 				+ " KEY customer_ibfk_1 (fkUsername) ," + " CONSTRAINT customer_ibfk_1 FOREIGN KEY (fkUsername) "
 				+ " REFERENCES user (username) ON DELETE CASCADE ON UPDATE CASCADE )";
@@ -83,6 +87,30 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " KEY fuelStationManager_ibfk_1 (fkemployeeID) ,"
 				+ " CONSTRAINT fuelStationManager_ibfk_1 FOREIGN KEY (fkemployeeID) "
 				+ " REFERENCES employee (employeeID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	public void generateNotification(Connection con) {
+		String tableName = "notification";
+		String values = "( " 
+				+ " notificationID int NOT NULL AUTO_INCREMENT ," 
+				+ " dismissed varchar(1) NOT NULL ,"
+				+ " fkmanageID int NOT NULL ," 
+				+ " PRIMARY KEY (notificationID) ,"
+				+ " KEY notification_ibfk_1 (fkmanageID) ,"
+				+ " CONSTRAINT notification_ibfk_1 FOREIGN KEY (fkmanageID) "
+				+ " REFERENCES fuelStationManager (FSmanagerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	public void generateHomeFuelOrder(Connection con) {
+		String tableName = "homeFuelOrder";
+		String values = "( " 
+				+ " homeFuelOrderID int NOT NULL AUTO_INCREMENT ," 
+				+ " dutime TIMESTAMP NOT NULL ,"
+				+ " fkcustomerID varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (homeFuelOrderID) ,"
+				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
 	}
 }
