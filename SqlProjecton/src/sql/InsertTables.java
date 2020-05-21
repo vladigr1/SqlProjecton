@@ -60,10 +60,11 @@ public class InsertTables { // insert to tables
 		return res;
 	}
 
+	// only add inserts method!
 	public static void insertUser(Connection con, Object[] values) {
 		insertRow(con, "user", FieldIndicatorForInsert.User(), values);
 	}
-	
+
 	public static void insertCustomer(Connection con, Object[] values) {
 		insertRow(con, "customer", FieldIndicatorForInsert.Customer(), values);
 	}
@@ -79,6 +80,65 @@ public class InsertTables { // insert to tables
 	
 	public static void insertFuelStationManager(Connection con, Object[] values) {
 		insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
+	}
+
+	public static void insertProduct(Connection con, Object[] values) {
+		insertRow(con, "product", FieldIndicatorForInsert.Product(), values);
+
+	}
+
+	public static void insertProductInSalePattern(Connection con, Object[] values) {
+		insertRow(con, "product_in_sale_pattern", FieldIndicatorForInsert.ProductInSalePattern(), values);
+	}
+
+	public static void insertProductRatesUpdateRequest(Connection con, Object[] values) {
+		insertRow(con, "product_rates_update_request", FieldIndicatorForInsert.ProductRatesUpdateRequest(), values);
+	}
+
+	public static void insertProductInRequest(Connection con, Object[] values) {
+		insertRow(con, "product_in_request", FieldIndicatorForInsert.ProductInRequest(), values);
+	}
+
+	public static void insertFuelStation(Connection con, Object[] values) {
+		insertRow(con, "fuel_station", FieldIndicatorForInsert.FuelStation(), values);
+	}
+
+	public static void insertFastFuel(Connection con, Object[] values) {
+		insertRow(con, "fast_fuel", FieldIndicatorForInsert.FastFuel(), values);
+	}
+
+	public static void insertProductInStation(Connection con, Object[] values) {
+		insertRow(con, "product_in_station", FieldIndicatorForInsert.ProductInStation(), values);
+		
+	}
+
+	public static void insertQuarterlyReport(Connection con, Object[] values) {
+		insertRow(con, "quarterly_report", FieldIndicatorForInsert.QuarterlyReport(), values);
+		
+	}
+
+	public static void insertIncomeReport(Connection con, Object[] values) {
+		insertRow(con, "income_report", FieldIndicatorForInsert.IncomeReport(), values);
+	}
+
+	public static void insertOutcomeReport(Connection con, Object[] values) {
+		insertRow(con, "outcome_report", FieldIndicatorForInsert.OutcomeReport(), values);
+	}
+
+	public static void insertInventroyReport(Connection con, Object[] values) {
+		insertRow(con, "inventory_report", FieldIndicatorForInsert.InventroyReport(), values);
+	}
+
+	public static void insertProductInIncomeReport(Connection con, Object[] values) {
+		insertRow(con, "product_in_income_report", FieldIndicatorForInsert.ProductInIncomeReport(), values);
+	}
+
+	public static void insertProductInOutcomeReport(Connection con, Object[] values) {
+		insertRow(con, "product_in_outcome_report", FieldIndicatorForInsert.ProductInOutcomeReport(), values);
+	}
+
+	public static void insertProductInInventroyReport(Connection con, Object[] values) {
+		insertRow(con, "product_in_inventory_report", FieldIndicatorForInsert.ProductInInventroyReport(), values);
 	}
 
 }
