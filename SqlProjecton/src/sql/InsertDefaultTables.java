@@ -7,10 +7,9 @@ import enums.Affiliation;
 public class InsertDefaultTables {
 
 	public InsertDefaultTables(Connection con) {
-		insertDefaultUser(con);
-		insertDefaultEmployee(con);
-		insertDefaultCustomer(con);
-		insertDefaultSalesPattern(con);
+		  insertDefaultUser(con); insertDefaultEmployee(con);
+		  insertDefaultCustomer(con); insertDefaultSalesPattern(con);
+		  insertDefaultFuelStationManager(con);
 	}
 
 	public void insertDefaultUser(Connection con) {
@@ -42,6 +41,17 @@ public class InsertDefaultTables {
 		Object[] values3 = { "5/5/20", "6/6/23" };
 		InsertTables.insertSalesPattern(con, values3);
 
+	}
+	
+	public void insertDefaultFuelStationManager(Connection con) {
+		Object[] values = { "fsmUserName", "11", false, "Moshe", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values);
+
+		Object[] values2 = { "role", Affiliation.FuelStation.toString(), "fsmUserName" };
+		int fkemployeeID = InsertTables.insertEmployee(con, values2);
+		Object[] values3 = {"0000", fkemployeeID};
+		InsertTables.insertFuelStationManager(con, values3);
+		
 	}
 
 }

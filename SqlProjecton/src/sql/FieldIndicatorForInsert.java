@@ -14,4 +14,8 @@ public class FieldIndicatorForInsert {
 	public static String[] Customer() {
 		return new String[]{ "customerID","fkUsername", "creditCard" };
 	}
+	
+	public static String[] FuelStationManager() {
+		return new String[]{"phoneNo", "fkemployeeID" };
+	}
 }

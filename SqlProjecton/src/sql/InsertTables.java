@@ -1,13 +1,15 @@
 package sql;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class InsertTables { // insert to tables
 
-	private static void insertRow(Connection con, String tableName, String[] fields, Object[] values) {
+	private static int insertRow(Connection con, String tableName, String[] fields, Object[] values) {
+		int res = -1;
 		try {
 			// Get result test metadata
 			System.out.println("inserting row to table -> " + tableName);
@@ -38,12 +40,15 @@ public class InsertTables { // insert to tables
 				}
 			}
 //			System.out.println("String builder->"+sb.toString());
-			PreparedStatement ps = con.prepareStatement(sb.toString());
+			PreparedStatement ps = con.prepareStatement(sb.toString(), Statement.RETURN_GENERATED_KEYS);
 			for (int i = 1; i <= fields.length; ++i) {
 				ps.setObject(i, values[i - 1]);
 			}
 			ps.execute();
-
+			ResultSet rs = ps.getGeneratedKeys();
+		    if (rs.next() != false) {
+		    	res = rs.getInt(1);	
+		    }	   
 		} catch (SQLException ex) {/* handle any errors */
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -51,7 +56,8 @@ public class InsertTables { // insert to tables
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-
+		System.out.println(tableName + res);
+		return res;
 	}
 
 	public static void insertUser(Connection con, Object[] values) {
@@ -62,13 +68,17 @@ public class InsertTables { // insert to tables
 		insertRow(con, "customer", FieldIndicatorForInsert.Customer(), values);
 	}
 
-	public static void insertEmployee(Connection con, Object[] values) {
-		insertRow(con, "employee", FieldIndicatorForInsert.Employee(), values);
+	public static int insertEmployee(Connection con, Object[] values) {
+		return insertRow(con, "employee", FieldIndicatorForInsert.Employee(), values);
 
 	}
 
 	public static void insertSalesPattern(Connection con, Object[] values) {
 		insertRow(con, "sales_pattern", FieldIndicatorForInsert.SalePattern(), values);
+	}
+	
+	public static void insertFuelStationManager(Connection con, Object[] values) {
+		insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
 	}
 
 }
