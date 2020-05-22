@@ -9,14 +9,19 @@ public class GenerateTables { // creating the tables if they are not exists
 	public GenerateTables(Connection con) {
 
 		
-		  generateUser(con); generateEmployee(con); generateCustomer(con);
-		  generateSalePattern(con);
-		 
+		
+		generateUser(con);
+		generateEmployee(con);
+		generateCustomer(con);
+		generateSalePattern(con);
 
 		generateFuelStationManager(con);
 		generateNotification(con);
 		generateShipmentMethod(con);
+
+		generateOrders(con);
 		generateHomeFuelOrder(con);
+
 		// add them here
 
 	}
@@ -114,22 +119,38 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateTable(con, tableName, values);
 	}
 	
+	public void generateOrders(Connection con) {
+		String tableName = "Orders";
+		String values = "( " 
+				+ " orders_ID int NOT NULL AUTO_INCREMENT ," 
+				+ " order_time TIMESTAMP NOT NULL ,"
+				+ " amount_bought float NOT NULL ,"
+				+ " final_price float NOT NULL ," 
+				+ " address varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (orders_ID) )";
+		generateTable(con, tableName, values);
+	}
+	
 	public void generateHomeFuelOrder(Connection con) {
 		String tableName = "homeFuelOrder";
 		String values = "( " 
 				+ " homeFuelOrderID int NOT NULL AUTO_INCREMENT ," 
 				+ " dutime TIMESTAMP NOT NULL ,"
 				+ " fkcustomerID varchar(32) NOT NULL ,"
-				+ " fkshipmentName varchar(32) NOT NULL ," 
+				+ " fkshipmentName varchar(32) NOT NULL ,"
+				+ " fkorders_ID int NOT NULL ,"
 				+ " PRIMARY KEY (homeFuelOrderID) ,"
 				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
 				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
 				+ " KEY homeFuelOrder_ibfk_2 (fkshipmentName) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_2 FOREIGN KEY (fkshipmentName) "
-				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_3 (fkorders_ID) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_3 FOREIGN KEY (fkorders_ID) "
+				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE )";;
+			
 		generateTable(con, tableName, values);
 	}
-	
 	
 }

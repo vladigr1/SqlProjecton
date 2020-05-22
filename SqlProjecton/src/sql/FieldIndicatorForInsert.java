@@ -27,10 +27,14 @@ public class FieldIndicatorForInsert {
 		return new String[]{"shipmentName","shipmentPrice", "shipmentMultiplier","shipmentType" };
 	}
 	
+	public static String[] Orders() {
+		return new String[]{"order_time", "amount_bought","final_price","address"};
+	}
+	
 	public static String[] HomeFuelOrder() {
-		return new String[]{"dutime", "fkcustomerID","fkshipmentName"};
+		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID"};
 	}
 	
 	
-	
+
 }

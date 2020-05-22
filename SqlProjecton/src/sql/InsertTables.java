@@ -85,12 +85,17 @@ public class InsertTables { // insert to tables
 		insertRow(con, "notification", FieldIndicatorForInsert.Notification(), values);
 	}
 	
-	public static void insertHomeFuelOrder(Connection con, Object[] values) {
-		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
-	}
 	
 	public static void insertShipmentMethod(Connection con, Object[] values) {
 		insertRow(con, "ShipmentMethod", FieldIndicatorForInsert.ShipmentMethod(), values);
+	}
+	
+	public static int insertOrders(Connection con, Object[] values) {
+		return insertRow(con, "Orders", FieldIndicatorForInsert.Orders(), values);
+	}
+	
+	public static void insertHomeFuelOrder(Connection con, Object[] values) {
+		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
 	}
 
 }

@@ -15,7 +15,7 @@ public class SqlMain {
 		}
 
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/myfuel?serverTimezone=IST", "root",
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/myfuel?serverTimezone=Asia/Jerusalem", "root",
 					Pass.pass);
 			// Connection con =
 			// DriverManager.getConnection("jdbc:mysql://192.168.3.68/test","root","Root");
