@@ -56,13 +56,12 @@ public class InsertTables { // insert to tables
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		System.out.println(tableName + res);
 		return res;
 	}
 
 	// only add inserts method!
-	public static void insertUser(Connection con, Object[] values) {
-		insertRow(con, "user", FieldIndicatorForInsert.User(), values);
+	public static int insertUser(Connection con, Object[] values) {
+		return insertRow(con, "user", FieldIndicatorForInsert.User(), values);
 	}
 
 	public static void insertCustomer(Connection con, Object[] values) {
@@ -74,12 +73,12 @@ public class InsertTables { // insert to tables
 
 	}
 
-	public static void insertSalesPattern(Connection con, Object[] values) {
-		insertRow(con, "sales_pattern", FieldIndicatorForInsert.SalePattern(), values);
+	public static int insertSalesPattern(Connection con, Object[] values) {
+		return insertRow(con, "sales_pattern", FieldIndicatorForInsert.SalePattern(), values);
 	}
 	
-	public static void insertFuelStationManager(Connection con, Object[] values) {
-		insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
+	public static int insertFuelStationManager(Connection con, Object[] values) {
+		return insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
 	}
 
 	public static void insertProduct(Connection con, Object[] values) {
@@ -91,16 +90,16 @@ public class InsertTables { // insert to tables
 		insertRow(con, "product_in_sale_pattern", FieldIndicatorForInsert.ProductInSalePattern(), values);
 	}
 
-	public static void insertProductRatesUpdateRequest(Connection con, Object[] values) {
-		insertRow(con, "product_rates_update_request", FieldIndicatorForInsert.ProductRatesUpdateRequest(), values);
+	public static int insertProductRatesUpdateRequest(Connection con, Object[] values) {
+		return insertRow(con, "product_rates_update_request", FieldIndicatorForInsert.ProductRatesUpdateRequest(), values);
 	}
 
 	public static void insertProductInRequest(Connection con, Object[] values) {
 		insertRow(con, "product_in_request", FieldIndicatorForInsert.ProductInRequest(), values);
 	}
 
-	public static void insertFuelStation(Connection con, Object[] values) {
-		insertRow(con, "fuel_station", FieldIndicatorForInsert.FuelStation(), values);
+	public static int insertFuelStation(Connection con, Object[] values) {
+		return insertRow(con, "fuel_station", FieldIndicatorForInsert.FuelStation(), values);
 	}
 
 	public static void insertFastFuel(Connection con, Object[] values) {
@@ -112,8 +111,8 @@ public class InsertTables { // insert to tables
 		
 	}
 
-	public static void insertQuarterlyReport(Connection con, Object[] values) {
-		insertRow(con, "quarterly_report", FieldIndicatorForInsert.QuarterlyReport(), values);
+	public static int insertQuarterlyReport(Connection con, Object[] values) {
+		return insertRow(con, "quarterly_report", FieldIndicatorForInsert.QuarterlyReport(), values);
 		
 	}
 
@@ -140,5 +139,25 @@ public class InsertTables { // insert to tables
 	public static void insertProductInInventroyReport(Connection con, Object[] values) {
 		insertRow(con, "product_in_inventory_report", FieldIndicatorForInsert.ProductInInventroyReport(), values);
 	}
+
+	public static int insertSale(Connection con, Object[] values) {
+		return insertRow(con, "sale", FieldIndicatorForInsert.Sale(), values);		
+	}
+
+	public static void insertCustomerboughtInSale(Connection con, Object[] values) {
+		insertRow(con, "customer_bought_in_sale", FieldIndicatorForInsert.CustomerboughtInSale(), values);	
+	}
+
+	public static void insertSaleCommentsReport(Connection con, Object[] values) {
+		insertRow(con, "sale_comments_report", FieldIndicatorForInsert.SaleCommentsReport(), values);
+		
+	}
+
+	public static void insertFuelStationOrder(Connection con, Object[] values) {
+		insertRow(con, "fuel_station_order", FieldIndicatorForInsert.FuelStationOrder(), values);
+		
+	}
+	
+
 
 }
