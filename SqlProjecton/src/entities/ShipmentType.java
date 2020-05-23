@@ -1,9 +1,9 @@
-package enums;
+package entities;
 
 public enum ShipmentType {
 	regular {
 		public String toString() {
-			return "Management";
+			return "Regular";
 		}
 	},
 	urgent {

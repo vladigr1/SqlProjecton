@@ -35,6 +35,21 @@ public class FieldIndicatorForInsert {
 		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID"};
 	}
 	
+	public static String[] PurchasingProgramType() {
+		return new String[]{"purchasing_program_Name","description", "monthly_price"};
+	}
+	
+	public static String[] FuelCompany() {
+		return new String[]{"fuel_Company_Name","fkemployeeID"};
+	}
+	
+	public static String[] PurchasingProgram() {
+		return new String[]{"fkcustomerID","fkpurchasingProgramType", "fkfuel_Company_Name"};
+	}
+	
+	public static String[] CustomerBoughtFromCompany() {
+		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amount_Bought_From_Company","amount_Paid_Company"};
+	}
 	
 
 }

@@ -5,23 +5,25 @@ import java.util.Date;
 
 import com.sun.jmx.snmp.Timestamp;
 
+import entities.PurchasingProgram;
+import entities.ShipmentType;
 import enums.Affiliation;
-import enums.ShipmentType;
+import enums.PurchasingProgramName;
 
 public class InsertDefaultTables {
 
 	public InsertDefaultTables(Connection con) {
 		
-		insertDefaultUser(con);
-		insertDefaultEmployee(con);
-		insertDefaultCustomer(con);
-		insertDefaultSalesPattern(con);
-		insertDefaultFuelStationManager(con);
-		insertDefaultNotification(con);
-		insertDefaultShipmentType(con);
-		insertDefaultOrders(con);
-		insertDefaultHomeFuelOrder(con);
 		
+		  insertDefaultUser(con); insertDefaultEmployee(con);
+		  insertDefaultCustomer(con); insertDefaultSalesPattern(con);
+		  insertDefaultFuelStationManager(con); insertDefaultNotification(con);
+		  insertDefaultShipmentType(con); insertDefaultOrders(con);
+		  insertDefaultHomeFuelOrder(con); insertDefaultPurchasingProgramType(con);
+		  
+		  insertDefaultFuelCompany(con); insertDefaultPurchasingProgram(con);
+		 
+		insertCustomerBoughtFromCompany(con);
 	}
 
 	public void insertDefaultUser(Connection con) {
@@ -116,6 +118,91 @@ public class InsertDefaultTables {
 		
 		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentName,fkorders_ID};
 		InsertTables.insertHomeFuelOrder(con, values5);
+	}
+	
+	public void insertDefaultPurchasingProgramType(Connection con) {
+		
+		Object[] values = {PurchasingProgramName.single.toString() , "for single car", 100.4 };
+		InsertTables.insertPurchasingProgramType(con, values);
+	}
+	
+	public void insertDefaultFuelCompany(Connection con) {
+		String userName = "SupplierUserName";
+		int fkemployeeID;
+		Object[] values = { userName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values);
+
+		Object[] values2 = { "role", Affiliation.Marketing.toString(), userName };
+		fkemployeeID = InsertTables.insertEmployee(con, values2);
+		
+		Object[] values3 = { "Sonol", fkemployeeID };
+		InsertTables.insertFuelCompany(con, values3);
+	}
+	
+	public void insertDefaultPurchasingProgram(Connection con) {
+		String supplieruserName = "Supplier2UserName";
+		String customerUserName = "customer13UserName";
+		int fkemployeeID;
+		String fkcustomer = "1212";
+		String fkpurchasingProgramType = PurchasingProgramName.expensive.toString();
+		String fkfuel_Company_Name = "paz";
+		
+		//customer
+		Object[] values1 = { customerUserName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values1);
+
+		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444" };
+		InsertTables.insertCustomer(con, values2);
+		
+
+		//PurchasingProgramType
+		Object[] values3 = {fkpurchasingProgramType , "for not single car", 100.4 };
+		InsertTables.insertPurchasingProgramType(con, values3);
+		
+		
+		//fuelCompany
+		Object[] values4 = { supplieruserName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values4);
+
+		Object[] values5 = { "role", Affiliation.Marketing.toString(), supplieruserName };
+		fkemployeeID = InsertTables.insertEmployee(con, values5);
+		
+		Object[] values6 = {fkfuel_Company_Name , fkemployeeID };
+		InsertTables.insertFuelCompany(con, values6);
+
+		//purchasing program
+		Object[] values7 = { fkcustomer , fkpurchasingProgramType, fkfuel_Company_Name };
+		InsertTables.insertPurchasingProgram(con, values7);
+	}
+	
+	public void insertCustomerBoughtFromCompany(Connection con) {
+		String supplieruserName = "Supplier3UserName";
+		String customerUserName = "customer6UserName";
+		int fkemployeeID;
+		String fkcustomer = "221212";
+		String fkfuel_Company_Name = "zap";
+		
+		//customer
+		Object[] values1 = { customerUserName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values1);
+
+		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444" };
+		InsertTables.insertCustomer(con, values2);
+		
+		
+		//fuelCompany
+		Object[] values4 = { supplieruserName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values4);
+
+		Object[] values5 = { "role", Affiliation.Marketing.toString(), supplieruserName };
+		fkemployeeID = InsertTables.insertEmployee(con, values5);
+		
+		Object[] values6 = {fkfuel_Company_Name , fkemployeeID };
+		InsertTables.insertFuelCompany(con, values6);
+
+		//CustomerBoughtFromCompany
+		Object[] values7 = {fkcustomer , fkfuel_Company_Name, 3.4, 34.0};
+		InsertTables.insertCustomerBoughtFromCompany(con, values7);
 	}
 	
 }

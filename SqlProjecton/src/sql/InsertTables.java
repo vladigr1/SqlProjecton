@@ -97,5 +97,20 @@ public class InsertTables { // insert to tables
 	public static void insertHomeFuelOrder(Connection con, Object[] values) {
 		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
 	}
+	
+	public static void insertPurchasingProgramType(Connection con, Object[] values) {
+		insertRow(con, "PurchasingProgramType", FieldIndicatorForInsert.PurchasingProgramType(), values);
+	}
+	
+	public static void insertFuelCompany(Connection con, Object[] values) {
+		insertRow(con, "FuelCompany", FieldIndicatorForInsert.FuelCompany(), values);
+	}
+	
+	public static void insertPurchasingProgram(Connection con, Object[] values) {
+		insertRow(con, "PurchasingProgram", FieldIndicatorForInsert.PurchasingProgram(), values);
+	}
+	public static void insertCustomerBoughtFromCompany(Connection con, Object[] values) {
+		insertRow(con, "CustomerBoughtFromCompany", FieldIndicatorForInsert.CustomerBoughtFromCompany(), values);
+	}
 
 }

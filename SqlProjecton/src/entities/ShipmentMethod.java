@@ -1,8 +1,6 @@
 
 package entities;
 
-import enums.ShipmentType;
-
 public class ShipmentMethod {
 	
 	private String shipmentName;	//pk
