@@ -19,6 +19,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		//elro additions
 		generateProduct(con);
 		generateProductInSalePattern(con);
+		generateSale(con);//////
 		generateProductRatesUpdateRequest(con);
 		generateProductInRequest(con);
 		generateFuelStation(con);
@@ -35,7 +36,11 @@ public class GenerateTables { // creating the tables if they are not exists
 		
 		generateInventroyReport(con);
 		generateProductInInventroyReport(con);
-
+		
+		generateCustomerboughtInSale(con);/////
+		generateSaleCommentsReport(con);/////
+		generateFuelStationOrder(con);//////
+		
 	}
 
 	// create a default function from generators
@@ -58,17 +63,23 @@ public class GenerateTables { // creating the tables if they are not exists
 
 	public void generateUser(Connection con) {
 		String tableName = "user";
-		String values = "( " + "username varchar(32) NOT NULL ," + " password varchar(32) NOT NULL ,"
-				+ " connected varchar(1) NOT NULL ," + " firstName varchar(32) NOT NULL ,"
-				+ " surname varchar(32) NOT NULL ," + "email varchar(32) NOT NULL ," + "PRIMARY KEY (username) )";
+		String values = "( " + "username varchar(32) NOT NULL ,"
+		        + " password varchar(32) NOT NULL ,"
+				+ " connected varchar(1) NOT NULL ," 
+		        + " firstName varchar(32) NOT NULL ,"
+				+ " surname varchar(32) NOT NULL ,"
+		        + "email varchar(32) NOT NULL ," + "PRIMARY KEY (username) )";
 		generateTable(con, tableName, values);
 	}
 
 	public void generateEmployee(Connection con) {
 		String tableName = "employee";
-		String values = "( " + "employeeID int NOT NULL AUTO_INCREMENT ," + " role varchar(32) NOT NULL , "
-				+ " affiliation varchar(32) NOT NULL , " + " fkUsername varchar(32) NOT NULL , "
-				+ " PRIMARY KEY (employeeID) ," + "KEY employee_ibfk_1 (fkUsername), "
+		String values = "( " + "employeeID int NOT NULL AUTO_INCREMENT ," 
+		        + " role varchar(32) NOT NULL , "
+				+ " affiliation varchar(32) NOT NULL , " 
+		        + " fkUsername varchar(32) NOT NULL , "
+				+ " PRIMARY KEY (employeeID) ," 
+		        + "KEY employee_ibfk_1 (fkUsername), "
 				+ " CONSTRAINT employee_ibfk_1 FOREIGN KEY (fkUsername) "
 				+ "REFERENCES user (username) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
@@ -76,17 +87,34 @@ public class GenerateTables { // creating the tables if they are not exists
 
 	public void generateCustomer(Connection con) {
 		String tableName = "customer";
-		String values = "( " + "customerID varchar(32) NOT NULL ," + " creditCard varchar(32) NOT NULL ,"
-				+ " fkUsername varchar(32) NOT NULL ," + " PRIMARY KEY (customerID) ,"
-				+ " KEY customer_ibfk_1 (fkUsername) ," + " CONSTRAINT customer_ibfk_1 FOREIGN KEY (fkUsername) "
+		String values = "( " + "customerID varchar(32) NOT NULL ,"
+				+ " creditCard varchar(32) NOT NULL ,"
+				+ " fkUsername varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (customerID) ,"
+				+ " KEY customer_ibfk_1 (fkUsername) ," 
+				+ " CONSTRAINT customer_ibfk_1 FOREIGN KEY (fkUsername) "
 				+ " REFERENCES user (username) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
 	}
 	
 	public void generateSalePattern(Connection con) {	
 		String tableName = "sales_pattern";
-		String values = "( " + "salesPatternID INT NOT NULL AUTO_INCREMENT ," + " startTime varchar(32) NOT NULL ,"
-				+ " endTime varchar(32) NOT NULL ," + " PRIMARY KEY (salesPatternID) )";
+		String values = "( " + "salesPatternID INT NOT NULL AUTO_INCREMENT ," 
+				+ " startTime TIMESTAMP NOT NULL ,"
+				+ " endTime TIMESTAMP NOT NULL ," 
+				+ " PRIMARY KEY (salesPatternID) )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateSale(Connection con) {	
+		String tableName = "sale";
+		String values = "( " + "saleID INT NOT NULL AUTO_INCREMENT ," 
+				+ " fk_salesPatternID int NOT NULL ," 	
+				+ " active varchar(1)  NOT NULL ," 
+				+ " PRIMARY KEY (saleID) ,"
+				+ " KEY sale_ibfk_1 (fk_salesPatternID) ,"
+				+ " CONSTRAINT sale_ibfk_1 FOREIGN KEY (fk_salesPatternID) "
+				+ " REFERENCES sales_pattern (salesPatternID) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con, tableName, values);
 	}
 
@@ -182,7 +210,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		String tableName = "fast_fuel";
 		String values =
 				"( " + "fastFuelID INT NOT NULL AUTO_INCREMENT ,"		
-				+ " fastFuelTime varchar(32) NOT NULL ," 
+				+ " fastFuelTime TIMESTAMP NOT NULL ," 
 				+ " amountBought DOUBLE(32,2) NOT NULL ," 
 				+ " finalPrice DOUBLE(32,2) NOT NULL ," 
 				+ "FK_productName varchar(32) NOT NULL ," 
@@ -327,5 +355,54 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " REFERENCES inventory_report (FK_repQuarter) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);	
 	}
-		
+	
+	public void generateCustomerboughtInSale(Connection con) {
+		String tableName = "customer_bought_in_sale";
+		String values =
+				"( " + "FK_saleID INT NOT NULL ,"
+				+ "FK_customerID varchar(32) NOT NULL,"
+				+ "amountPaid DOUBLE(32,2) NOT NULL,"
+				+ " PRIMARY KEY (FK_saleID, FK_customerID),"	
+				
+				+ " KEY customer_bought_in_sale_ibfk_1 (FK_saleID),"//first FK
+				+ " CONSTRAINT customer_bought_in_sale_ibfk_1 FOREIGN KEY (FK_saleID) "
+				+ " REFERENCES sale (saleID) ON DELETE CASCADE ON UPDATE CASCADE,"
+				
+				+ " KEY customer_bought_in_sale_ibfk_2 (FK_customerID) ,"//second FK
+				+ " CONSTRAINT customer_bought_in_sale_ibfk_2 FOREIGN KEY (FK_customerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con,tableName,values);	
+	}
+	
+	
+	public void generateSaleCommentsReport(Connection con) {
+		String tableName = "sale_comments_report";
+		String values =
+				"( " + "FK_saleID INT NOT NULL ,"
+				+ "numberOfCustomersBought INT NOT NULL,"
+				+ "sumOfPurchases DOUBLE(32,2) NOT NULL,"
+				+ " PRIMARY KEY (FK_saleID),"	
+				
+				+ " KEY sale_comments_report_ibfk_1 (FK_saleID),"//first FK
+				+ " CONSTRAINT sale_comments_report_ibfk_1 FOREIGN KEY (FK_saleID) "
+				+ " REFERENCES sale (saleID) ON DELETE CASCADE ON UPDATE CASCADE)";
+		generateTable(con,tableName,values);	
+	}
+	
+	public void generateFuelStationOrder(Connection con) {
+		String tableName = "fuel_station_order";
+		String values =
+				"( " + "FK_orderID INT NOT NULL ,"
+				+ "FK_productInStationID INT NOT NULL ,"
+				+ "assessed varchar(1) NOT NULL,"
+				+ "approved varchar(1) NOT NULL,"
+				+ "supplied varchar(1) NOT NULL,"
+				+ "timeSupplied TIMESTAMP NOT NULL,"
+				+ " PRIMARY KEY (FK_orderID),"
+				
+				+ " KEY fuel_station_order_ibfk_1 (FK_productInStationID),"
+				+ " CONSTRAINT fuel_station_order_ibfk_1 FOREIGN KEY (FK_productInStationID) "
+				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE)";
+		generateTable(con,tableName,values);	
+	}
 }

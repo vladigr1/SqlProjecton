@@ -76,4 +76,22 @@ public class FieldIndicatorForInsert {
 	public static String[] FuelStationManager() {
 		return new String[]{"phoneNo", "fkemployeeID" };
 	}
+	
+	public static String[] Sale() {
+		return new String[]{"fk_salesPatternID","active" };
+	}
+	
+	public static String[] CustomerboughtInSale() {
+		return new String[]{"FK_saleID","FK_customerID","amountPaid" };
+	}
+	
+	public static String[] SaleCommentsReport() {
+		return new String[]{"FK_saleID","numberOfCustomersBought","sumOfPurchases" };
+	}
+	
+	public static String[] FuelStationOrder() {
+		return new String[]{"FK_orderID","FK_productInStationID","assessed","approved","supplied","timeSupplied" };
+	}
+	
+	
 }

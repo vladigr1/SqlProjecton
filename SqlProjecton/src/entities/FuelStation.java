@@ -8,7 +8,7 @@ public class FuelStation {
 
 	// connections
 	private List<FastFuel> fastFuelList = new ArrayList<>();
-	private FuelCompanies fuelCompanies;
+	private FuelCompany fuelCompanies;
 	private FuelStationManager fuelStationManager;
 	private List<QuarterlyReport> quarerlyReportList = new ArrayList<>();
 	private List<ProductInStation> productInStationList = new ArrayList<>();
@@ -19,7 +19,7 @@ public class FuelStation {
 	private String stationName;
 	private String address;
 
-	public FuelStation(List<FastFuel> fastFuelList, FuelCompanies fuelCompanies, FuelStationManager fuelStationManager,
+	public FuelStation(List<FastFuel> fastFuelList, FuelCompany fuelCompanies, FuelStationManager fuelStationManager,
 			List<QuarterlyReport> quarerlyReportList, List<ProductInStation> productInStationList, int fuelStationID,
 			String stationName, String address) {
 		super();
@@ -41,11 +41,11 @@ public class FuelStation {
 		this.fastFuelList = fastFuelList;
 	}
 
-	public FuelCompanies getFuelCompanies() {
+	public FuelCompany getFuelCompanies() {
 		return fuelCompanies;
 	}
 
-	public void setFuelCompanies(FuelCompanies fuelCompanies) {
+	public void setFuelCompanies(FuelCompany fuelCompanies) {
 		this.fuelCompanies = fuelCompanies;
 	}
 
