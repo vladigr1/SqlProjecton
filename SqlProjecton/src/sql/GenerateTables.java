@@ -41,8 +41,6 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateSaleCommentsReport(con);/////
 		generateFuelStationOrder(con);//////
 		
-	
-
 	}
 
 	// create a default function from generators
@@ -407,6 +405,4 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE)";
 		generateTable(con,tableName,values);	
 	}
-	
-		
 }
