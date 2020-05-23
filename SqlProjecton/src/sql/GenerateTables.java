@@ -41,6 +41,18 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateSaleCommentsReport(con);/////
 		generateFuelStationOrder(con);//////
 		
+		//vlad tables
+		generateNotification(con);
+		generateShipmentMethod(con);
+		generateOrders(con);
+		generatePurchasingProgramType(con);
+		generateFuelCompany(con);
+		generateHomeFuelOrder(con);
+		generatePurchasingProgram(con);
+		generatePurchasingProgram(con);
+		generateCustomerBoughtFromCompany(con);
+		
+		
 	}
 
 	// create a default function from generators
@@ -405,4 +417,126 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE)";
 		generateTable(con,tableName,values);	
 	}
+	
+	public void generateNotification(Connection con) {
+		String tableName = "notification";
+		String values = "( " 
+				+ " notificationID int NOT NULL AUTO_INCREMENT ," 
+				+ " dismissed varchar(1) NOT NULL ,"
+				+ " fkmanageID int NOT NULL ," 
+				+ " PRIMARY KEY (notificationID) ,"
+				+ " KEY notification_ibfk_1 (fkmanageID) ,"
+				+ " CONSTRAINT notification_ibfk_1 FOREIGN KEY (fkmanageID) "
+				+ " REFERENCES fuelStationManager (FSmanagerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateShipmentMethod(Connection con) {
+		String tableName = "ShipmentMethod";
+		String values = "( " 
+				+ " shipmentName varchar(32) NOT NULL ," 
+				+ " shipmentPrice float NOT NULL ," 
+				+ " shipmentMultiplier float NOT NULL ,"
+				+ " shipmentType varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (shipmentName) )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateOrders(Connection con) {
+		String tableName = "Orders";
+		String values = "( " 
+				+ " orders_ID int NOT NULL AUTO_INCREMENT ," 
+				+ " order_time TIMESTAMP NOT NULL ,"
+				+ " amount_bought float NOT NULL ,"
+				+ " final_price float NOT NULL ," 
+				+ " address varchar(32) NOT NULL ," 
+				+ " PRIMARY KEY (orders_ID) )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateHomeFuelOrder(Connection con) {
+		String tableName = "homeFuelOrder";
+		String values = "( " 
+				+ " homeFuelOrderID int NOT NULL AUTO_INCREMENT ," 
+				+ " dutime TIMESTAMP NOT NULL ,"
+				+ " fkcustomerID varchar(32) NOT NULL ,"
+				+ " fkshipmentName varchar(32) NOT NULL ,"
+				+ " fkorders_ID int NOT NULL ,"
+				+ " PRIMARY KEY (homeFuelOrderID) ,"
+				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_2 (fkshipmentName) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_2 FOREIGN KEY (fkshipmentName) "
+				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_3 (fkorders_ID) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_3 FOREIGN KEY (fkorders_ID) "
+				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE )";
+			
+		generateTable(con, tableName, values);
+	}
+	
+	public void generatePurchasingProgramType(Connection con) {
+		String tableName = "PurchasingProgramType";
+		String values = "( " 
+				+ " purchasing_program_Name varchar(32) NOT NULL ,"
+				+ " description varchar(32) NOT NULL ," 
+				+ " monthly_price float NOT NULL ,"
+				+ " PRIMARY KEY (purchasing_program_Name) )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateFuelCompany(Connection con) {
+		String tableName = "FuelCompany";
+		String values = "( " 
+				+ " fuel_Company_Name varchar(32) NOT NULL ,"
+				+ " fkemployeeID int NOT NULL ,"	//supplier
+				+ " PRIMARY KEY (fuel_Company_Name) ,"
+				+ " KEY FuelCompany_ibfk_1 (fkemployeeID) ,"
+				+ " CONSTRAINT FuelCompany_ibfk_1 FOREIGN KEY (fkemployeeID) "
+				+ " REFERENCES employee (employeeID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generatePurchasingProgram(Connection con) {
+		String tableName = "PurchasingProgram";
+		String values = "( " 
+				+ " fkcustomerID varchar(32) NOT NULL ,"
+				+ " fkpurchasingProgramType varchar(32) NOT NULL ," 
+				+ " fkfuel_Company_Name varchar(32) NOT NULL ,"
+				+ " PRIMARY KEY (fkcustomerID) ,"
+				//fk1
+				+ " KEY PurchasingProgram_ibfk_1 (fkcustomerID,fkfuel_Company_Name) ,"
+				+ " CONSTRAINT PurchasingProgram_ibfk_1 FOREIGN KEY (fkcustomerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				//fk2
+				+ " KEY PurchasingProgram_ibfk_2 (fkpurchasingProgramType) ,"
+				+ " CONSTRAINT PurchasingProgram_ibfk_2 FOREIGN KEY (fkpurchasingProgramType) "
+				+ " REFERENCES PurchasingProgramType (purchasing_program_Name) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				//fk3
+				+ " KEY PurchasingProgram_ibfk_3 (fkfuel_Company_Name) ,"
+				+ " CONSTRAINT PurchasingProgram_ibfk_3 FOREIGN KEY (fkfuel_Company_Name) "
+				+ " REFERENCES FuelCompany (fuel_Company_Name) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generateCustomerBoughtFromCompany(Connection con) {
+		String tableName = "CustomerBoughtFromCompany";
+		String values = "( " 
+				+ " fkcustomerID varchar(32) NOT NULL ,"
+				+ " fkfuel_Company_Name varchar(32) NOT NULL ,"
+				+ " amount_Bought_From_Company float NOT NULL ,"
+				+ " amount_Paid_Company float NOT NULL ," 
+				+ " PRIMARY KEY (fkcustomerID,fkfuel_Company_Name) ,"
+				//fk1
+				+ " KEY CustomerBoughtFromCompany_ibfk_1 (fkcustomerID) ,"
+				+ " CONSTRAINT CustomerBoughtFromCompany_ibfk_1 FOREIGN KEY (fkcustomerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				//fk2
+				+ " KEY CustomerBoughtFromCompany_ibfk_2 (fkfuel_Company_Name) ,"
+				+ " CONSTRAINT CustomerBoughtFromCompany_ibfk_2 FOREIGN KEY (fkfuel_Company_Name) "
+				+ " REFERENCES FuelCompany (fuel_Company_Name) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
 }

@@ -8,7 +8,7 @@ public class FuelStation {
 
 	// connections
 	private List<FastFuel> fastFuelList = new ArrayList<>();
-	private FuelCompany fuelCompanies;
+	private FuelCompany fuelCompany;
 	private FuelStationManager fuelStationManager;
 	private List<QuarterlyReport> quarerlyReportList = new ArrayList<>();
 	private List<ProductInStation> productInStationList = new ArrayList<>();
@@ -19,12 +19,12 @@ public class FuelStation {
 	private String stationName;
 	private String address;
 
-	public FuelStation(List<FastFuel> fastFuelList, FuelCompany fuelCompanies, FuelStationManager fuelStationManager,
+	public FuelStation(List<FastFuel> fastFuelList, FuelCompany fuelCompany, FuelStationManager fuelStationManager,
 			List<QuarterlyReport> quarerlyReportList, List<ProductInStation> productInStationList, int fuelStationID,
 			String stationName, String address) {
 		super();
 		this.fastFuelList = fastFuelList;
-		this.fuelCompanies = fuelCompanies;
+		this.fuelCompany = fuelCompany;
 		this.fuelStationManager = fuelStationManager;
 		this.quarerlyReportList = quarerlyReportList;
 		this.productInStationList = productInStationList;
@@ -42,11 +42,11 @@ public class FuelStation {
 	}
 
 	public FuelCompany getFuelCompanies() {
-		return fuelCompanies;
+		return fuelCompany;
 	}
 
-	public void setFuelCompanies(FuelCompany fuelCompanies) {
-		this.fuelCompanies = fuelCompanies;
+	public void setFuelCompany(FuelCompany fuelCompany) {
+		this.fuelCompany = fuelCompany;
 	}
 
 	public FuelStationManager getFuelStationManager() {
@@ -107,7 +107,7 @@ public class FuelStation {
 
 	@Override
 	public String toString() {
-		return "FuelStaion [fastFuelList=" + fastFuelList + ", fuelCompanies=" + fuelCompanies + ", fuelStationManager="
+		return "FuelStaion [fastFuelList=" + fastFuelList + ", fuelCompanies=" + fuelCompany + ", fuelStationManager="
 				+ fuelStationManager + ", quarerlyReportList=" + quarerlyReportList + ", productInStationList="
 				+ productInStationList + ", fuelStationID=" + fuelStationID + ", stationName=" + stationName
 				+ ", address=" + address + "]";

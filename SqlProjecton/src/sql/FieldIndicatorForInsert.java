@@ -92,6 +92,39 @@ public class FieldIndicatorForInsert {
 	public static String[] FuelStationOrder() {
 		return new String[]{"FK_orderID","FK_productInStationID","assessed","approved","supplied","timeSupplied" };
 	}
+	//vlad added
 	
+	public static String[] Notification() {
+		return new String[]{"dismissed", "fkmanageID" };
+	}
 	
+	public static String[] ShipmentMethod() {
+		return new String[]{"shipmentName","shipmentPrice", "shipmentMultiplier","shipmentType" };
+	}
+	
+	public static String[] Orders() {
+		return new String[]{"order_time", "amount_bought","final_price","address"};
+	}
+	
+	public static String[] HomeFuelOrder() {
+		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID"};
+	}
+	
+	public static String[] PurchasingProgramType() {
+		return new String[]{"purchasing_program_Name","description", "monthly_price"};
+	}
+	
+	public static String[] FuelCompany() {
+		return new String[]{"fuel_Company_Name","fkemployeeID"};
+	}
+	
+	public static String[] PurchasingProgram() {
+		return new String[]{"fkcustomerID","fkpurchasingProgramType", "fkfuel_Company_Name"};
+	}
+	
+	public static String[] CustomerBoughtFromCompany() {
+		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amount_Bought_From_Company","amount_Paid_Company"};
+	}
+	
+
 }
