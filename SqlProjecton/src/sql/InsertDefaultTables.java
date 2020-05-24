@@ -44,12 +44,12 @@ public class InsertDefaultTables {
 		insertDefaultProductInInventroyReport(con);
 		insertDefaultCustomerboughtInSale(con);
 		insertDefaultSaleCommentsReport(con);////////
-		insertDefaultFuelStationOrder(con);/////////
 
 		// Vlad additions
 		  insertDefaultNotification(con);
 		  insertDefaultShipmentMethod(con); 
 		  insertDefaultOrders(con);
+		  insertDefaultFuelStationOrder(con);/////////
 		  insertDefaultHomeFuelOrder(con); 
 		  insertDefaultPurchasingProgramType(con);
 		  insertDefaultFuelCompany(con); 
@@ -333,9 +333,10 @@ public class InsertDefaultTables {
 		String customerID = "123456";
 		String fkshipmentName = "vladiExpress";
 		int fkorders_ID;
+		//generate user for customer
 		Object[] values = {username , "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
-		
+		//generate customer
 		Object[] values2 = { customerID ,username , "hfcreditCard" };
 		InsertTables.insertCustomer(con, values2);
 		
@@ -344,8 +345,8 @@ public class InsertDefaultTables {
 		
 		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4,"some where in israel" };
 		fkorders_ID =InsertTables.insertOrders(con, values4);
-		
-		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentName,fkorders_ID};
+		//generate homefuel order using pre set product DIESEL set in insert...product
+		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentName,fkorders_ID,ProductName.DIESEL.toString()};
 		InsertTables.insertHomeFuelOrder(con, values5);
 	}
 	
@@ -446,14 +447,18 @@ public class InsertDefaultTables {
 	}
 		
 	public void insertDefaultFuelStationOrder(Connection con) {
-		int orderID=1;
+		int orderID;
 		int productInStationID=1;
 		
-		Object[] values = { orderID,productInStationID,false,false,false,  new Date(118, 11, 3)};
-		InsertTables.insertFuelStationOrder(con, values);
+		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4,"in israel" };
+		orderID = InsertTables.insertOrders(con, values);
+		
+		Object[] values2 = { orderID,productInStationID,false,false,false,  new Date(118, 11, 3)};
+		InsertTables.insertFuelStationOrder(con, values2);
 			
 	}
 	
+	//vlad add
 	
 	
 	
