@@ -58,7 +58,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] FuelStation() {
-		return new String[] { "stationName", "address", "FK_employeeID_manager" }; // add here company name afterwards
+		return new String[] { "stationName", "address", "FK_FSmanagerID","FK_fuel_Company_Name" }; // add here company name afterwards
 	}
 
 	public static String[] FastFuel() {

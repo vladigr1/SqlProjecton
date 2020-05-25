@@ -30,6 +30,7 @@ public class InsertDefaultTables {
 
 		insertDefaultProductRatesUpdateRequest(con);
 		insertDefaultProductInRequest(con);
+		insertDefaultFuelCompany(con); 
 		insertDefaultFuelStation(con);
 		insertDefaultFastFuel(con);
 		insertDefaultProductInStation(con);
@@ -59,8 +60,7 @@ public class InsertDefaultTables {
 		  insertDefaultOrders(con);
 		  insertDefaultFuelStationOrder(con);/////////
 		  insertDefaultHomeFuelOrder(con); 
-		  insertDefaultPurchasingProgramType(con);
-		  insertDefaultFuelCompany(con); 
+		  insertDefaultPurchasingProgramType(con);	  
 		  insertDefaultPurchasingProgram(con);
 		 
 		insertCustomerBoughtFromCompany(con);
@@ -238,12 +238,15 @@ public class InsertDefaultTables {
 		String userName = "Manager333";
 		Object[] values = { userName, "22", false, "Moshe", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
-
+		
 		Object[] values2 = { "FuelStationManager", Affiliation.FuelStation.toString(), userName };
 		int fkemployeeID = InsertTables.insertEmployee(con, values2);
 		Object[] values3 = { "111111", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
-		Object[] values4 = { "Gazim", "Road 6", generatedKey };
+		
+		
+		String fuelComapny="Sonol";
+		Object[] values4 = { "Gazim", "Road 6", generatedKey,fuelComapny };
 		InsertTables.insertFuelStation(con, values4);
 
 	}
@@ -251,6 +254,7 @@ public class InsertDefaultTables {
 	public void insertDefaultFastFuel(Connection con) {
 
 		String userName = "ManagerHappy";
+		String fuelComapny="Sonol";
 		Object[] values = { userName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 
@@ -258,7 +262,7 @@ public class InsertDefaultTables {
 		int fkemployeeID = InsertTables.insertEmployee(con, values2);
 		Object[] values3 = { "22233322", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
-		Object[] values4 = { "Paz", "Road 62", generatedKey };
+		Object[] values4 = { "Paz", "Road 62", generatedKey,fuelComapny };
 		int generatedKey2 = InsertTables.insertFuelStation(con, values4);
 
 		Object[] values5 = { ProductName.DIESEL.toString(), generatedKey2, new Date(119, 3, 3), 30, 200.19 };
@@ -272,6 +276,7 @@ public class InsertDefaultTables {
 		InsertTables.insertProduct(con, values);
 
 		String userName = "ManagerSad";
+		String fuelComapny="Sonol";
 		Object[] valuess = { userName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, valuess);
 
@@ -279,7 +284,7 @@ public class InsertDefaultTables {
 		int fkemployeeID = InsertTables.insertEmployee(con, values2);
 		Object[] values3 = { "2443322", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
-		Object[] values4 = { "PazSad", "Road 62", generatedKey };
+		Object[] values4 = { "PazSad", "Road 62", generatedKey ,fuelComapny};
 		int generatedKey2 = InsertTables.insertFuelStation(con, values4);
 
 		Object[] values5 = { ProductName.MOTORBIKEFUEL.toString(), generatedKey2, 25, 10, 6.99 };

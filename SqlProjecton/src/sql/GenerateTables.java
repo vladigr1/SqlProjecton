@@ -22,6 +22,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateSale(con);//////
 		generateProductRatesUpdateRequest(con);
 		generateProductInRequest(con);
+		generateFuelCompany(con);
 		generateFuelStation(con);
 		generateFastFuel(con);
 		generateProductInStation(con);
@@ -52,8 +53,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateShipmentMethod(con);
 		generateOrders(con);
 		generateFuelStationOrder(con);//////
-		generatePurchasingProgramType(con);
-		generateFuelCompany(con);
+		generatePurchasingProgramType(con);		
 		generateHomeFuelOrder(con);
 		generatePurchasingProgram(con);
 		generateCustomerBoughtFromCompany(con);
@@ -304,15 +304,15 @@ public class GenerateTables { // creating the tables if they are not exists
 				"( " + "fuelStationID INT NOT NULL AUTO_INCREMENT ,"		
 				+ " stationName varchar(32) NOT NULL ," 
 				+ " address varchar(32) NOT NULL ," 
-//				+ " FK_fuelCompanyName varchar(32) NOT NULL ," 
-				+ " FK_employeeID_manager INT NOT NULL ," 
+				+ " FK_fuel_Company_Name varchar(32) NOT NULL ," 
+				+ " FK_FSmanagerID INT NOT NULL ," 
 				+ " PRIMARY KEY (fuelStationID),"	
-//				+ " KEY fuel_station_ibfk_1 (FK_fuelCompanyName),"  //change after having company name
-//				+ " CONSTRAINT fuel_station_ibfk_1 FOREIGN KEY (FK_fuelCompanyName) "
-//				+ " REFERENCES fuel_company (fuelCompanyName) ON DELETE CASCADE ON UPDATE CASCADE,"
-				+ " KEY fuel_station_ibfk_2 (FK_employeeID_manager) ,"
-				+ " CONSTRAINT fuel_station_ibfk_2 FOREIGN KEY (FK_employeeID_manager) "
-				+ " REFERENCES employee (employeeID) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " KEY fuel_station_ibfk_1 (FK_fuel_Company_Name),"  //change after having company name
+				+ " CONSTRAINT fuel_station_ibfk_1 FOREIGN KEY (FK_fuel_Company_Name) "
+				+ " REFERENCES FuelCompany (fuel_Company_Name) ON DELETE CASCADE ON UPDATE CASCADE,"
+				+ " KEY fuel_station_ibfk_2 (FK_FSmanagerID) ,"
+				+ " CONSTRAINT fuel_station_ibfk_2 FOREIGN KEY (FK_FSmanagerID) "
+				+ " REFERENCES fuelStationManager (FSmanagerID) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);		
 	}
 	
