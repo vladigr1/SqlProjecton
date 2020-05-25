@@ -10,5 +10,5 @@ public enum ShipmentType {
 		public String toString() {
 			return "Urgent";
 		}
-	}
+	};
 }

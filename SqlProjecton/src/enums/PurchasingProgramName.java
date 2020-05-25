@@ -1,5 +1,4 @@
 package enums;
-
 public enum PurchasingProgramName {
 	single {
 		@Override
@@ -7,7 +6,6 @@ public enum PurchasingProgramName {
 			// TODO Auto-generated method stub
 			return "Single";
 		}
-		
 	},
 	expensive {
 		@Override
