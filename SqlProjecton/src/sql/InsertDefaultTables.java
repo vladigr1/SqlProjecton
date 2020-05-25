@@ -1,11 +1,8 @@
 package sql;
 
 import java.sql.Connection;
-
 import java.util.Date;
-import com.sun.jmx.snmp.Timestamp;
 
-import entities.PurchasingProgram;
 import enums.Affiliation;
 import enums.PricingModelName;
 import enums.ProductName;
@@ -61,9 +58,9 @@ public class InsertDefaultTables {
 		  insertDefaultFuelStationOrder(con);/////////
 		  insertDefaultHomeFuelOrder(con); 
 		  insertDefaultPurchasingProgramType(con);	  
-		  insertDefaultPurchasingProgram(con);
-		 
-		insertCustomerBoughtFromCompany(con);
+		  insertDefaultPurchasingProgram(con); 
+		  insertCustomerBoughtFromCompany(con);
+		  insertDefaultPeriodicCustomersReport(con);
 		
 		System.out.println("finished insertions");
 	}
@@ -422,7 +419,7 @@ public class InsertDefaultTables {
 	}
 	
 	public void insertDefaultShipmentMethod(Connection con) {
-		Object[] values3 = {"vladiregular",50.5 , 1.3, ShipmentType.regular.toString() };
+		Object[] values3 = {50.5 , 1.3, ShipmentType.regular.toString() };
 		InsertTables.insertShipmentMethod(con, values3);
 	}
 	
@@ -435,8 +432,8 @@ public class InsertDefaultTables {
 	public void insertDefaultHomeFuelOrder(Connection con) {
 		String username = "hfCusUserName";
 		String customerID = "123456";
-		String fkshipmentName = "vladiExpress";
 		int fkorders_ID;
+		String fkshipmentType = ShipmentType.urgent.toString();
 		//generate user for customer
 		Object[] values = {username , "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
@@ -444,13 +441,13 @@ public class InsertDefaultTables {
 		Object[] values2 = { customerID ,username , "hfcreditCard" };
 		InsertTables.insertCustomer(con, values2);
 		
-		Object[] values3 = {fkshipmentName,50.5 , 1.3, ShipmentType.urgent.toString() };
+		Object[] values3 = {50.5 , 1.3, fkshipmentType  };
 		InsertTables.insertShipmentMethod(con, values3);
 		
 		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4,"some where in israel" };
 		fkorders_ID =InsertTables.insertOrders(con, values4);
 		//generate homefuel order using pre set product DIESEL set in insert...product
-		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentName,fkorders_ID,ProductName.DIESEL.toString()};
+		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentType,fkorders_ID,ProductName.DIESEL.toString()};
 		InsertTables.insertHomeFuelOrder(con, values5);
 	}
 	
@@ -566,7 +563,11 @@ public class InsertDefaultTables {
 	}
 	
 	//vlad add
-	
+	public void insertDefaultPeriodicCustomersReport(Connection con) {
+		Object[] values = { new Date(System.currentTimeMillis()), new Date(120,11,12) };
+		InsertTables.insertPeriodicCustomersReport(con, values);
+			
+	}
 	
 	
 }

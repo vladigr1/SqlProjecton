@@ -223,5 +223,8 @@ public class InsertTables { // insert to tables
 	public static void insertFullSingleMemberMonthly(Connection con, Object[] values) {
 		insertRow(con, "full_single_member_monthly", FieldIndicatorForInsert.FullSingleMemberMonthly(), values);
 	}
-
+	
+	public static void insertPeriodicCustomersReport(Connection con, Object[] values) {
+		insertRow(con, "PeriodicCustomersReport", FieldIndicatorForInsert.PeriodicCustomersReport(), values);
+	}
 }

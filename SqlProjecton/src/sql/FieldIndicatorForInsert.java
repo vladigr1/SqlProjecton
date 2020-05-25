@@ -123,7 +123,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] ShipmentMethod() {
-		return new String[]{"shipmentName","shipmentPrice", "shipmentMultiplier","shipmentType" };
+		return new String[]{"shipmentPrice", "shipmentMultiplier","shipmentType" };
 	}
 	
 	public static String[] Orders() {
@@ -131,7 +131,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] HomeFuelOrder() {
-		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID","fk_product_Name"};
+		return new String[]{"dutime", "fkcustomerID","fkshipmentType","fkorders_ID","fk_product_Name"};
 	}
 	
 	public static String[] PurchasingProgramType() {
@@ -150,5 +150,8 @@ public class FieldIndicatorForInsert {
 		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amount_Bought_From_Company","amount_Paid_Company"};
 	}
 	
+	public static String[] PeriodicCustomersReport() {
+		return new String[]{"date_from","date_to"};
+	}
 
 }
