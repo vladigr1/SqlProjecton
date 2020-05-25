@@ -37,9 +37,15 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateInventroyReport(con);
 		generateProductInInventroyReport(con);
 		
-		generateCustomerboughtInSale(con);/////
-		generateSaleCommentsReport(con);/////
-		generateFuelStationOrder(con);//////
+		generateCustomerboughtInSale(con);
+		generateSaleCommentsReport(con);
+		generateFuelStationOrder(con);
+		
+		generateCar(con);/////
+		generateRankingSheet(con);//////
+		generatePricingModelType(con);/////
+		generatePricingModel(con);////
+		generateFullSingleMemberMonthly(con);////
 		
 		//vlad tables
 		generateNotification(con);
@@ -51,12 +57,12 @@ public class GenerateTables { // creating the tables if they are not exists
 		generatePurchasingProgram(con);
 		generatePurchasingProgram(con);
 		generateCustomerBoughtFromCompany(con);
+		System.out.println("finished generating tables");
 		
 		
 	}
 
 	// create a default function from generators
-
 	public static void generateTable(Connection con, String tableName, String values) {
 		PreparedStatement pst;
 		String table = "CREATE TABLE if not exists " + tableName + values
@@ -69,9 +75,102 @@ public class GenerateTables { // creating the tables if they are not exists
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
-		System.out.println("*Generated a " + tableName + " table");
+//		System.out.println("*Generated a " + tableName + " table");
 
 	}
+	
+	//elroye add
+	//add inserts here elro
+	
+	
+	public void generateFullSingleMemberMonthly(Connection con) {
+		String tableName = "full_single_member_monthly";
+		String values = "( " + "FK_registrationPlate varchar(32) NOT NULL,"	
+				+ "FK_customerID varchar(32) NOT NULL,"
+				+ "lastMonthUtillization DOUBLE(32,2) NOT NULL,"
+				+ " PRIMARY KEY (FK_registrationPlate, FK_customerID),"	
+				+ " KEY full_single_member_monthly_ibfk_1 (FK_registrationPlate),"//first FK
+				+ " CONSTRAINT full_single_member_monthly_ibfk_1 FOREIGN KEY (FK_registrationPlate) "
+				+ " REFERENCES car (registrationPlate) ON DELETE CASCADE ON UPDATE CASCADE,"
+				
+				+ " KEY full_single_member_monthly_ibfk_2 (FK_customerID),"//second FK
+				+ " CONSTRAINT full_single_member_monthly_ibfk_2 FOREIGN KEY (FK_customerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE)";
+			
+		generateTable(con, tableName, values);
+	}
+	
+	public void generatePricingModel(Connection con) {  // continue here
+		String tableName = "pricing_model";
+		String values =
+				"( " + "FK_pricingModelName varchar(32) NOT NULL ,"
+				+ "FK_registrationPlate varchar(32) NOT NULL,"
+				+ "FK_customerID varchar(32) NOT NULL,"
+				+ "currentDiscount DOUBLE(32,2) NOT NULL,"
+				+ " PRIMARY KEY (FK_registrationPlate, FK_customerID),"	
+				
+				+ " KEY pricing_model_ibfk_1 (FK_registrationPlate),"//first FK
+				+ " CONSTRAINT pricing_model_ibfk_1 FOREIGN KEY (FK_registrationPlate) "
+				+ " REFERENCES car (registrationPlate) ON DELETE CASCADE ON UPDATE CASCADE,"
+				
+				+ " KEY pricing_model_ibfk_2 (FK_customerID),"//second FK
+				+ " CONSTRAINT pricing_model_ibfk_2 FOREIGN KEY (FK_customerID) "
+				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE,"
+
+				
+				+ " KEY product_in_income_report_ibfk_3 (FK_pricingModelName) ,"//third FK
+				+ " CONSTRAINT product_in_income_report_ibfk_3 FOREIGN KEY (FK_pricingModelName) "
+				+ " REFERENCES pricing_model_type (pricingModelName) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con,tableName,values);	
+	}
+	
+	
+	public void generatePricingModelType(Connection con) {
+		String tableName = "pricing_model_type";
+		String values = "( " + "pricingModelName varchar(32) NOT NULL,"
+		        + " description varchar(32) NOT NULL ,"
+		        + " defaultDiscount DOUBLE(32,2) NOT NULL ,"
+				+ "PRIMARY KEY (pricingModelName) )";	
+		generateTable(con, tableName, values);
+	}
+	
+	
+	public void generateRankingSheet(Connection con) {
+		String tableName = "ranking_sheet";
+		String values = "( " + "rankingSheetID int NOT NULL AUTO_INCREMENT ,"
+		        + " customerTypeRank DOUBLE(32,2) NOT NULL ,"
+		        + " fuelingHoursRank DOUBLE(32,2) NOT NULL ,"
+				+ " fuelTypesRank DOUBLE(32,2) NOT NULL ,"
+				+ " FK_customerID varchar(32) NOT NULL ,"
+				+ "PRIMARY KEY (rankingSheetID) ,"
+				+ "KEY ranking_sheet_ibfk_1 (FK_customerID), "
+				+ " CONSTRAINT ranking_sheet_ibfk_1 FOREIGN KEY (FK_customerID) "
+				+ "REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	
+	
+	public void generateCar(Connection con) {
+		String tableName = "car";
+		String values = "( " + "registrationPlate varchar(32) NOT NULL ,"
+		        + " ownerName varchar(32) NOT NULL ,"
+		        + " FK_productName varchar(32) NOT NULL ,"
+				+ " FK_customerID varchar(32) NOT NULL ,"
+				+ "PRIMARY KEY (registrationPlate) ,"
+		        + "KEY car_ibfk_1 (FK_productName), "
+				+ " CONSTRAINT car_ibfk_1 FOREIGN KEY (FK_productName) "
+				+ "REFERENCES product (productName) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ "KEY car_ibfk_2 (FK_customerID), "
+				+ " CONSTRAINT car_ibfk_2 FOREIGN KEY (FK_customerID) "
+				+ "REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	
+	
+	
+	///
 
 	public void generateUser(Connection con) {
 		String tableName = "user";
@@ -246,7 +345,7 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " supplierPrice DOUBLE(32,2) NOT NULL , "
 				+ " FK_productName varchar(32) NOT NULL , " 
 				+ " FK_fuelStationID INT NOT NULL , " 
-				+ " PRIMARY KEY (productInStationID) ,"
+				+ " PRIMARY KEY (productInStationID) ,"  //duplicate with id and product name
 				+ " KEY product_in_station_ibfk_1 (FK_productName),"
 				+ " CONSTRAINT product_in_station_ibfk_1 FOREIGN KEY (FK_productName) "
 				+ " REFERENCES product (productName) ON DELETE CASCADE ON UPDATE CASCADE,"
@@ -260,12 +359,12 @@ public class GenerateTables { // creating the tables if they are not exists
 	public void generateQuarterlyReport(Connection con) {
 		String tableName = "quarterly_report";
 		String values =
-				"( " + "repQuarter INT NOT NULL AUTO_INCREMENT ,"
+				"( " + "repQuarter INT NOT NULL ," //change to year
 				+ " repYear varchar(32) NOT NULL , " 
 				+ " fromDate varchar(32) NOT NULL , " 
 				+ " toDate varchar(32) NOT NULL , "
 				+ " FK_fuelStationID INT NOT NULL , " 
-				+ " PRIMARY KEY (repQuarter) ,"
+				+ " PRIMARY KEY (repQuarter,repYear) ,"
 				+ " KEY quarterly_report_ibfk_1 (FK_fuelStationID),"
 				+ " CONSTRAINT quarterly_report_ibfk_1 FOREIGN KEY (FK_fuelStationID) "
 				+ " REFERENCES fuel_station (fuelStationID) ON DELETE CASCADE ON UPDATE CASCADE)";	
@@ -275,12 +374,18 @@ public class GenerateTables { // creating the tables if they are not exists
 	public void generateIncomeReport(Connection con) {
 		String tableName = "income_report";
 		String values =
-				"( " + "FK_repQuarter INT NOT NULL,"
+				"( " 
+				+ "FK_repQuarter INT NOT NULL,"
+				+ "FK_repYear varchar(32) NOT NULL ,"
 				+ " totalIncome DOUBLE(32,2) NOT NULL , " 		
-				+ " PRIMARY KEY (FK_repQuarter) ,"
-				+ " KEY income_report_ibfk_1 (FK_repQuarter),"
-				+ " CONSTRAINT income_report_ibfk_1 FOREIGN KEY (FK_repQuarter) "
-				+ " REFERENCES quarterly_report (repQuarter) ON DELETE CASCADE ON UPDATE CASCADE)";	
+				+ " PRIMARY KEY (FK_repQuarter,FK_repYear) ,"
+				+ " KEY income_report_ibfk_1 (FK_repQuarter,FK_repYear),"
+				+ " CONSTRAINT income_report_ibfk_1 FOREIGN KEY (FK_repQuarter,FK_repYear) "
+				+ " REFERENCES quarterly_report (repQuarter,repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
+				
+//				+ " KEY income_report_ibfk_2 (FK_repYear),"
+//				+ " CONSTRAINT income_report_ibfk_2 FOREIGN KEY (FK_repYear) "
+//				+ " REFERENCES quarterly_report (repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
 		generateTable(con,tableName,values);	
 	}
 	
@@ -292,16 +397,21 @@ public class GenerateTables { // creating the tables if they are not exists
 		String values =
 				"( " + "FK_productInStationID INT NOT NULL ,"
 				+ "FK_repQuarter_IncomeReport INT NOT NULL,"
+				+ "FK_repYear_IncomeReport varchar(32) NOT NULL,"
 				+ "income DOUBLE(32,2) NOT NULL,"
-				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_IncomeReport),"	
+				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_IncomeReport,FK_repYear_IncomeReport),"	
 				
 				+ " KEY product_in_income_report_ibfk_1 (FK_productInStationID),"//first FK
 				+ " CONSTRAINT product_in_income_report_ibfk_1 FOREIGN KEY (FK_productInStationID) "
 				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE,"
 				
-				+ " KEY product_in_income_report_ibfk_2 (FK_repQuarter_IncomeReport) ,"//second FK
-				+ " CONSTRAINT product_in_income_report_ibfk_2 FOREIGN KEY (FK_repQuarter_IncomeReport) "
-				+ " REFERENCES income_report (FK_repQuarter) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " KEY product_in_income_report_ibfk_2 (FK_repQuarter_IncomeReport,FK_repYear_IncomeReport) ,"//second FK
+				+ " CONSTRAINT product_in_income_report_ibfk_2 FOREIGN KEY (FK_repQuarter_IncomeReport,FK_repYear_IncomeReport) "
+				+ " REFERENCES income_report (FK_repQuarter,FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
+		
+//				+ " KEY product_in_income_report_ibfk_3 (FK_repYear_IncomeReport) ,"//third FK
+//				+ " CONSTRAINT product_in_income_report_ibfk_3 FOREIGN KEY (FK_repYear_IncomeReport) "
+//				+ " REFERENCES income_report (FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);	
 	}
 	
@@ -311,12 +421,17 @@ public class GenerateTables { // creating the tables if they are not exists
 		String tableName = "outcome_report";
 		String values =
 				"( " + "FK_repQuarter INT NOT NULL,"
+				+ "FK_repYear varchar(32) NOT NULL ,"
 				+ " totalOutcome DOUBLE(32,2) NOT NULL , " 		
-				+ " PRIMARY KEY (FK_repQuarter) ,"
-				+ " KEY outcome_report_ibfk_1 (FK_repQuarter),"
-				+ " CONSTRAINT outcome_report_ibfk_1 FOREIGN KEY (FK_repQuarter) "
-				+ " REFERENCES quarterly_report (repQuarter) ON DELETE CASCADE ON UPDATE CASCADE)";	
-		generateTable(con,tableName,values);	
+				+ " PRIMARY KEY (FK_repQuarter,FK_repYear) ,"
+				+ " KEY outcome_report_ibfk_1 (FK_repQuarter,FK_repYear),"
+				+ " CONSTRAINT outcome_report_ibfk_1 FOREIGN KEY (FK_repQuarter,FK_repYear) "
+				+ " REFERENCES quarterly_report (repQuarter,repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
+		
+//				+ " KEY outcome_report_ibfk_2 (FK_repYear),"
+//				+ " CONSTRAINT outcome_report_ibfk_2 FOREIGN KEY (FK_repYear) "
+//				+ " REFERENCES quarterly_report (repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
+		generateTable(con,tableName,values);		
 	}
 	
 	
@@ -325,16 +440,21 @@ public class GenerateTables { // creating the tables if they are not exists
 		String values =
 				"( " + "FK_productInStationID INT NOT NULL ,"
 				+ "FK_repQuarter_OutcomeReport INT NOT NULL,"
+				+ "FK_repYear_OutcomeReport varchar(32) NOT NULL,"
 				+ "outcome DOUBLE(32,2) NOT NULL,"
-				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_OutcomeReport),"	
+				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_OutcomeReport,FK_repYear_OutcomeReport),"	
 				
 				+ " KEY product_in_outcome_report_ibfk_1 (FK_productInStationID),"//first FK
 				+ " CONSTRAINT product_in_outcome_report_ibfk_1 FOREIGN KEY (FK_productInStationID) "
 				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE,"
 				
-				+ " KEY product_in_outcome_report_ibfk_2 (FK_repQuarter_OutcomeReport) ,"//second FK
-				+ " CONSTRAINT product_in_outcome_report_ibfk_2 FOREIGN KEY (FK_repQuarter_OutcomeReport) "
-				+ " REFERENCES outcome_report (FK_repQuarter) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " KEY product_in_outcome_report_ibfk_2 (FK_repQuarter_OutcomeReport,FK_repYear_OutcomeReport) ,"//second FK
+				+ " CONSTRAINT product_in_outcome_report_ibfk_2 FOREIGN KEY (FK_repQuarter_OutcomeReport,FK_repYear_OutcomeReport) "
+				+ " REFERENCES outcome_report (FK_repQuarter,FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE )";
+		
+//				+ " KEY product_in_outcome_report_ibfk_3 (FK_repYear_OutcomeReport) ,"//third FK
+//				+ " CONSTRAINT product_in_outcome_report_ibfk_3 FOREIGN KEY (FK_repYear_OutcomeReport) "
+//				+ " REFERENCES outcome_report (FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);	
 	}
 	
@@ -342,10 +462,15 @@ public class GenerateTables { // creating the tables if they are not exists
 		String tableName = "inventory_report";
 		String values =
 				"( " + "FK_repQuarter INT NOT NULL,"	
-				+ " PRIMARY KEY (FK_repQuarter) ,"
-				+ " KEY inventory_report_report_ibfk_1 (FK_repQuarter),"
-				+ " CONSTRAINT inventory_report_report_ibfk_1 FOREIGN KEY (FK_repQuarter) "
-				+ " REFERENCES quarterly_report (repQuarter) ON DELETE CASCADE ON UPDATE CASCADE)";	
+					+ "FK_repYear varchar(32) NOT NULL ,"
+					+ " PRIMARY KEY (FK_repQuarter,FK_repYear) ,"
+					+ " KEY inventory_report_ibfk_1 (FK_repQuarter,FK_repYear),"
+					+ " CONSTRAINT inventory_report_ibfk_1 FOREIGN KEY (FK_repQuarter,FK_repYear) "
+					+ " REFERENCES quarterly_report (repQuarter,repYear) ON DELETE CASCADE ON UPDATE CASCADE)";
+		
+//					+ " KEY inventory_report_ibfk_2 (FK_repYear),"
+//					+ " CONSTRAINT inventory_report_ibfk_2 FOREIGN KEY (FK_repYear) "
+//					+ " REFERENCES quarterly_report (repYear) ON DELETE CASCADE ON UPDATE CASCADE)";	
 		generateTable(con,tableName,values);	
 	}
 	
@@ -355,16 +480,21 @@ public class GenerateTables { // creating the tables if they are not exists
 		String values =
 				"( " + "FK_productInStationID INT NOT NULL ,"
 				+ "FK_repQuarter_inventoryReport INT NOT NULL,"
+				+ "FK_repYear_inventoryReport varchar(32) NOT NULL,"
 				+ "amountSold DOUBLE(32,2) NOT NULL,"
-				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_inventoryReport),"	
+				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_inventoryReport,FK_repYear_inventoryReport),"	
 				
 				+ " KEY product_in_inventory_report_ibfk_1 (FK_productInStationID),"//first FK
 				+ " CONSTRAINT product_in_inventory_report_ibfk_1 FOREIGN KEY (FK_productInStationID) "
 				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE,"
 				
-				+ " KEY product_in_inventory_report_ibfk_2 (FK_repQuarter_inventoryReport) ,"//second FK
-				+ " CONSTRAINT product_in_inventory_report_ibfk_2 FOREIGN KEY (FK_repQuarter_inventoryReport) "
-				+ " REFERENCES inventory_report (FK_repQuarter) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " KEY product_in_inventory_report_ibfk_2 (FK_repQuarter_inventoryReport,FK_repYear_inventoryReport) ,"//second FK
+				+ " CONSTRAINT product_in_inventory_report_ibfk_2 FOREIGN KEY (FK_repQuarter_inventoryReport,FK_repYear_inventoryReport) "
+				+ " REFERENCES inventory_report (FK_repQuarter,FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE )";
+		
+//		+ " KEY product_in_inventory_report_ibfk_2 (FK_repYear_inventoryReport) ,"//third FK
+//		+ " CONSTRAINT product_in_inventory_report_ibfk_2 FOREIGN KEY (FK_repYear_inventoryReport) "
+//		+ " REFERENCES inventory_report (FK_repYear) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);	
 	}
 	

@@ -7,6 +7,7 @@ import com.sun.jmx.snmp.Timestamp;
 
 import entities.PurchasingProgram;
 import enums.Affiliation;
+import enums.PricingModelName;
 import enums.ProductName;
 import enums.PurchasingProgramName;
 import enums.ShipmentType;
@@ -19,7 +20,7 @@ public class InsertDefaultTables {
 		insertDefaultEmployee(con);
 		insertDefaultCustomer(con);
 		insertDefaultSalesPattern(con);
-		insertDefaultSale(con); ///////
+		insertDefaultSale(con); 
 		insertDefaultFuelStationManager(con);
 		// add here
 
@@ -43,8 +44,15 @@ public class InsertDefaultTables {
 		insertDefaultInventroyReport(con);
 		insertDefaultProductInInventroyReport(con);
 		insertDefaultCustomerboughtInSale(con);
-		insertDefaultSaleCommentsReport(con);////////
-		insertDefaultFuelStationOrder(con);/////////
+		insertDefaultSaleCommentsReport(con);
+		insertDefaultFuelStationOrder(con);
+		
+		insertDefaultCar(con);////
+		insertDefaultRankingSheet(con);///
+		insertDefaultPricingModelType(con);///
+		insertDefaultPricingModel(con);////
+		insertDefaultFullSingleMemberMonthly(con);////
+		
 
 		// Vlad additions
 		  insertDefaultNotification(con);
@@ -56,11 +64,88 @@ public class InsertDefaultTables {
 		  insertDefaultPurchasingProgram(con);
 		 
 		insertCustomerBoughtFromCompany(con);
+		
+		System.out.println("finished insertions");
 	}
 
 	// only add insert default method and after waards add the to
 	// InsertDefaultTables
+	//elro
+	
+	
+	
+	public void insertDefaultFullSingleMemberMonthly(Connection con) {
+		String registrationPlate="65-101-33";
+		String customerID = "212354252";		
+		double lastMonthUtillization=3.14;
+		Object[] values = { registrationPlate, customerID,lastMonthUtillization};
+		InsertTables.insertFullSingleMemberMonthly(con, values);	
+	}
+	
+	
+	public void insertDefaultPricingModel(Connection con) {
+		String pricingModelType = PricingModelName.MonthlyProgramMultipleCars.toString();	
+		String registrationPlate="65-101-33";
+		String customerID = "212354252";		
+		double currentDiscount=0.15;
+		Object[] values = { pricingModelType, registrationPlate, customerID,currentDiscount};
+		InsertTables.insertPricingModel(con, values);	
+	}
+	
+	
+	public void insertDefaultPricingModelType(Connection con) {
+		String pricingModelType = PricingModelName.MonthlyProgramMultipleCars.toString();
+		String description = "some desc";
+		double defaultDiscount=0.2;
+		
+		Object[] values = { pricingModelType, description, defaultDiscount};
+		InsertTables.insertPricingModelType(con, values);
+		
+		
+	}
+	
+	
+	public void insertDefaultRankingSheet(Connection con) {
+		String userName = "elro2222";
+		String customerID = "212354252";
+		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values);
 
+		Object[] values2 = { customerID, userName, "1331-2222-3333-4444" };
+		InsertTables.insertCustomer(con, values2);
+		
+		double customerTypeRank=0.75;
+		double fuelingHoursRank=0.89;
+		double fuelTypesRank=0.43;
+		
+		Object[] values3 = { customerTypeRank, fuelingHoursRank, fuelTypesRank ,customerID };
+		InsertTables.insertRankingSheet(con, values3);
+		
+		
+	}
+		
+	public void insertDefaultCar(Connection con) {
+		String userName = "elro21";
+		String customerID = "212334252";
+		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
+		InsertTables.insertUser(con, values);
+
+		Object[] values2 = { customerID, userName, "1321-2222-3333-4444" };
+		InsertTables.insertCustomer(con, values2);
+		
+		String registrationPlate="65-101-33";
+		String ownerName="Kevin";
+		Object[] values3 = { registrationPlate, ownerName, ProductName.DIESEL.toString() ,customerID };
+		InsertTables.insertCar(con, values3);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	public void insertDefaultUser(Connection con) {
 		String userName = "user";
 		Object[] values = { userName, "r", false, "firstName", "surname", "email" };
@@ -205,75 +290,89 @@ public class InsertDefaultTables {
 	public void insertDefaultQuarterlyReport(Connection con) {
 
 		int fuelstationID = 1;
-		Object[] values = { "2019", "2/2", "2/3", fuelstationID };
+		int quarter=1;
+		String year="2020";
+		Object[] values = { quarter ,year, "2/2", "2/3", fuelstationID };
 		InsertTables.insertQuarterlyReport(con, values);
 
 	}
 
 	public void insertDefaultIncomeReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2020", "5/5", "5/6", fuelstationID }; 
-		int generatedKey = InsertTables.insertQuarterlyReport(con, values);
+		int quarter=2;
+		String year="2020";
+		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID }; 
+		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { generatedKey, 20.5 };
+		Object[] values2 = {quarter ,year, 20.5 };
 		InsertTables.insertIncomeReport(con, values2);
 
 	}
 
 	public void insertDefaultProductInIncomeReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2020", "3/2", "5/6", fuelstationID }; 
-		int generatedKeyReport = InsertTables.insertQuarterlyReport(con, values);
+		int quarter=3;
+		String year="2020";
+		Object[] values = { quarter ,year, "3/2", "5/6", fuelstationID }; 
+		 InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { generatedKeyReport, 20.5 };
+		Object[] values2 = { quarter,year, 20.5 };
 		InsertTables.insertIncomeReport(con, values2);
 
 		int productInStation = 1; // already created such product in station
-		Object[] values3 = { productInStation, generatedKeyReport, 100.82 };
+		Object[] values3 = { productInStation, quarter,year, 100.82 };
 		InsertTables.insertProductInIncomeReport(con, values3);
 	}
 
 	public void insertDefaultOutcomeReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2020", "5/5", "5/6", fuelstationID };
-		int generatedKey = InsertTables.insertQuarterlyReport(con, values);
+		int quarter=1;
+		String year="2019";
+		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID };
+		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { generatedKey, 10.2 };
+		Object[] values2 = { quarter ,year, 10.2 };
 		InsertTables.insertOutcomeReport(con, values2);
 	}
 
 	public void insertDefaultProductInOutcomeReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2018", "2/3", "4/2", fuelstationID }; 
-		int generatedKeyReport = InsertTables.insertQuarterlyReport(con, values);
+		int quarter=2;
+		String year="2019";
+		Object[] values = { quarter ,year, "2/3", "4/2", fuelstationID }; 
+		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { generatedKeyReport, 20.5 };
+		Object[] values2 = { quarter ,year, 20.5 };
 		InsertTables.insertOutcomeReport(con, values2);
 
 		int productInStation = 1;
-		Object[] values3 = { productInStation, generatedKeyReport, 54.65 };
+		Object[] values3 = { productInStation, quarter ,year, 54.65 };
 		InsertTables.insertProductInOutcomeReport(con, values3);
 	}
 
 	public void insertDefaultInventroyReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2020", "5/5", "5/6", fuelstationID };
-		int generatedKey = InsertTables.insertQuarterlyReport(con, values);
-		Object[] values2 = { generatedKey };
+		int quarter=1;
+		String year="2018";
+		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID };
+		InsertTables.insertQuarterlyReport(con, values);
+		Object[] values2 = { quarter ,year };
 		InsertTables.insertInventroyReport(con, values2);
 	}
 
 	public void insertDefaultProductInInventroyReport(Connection con) {
 		int fuelstationID = 1;
-		Object[] values = { "2020", "1/1", "2/2", fuelstationID }; 
-		int generatedKeyReport = InsertTables.insertQuarterlyReport(con, values);
+		int quarter=2;
+		String year="2018";
+		Object[] values = { quarter ,year, "1/1", "2/2", fuelstationID }; 
+		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { generatedKeyReport };
+		Object[] values2 = { quarter ,year };
 		InsertTables.insertInventroyReport(con, values2);
 
 		int productInStation = 1;
 
-		Object[] values3 = { productInStation, generatedKeyReport, 25 };
+		Object[] values3 = { productInStation, quarter ,year, 25 };
 		InsertTables.insertProductInInventroyReport(con, values3);
 	}
 		
@@ -442,6 +541,9 @@ public class InsertDefaultTables {
 		
 		Object[] values5 = { generateKeySale,15,250.54 };
 		InsertTables.insertSaleCommentsReport(con, values5);
+		
+//		Object[] values6 = { generateKeySale,12,230.54 };    //for checking that the relation is 1 to 1
+//		InsertTables.insertSaleCommentsReport(con, values6);
 			
 	}
 		

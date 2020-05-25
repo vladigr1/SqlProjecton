@@ -12,12 +12,12 @@ public class InsertTables { // insert to tables
 		int res = -1;
 		try {
 			// Get result test metadata
-			System.out.println("inserting row to table -> " + tableName);
+//			System.out.println("inserting row to table -> " + tableName);
 			StringBuilder valueString = new StringBuilder();
 			for (int i = 0; i < values.length; i++) {
 				valueString.append(values[i].toString() + " , ");
 			}
-			System.out.println("values -> " + valueString.toString());
+//			System.out.println("values -> " + valueString.toString());
 
 			if (values.length != fields.length)
 				throw new Exception("ERROR: there are more values than coloms in table->" + tableName);
@@ -58,6 +58,14 @@ public class InsertTables { // insert to tables
 		}
 		return res;
 	}
+	
+	//elro additions
+	
+	
+	
+	
+	
+	
 
 	// only add inserts method!
 	public static int insertUser(Connection con, Object[] values) {
@@ -111,8 +119,8 @@ public class InsertTables { // insert to tables
 		
 	}
 
-	public static int insertQuarterlyReport(Connection con, Object[] values) {
-		return insertRow(con, "quarterly_report", FieldIndicatorForInsert.QuarterlyReport(), values);
+	public static void insertQuarterlyReport(Connection con, Object[] values) {
+		 insertRow(con, "quarterly_report", FieldIndicatorForInsert.QuarterlyReport(), values);
 		
 	}
 
@@ -188,6 +196,30 @@ public class InsertTables { // insert to tables
 	}
 	public static void insertCustomerBoughtFromCompany(Connection con, Object[] values) {
 		insertRow(con, "CustomerBoughtFromCompany", FieldIndicatorForInsert.CustomerBoughtFromCompany(), values);
+	}
+
+	public static void insertCar(Connection con, Object[] values) {
+		 insertRow(con, "car", FieldIndicatorForInsert.Car(), values);
+		
+	}
+
+	public static void insertRankingSheet(Connection con, Object[] values) {
+		  insertRow(con, "ranking_sheet", FieldIndicatorForInsert.RankingSheet(), values);
+		
+	}
+
+	public static void insertPricingModelType(Connection con, Object[] values) {
+		insertRow(con, "pricing_model_type", FieldIndicatorForInsert.PricingModelType(), values);
+		
+	}
+
+	public static void insertPricingModel(Connection con, Object[] values) {
+		insertRow(con, "pricing_model", FieldIndicatorForInsert.PricingModel(), values);
+		
+	}
+
+	public static void insertFullSingleMemberMonthly(Connection con, Object[] values) {
+		insertRow(con, "full_single_member_monthly", FieldIndicatorForInsert.FullSingleMemberMonthly(), values);
 	}
 
 }

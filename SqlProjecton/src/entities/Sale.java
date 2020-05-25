@@ -6,14 +6,14 @@ import java.util.List;
 public class Sale {
 	//connections
 	private SalesPattern salesPattern;
-	private List<SaleCommentsReport> saleCommentReportList= new ArrayList<>();
+	private SaleCommentsReport saleCommentReportList;
 	private List<Customer> saleCustomerList= new ArrayList<>();
 	
 	//fields
 	private int saleID;
 	private boolean active;
-	public Sale(SalesPattern salesPattern, List<SaleCommentsReport> saleCommentReportList,
-			List<Customer> saleCustomerList, int saleID, boolean active) {
+	public Sale(SalesPattern salesPattern, SaleCommentsReport saleCommentReportList, List<Customer> saleCustomerList,
+			int saleID, boolean active) {
 		super();
 		this.salesPattern = salesPattern;
 		this.saleCommentReportList = saleCommentReportList;
@@ -27,10 +27,10 @@ public class Sale {
 	public void setSalesPattern(SalesPattern salesPattern) {
 		this.salesPattern = salesPattern;
 	}
-	public List<SaleCommentsReport> getSaleCommentReportList() {
+	public SaleCommentsReport getSaleCommentReportList() {
 		return saleCommentReportList;
 	}
-	public void setSaleCommentReportList(List<SaleCommentsReport> saleCommentReportList) {
+	public void setSaleCommentReportList(SaleCommentsReport saleCommentReportList) {
 		this.saleCommentReportList = saleCommentReportList;
 	}
 	public List<Customer> getSaleCustomerList() {
@@ -53,22 +53,17 @@ public class Sale {
 	}
 	
 	@Override
-    public boolean equals(Object obj) {
-		if(!(obj instanceof Sale))
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Sale))
 			return false;
-		Sale sale = (Sale)obj;
-		return this.saleID==sale.getSaleID();
+		Sale other = (Sale) obj;
+		return this.saleID== other.getSaleID();
 	}
-
-	
+			
 	@Override
 	public String toString() {
-		return "Sale [saleID=" + saleID + ", active=" + active + "]";
+		return "Sale [salesPattern=" + salesPattern + ", saleCommentReportList=" + saleCommentReportList
+				+ ", saleCustomerList=" + saleCustomerList + ", saleID=" + saleID + ", active=" + active + "]";
 	}
-	
-	
-	
-	
-	
 	
 }

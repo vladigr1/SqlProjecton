@@ -1,6 +1,30 @@
 package sql;
 
 public class FieldIndicatorForInsert {
+	//elro addiotons
+	
+	public static String[] FullSingleMemberMonthly() {
+		return new String[] { "FK_registrationPlate", "FK_customerID","lastMonthUtillization" };
+	}
+	
+	public static String[] PricingModel() {
+		return new String[] { "FK_pricingModelName", "FK_registrationPlate", "FK_customerID","currentDiscount" };
+	}
+	
+	public static String[] PricingModelType() {
+		return new String[] { "pricingModelName", "description", "defaultDiscount" };
+	}
+	
+	public static String[] Car() {
+		return new String[] { "registrationPlate", "ownerName", "FK_productName", "FK_customerID" };
+	}
+
+	public static String[] RankingSheet() {
+		return new String[] { "customerTypeRank", "fuelingHoursRank", "fuelTypesRank", "FK_customerID" };
+	}
+
+	
+	
 	public static String[] User() {
 		return new String[] { "username", "password", "connected", "firstName", "surname", "email" };
 	}
@@ -46,31 +70,31 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] QuarterlyReport() {
-		return new String[] { "repYear", "fromDate", "toDate", "FK_fuelStationID" };
+		return new String[] { "repQuarter","repYear", "fromDate", "toDate", "FK_fuelStationID" };
 	}
 
 	public static String[] IncomeReport() {
-		return new String[] { "FK_repQuarter", "totalIncome" };
+		return new String[] { "FK_repQuarter","FK_repYear","totalIncome" };
 	}
 
 	public static String[] OutcomeReport() {
-		return new String[] { "FK_repQuarter", "totalOutcome" };
+		return new String[] { "FK_repQuarter","FK_repYear","totalOutcome" };
 	}
 
 	public static String[] InventroyReport() {
-		return new String[] { "FK_repQuarter" };
+		return new String[] { "FK_repQuarter","FK_repYear" };
 	}
 
 	public static String[] ProductInIncomeReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_IncomeReport", "income" };
+		return new String[] { "FK_productInStationID", "FK_repQuarter_IncomeReport","FK_repYear_IncomeReport", "income" };
 	}
 
 	public static String[] ProductInOutcomeReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_OutcomeReport", "outcome" };
+		return new String[] { "FK_productInStationID", "FK_repQuarter_OutcomeReport", "FK_repYear_OutcomeReport", "outcome" };
 	}
 
 	public static String[] 	ProductInInventroyReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport", "amountSold" };
+		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport","FK_repYear_inventoryReport", "amountSold" };
 	}
 	
 	public static String[] FuelStationManager() {
