@@ -57,6 +57,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		generateHomeFuelOrder(con);
 		generatePurchasingProgram(con);
 		generateCustomerBoughtFromCompany(con);
+		generatePeriodicCustomersReport(con);
 		System.out.println("finished generating tables");
 		
 		
@@ -566,11 +567,10 @@ public class GenerateTables { // creating the tables if they are not exists
 	public void generateShipmentMethod(Connection con) {
 		String tableName = "ShipmentMethod";
 		String values = "( " 
-				+ " shipmentName varchar(32) NOT NULL ," 
 				+ " shipmentPrice float NOT NULL ," 
 				+ " shipmentMultiplier float NOT NULL ,"
 				+ " shipmentType varchar(32) NOT NULL ," 
-				+ " PRIMARY KEY (shipmentName) )";
+				+ " PRIMARY KEY (shipmentType) )";
 		generateTable(con, tableName, values);
 	}
 	
@@ -592,16 +592,16 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " homeFuelOrderID int NOT NULL AUTO_INCREMENT ," 
 				+ " dutime TIMESTAMP NOT NULL ,"
 				+ " fkcustomerID varchar(32) NOT NULL ,"
-				+ " fkshipmentName varchar(32) NOT NULL ,"
+				+ " fkshipmentType varchar(32) NOT NULL ,"
 				+ " fkorders_ID int NOT NULL ,"
 				+ " fk_product_Name varchar(32) NOT NULL ,"
 				+ " PRIMARY KEY (homeFuelOrderID) ,"
 				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
 				+ " REFERENCES customer (customerID) ON DELETE CASCADE ON UPDATE CASCADE ,"
-				+ " KEY homeFuelOrder_ibfk_2 (fkshipmentName) ,"
-				+ " CONSTRAINT homeFuelOrder_ibfk_2 FOREIGN KEY (fkshipmentName) "
-				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_2 (fkshipmentType) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_2 FOREIGN KEY (fkshipmentType) "
+				+ " REFERENCES ShipmentMethod (shipmentType) ON DELETE CASCADE ON UPDATE CASCADE ,"
 				+ " KEY homeFuelOrder_ibfk_3 (fkorders_ID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_3 FOREIGN KEY (fkorders_ID) "
 				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE ,"
@@ -672,6 +672,16 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " KEY CustomerBoughtFromCompany_ibfk_2 (fkfuel_Company_Name) ,"
 				+ " CONSTRAINT CustomerBoughtFromCompany_ibfk_2 FOREIGN KEY (fkfuel_Company_Name) "
 				+ " REFERENCES FuelCompany (fuel_Company_Name) ON DELETE CASCADE ON UPDATE CASCADE )";
+		generateTable(con, tableName, values);
+	}
+	
+	public void generatePeriodicCustomersReport(Connection con) {
+		String tableName = "PeriodicCustomersReport";
+		String values = "( " 
+				+ " periodic_customer_report_id int NOT NULL  AUTO_INCREMENT ,"
+				+ " date_from TIMESTAMP NOT NULL ,"
+				+ " date_to TIMESTAMP NOT NULL ,"
+				+ " PRIMARY KEY (periodic_customer_report_id) )";	
 		generateTable(con, tableName, values);
 	}
 	
