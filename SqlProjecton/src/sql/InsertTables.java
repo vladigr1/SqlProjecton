@@ -197,6 +197,8 @@ public class InsertTables { // insert to tables
 	public static void insertCustomerBoughtFromCompany(Connection con, Object[] values) {
 		insertRow(con, "CustomerBoughtFromCompany", FieldIndicatorForInsert.CustomerBoughtFromCompany(), values);
 	}
+	
+	//vlad add
 
 	public static void insertCar(Connection con, Object[] values) {
 		 insertRow(con, "car", FieldIndicatorForInsert.Car(), values);

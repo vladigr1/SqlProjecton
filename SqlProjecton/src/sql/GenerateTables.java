@@ -39,7 +39,6 @@ public class GenerateTables { // creating the tables if they are not exists
 		
 		generateCustomerboughtInSale(con);
 		generateSaleCommentsReport(con);
-		generateFuelStationOrder(con);
 		
 		generateCar(con);/////
 		generateRankingSheet(con);//////
@@ -47,14 +46,15 @@ public class GenerateTables { // creating the tables if they are not exists
 		generatePricingModel(con);////
 		generateFullSingleMemberMonthly(con);////
 		
+		
 		//vlad tables
 		generateNotification(con);
 		generateShipmentMethod(con);
 		generateOrders(con);
+		generateFuelStationOrder(con);//////
 		generatePurchasingProgramType(con);
 		generateFuelCompany(con);
 		generateHomeFuelOrder(con);
-		generatePurchasingProgram(con);
 		generatePurchasingProgram(con);
 		generateCustomerBoughtFromCompany(con);
 		System.out.println("finished generating tables");
@@ -534,17 +534,19 @@ public class GenerateTables { // creating the tables if they are not exists
 	public void generateFuelStationOrder(Connection con) {
 		String tableName = "fuel_station_order";
 		String values =
-				"( " + "FK_orderID INT NOT NULL ,"
+				"( " + "fk_orders_ID INT NOT NULL ,"
 				+ "FK_productInStationID INT NOT NULL ,"
 				+ "assessed varchar(1) NOT NULL,"
 				+ "approved varchar(1) NOT NULL,"
 				+ "supplied varchar(1) NOT NULL,"
-				+ "timeSupplied TIMESTAMP NOT NULL,"
-				+ " PRIMARY KEY (FK_orderID),"
-				
+				+ "timeSupplied TIMESTAMP NOT NULL ,"
+				+ " PRIMARY KEY (fk_orders_ID),"
 				+ " KEY fuel_station_order_ibfk_1 (FK_productInStationID),"
 				+ " CONSTRAINT fuel_station_order_ibfk_1 FOREIGN KEY (FK_productInStationID) "
-				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE)";
+				+ " REFERENCES product_in_station (productInStationID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY fuel_station_order_ibfk_2 (fk_orders_ID),"
+				+ " CONSTRAINT fuel_station_order_ibfk_2 FOREIGN KEY (fk_orders_ID) "
+				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE )";
 		generateTable(con,tableName,values);	
 	}
 	
@@ -592,6 +594,7 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " fkcustomerID varchar(32) NOT NULL ,"
 				+ " fkshipmentName varchar(32) NOT NULL ,"
 				+ " fkorders_ID int NOT NULL ,"
+				+ " fk_product_Name varchar(32) NOT NULL ,"
 				+ " PRIMARY KEY (homeFuelOrderID) ,"
 				+ " KEY homeFuelOrder_ibfk_1 (fkcustomerID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_1 FOREIGN KEY (fkcustomerID) "
@@ -601,7 +604,10 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " REFERENCES ShipmentMethod (shipmentName) ON DELETE CASCADE ON UPDATE CASCADE ,"
 				+ " KEY homeFuelOrder_ibfk_3 (fkorders_ID) ,"
 				+ " CONSTRAINT homeFuelOrder_ibfk_3 FOREIGN KEY (fkorders_ID) "
-				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE )";
+				+ " REFERENCES Orders (orders_ID) ON DELETE CASCADE ON UPDATE CASCADE ,"
+				+ " KEY homeFuelOrder_ibfk_4 (fk_product_Name) ,"
+				+ " CONSTRAINT homeFuelOrder_ibfk_4 FOREIGN KEY (fk_product_Name) "
+				+ " REFERENCES product (productName) ON DELETE CASCADE ON UPDATE CASCADE )";
 			
 		generateTable(con, tableName, values);
 	}

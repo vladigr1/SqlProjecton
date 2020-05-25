@@ -114,7 +114,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] FuelStationOrder() {
-		return new String[]{"FK_orderID","FK_productInStationID","assessed","approved","supplied","timeSupplied" };
+		return new String[]{"fk_orders_ID","FK_productInStationID","assessed","approved","supplied","timeSupplied" };
 	}
 	//vlad added
 	
@@ -131,7 +131,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] HomeFuelOrder() {
-		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID"};
+		return new String[]{"dutime", "fkcustomerID","fkshipmentName","fkorders_ID","fk_product_Name"};
 	}
 	
 	public static String[] PurchasingProgramType() {
