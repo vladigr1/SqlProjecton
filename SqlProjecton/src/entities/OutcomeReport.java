@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OutcomeReport extends QuarterlyReport {
@@ -13,9 +14,9 @@ public class OutcomeReport extends QuarterlyReport {
 	// fields
 	private double totalOutCome;
 
-	public OutcomeReport(FuelStation fuelStation, int repQuareter, int year, String fromDate, String toDate,
+	public OutcomeReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated,
 			List<ProductInStation> productInStationList, double totalOutCome) {
-		super(fuelStation, repQuareter, year, fromDate, toDate);
+		super(fuelStation, repQuareter, year, dateCreated);
 		this.productInStationList = productInStationList;
 		this.totalOutCome = totalOutCome;
 	}

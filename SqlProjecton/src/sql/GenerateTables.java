@@ -362,8 +362,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		String values =
 				"( " + "repQuarter INT NOT NULL ," //change to year
 				+ " repYear varchar(32) NOT NULL , " 
-				+ " fromDate varchar(32) NOT NULL , " 
-				+ " toDate varchar(32) NOT NULL , "
+				+ " dateCreated TIMESTAMP NOT NULL , " 
 				+ " FK_fuelStationID INT NOT NULL , " 
 				+ " PRIMARY KEY (repQuarter,repYear) ,"
 				+ " KEY quarterly_report_ibfk_1 (FK_fuelStationID),"
@@ -524,6 +523,7 @@ public class GenerateTables { // creating the tables if they are not exists
 				"( " + "FK_saleID INT NOT NULL ,"
 				+ "numberOfCustomersBought INT NOT NULL,"
 				+ "sumOfPurchases DOUBLE(32,2) NOT NULL,"
+				+ "dateCreated TIMESTAMP NOT NULL,"
 				+ " PRIMARY KEY (FK_saleID),"	
 				
 				+ " KEY sale_comments_report_ibfk_1 (FK_saleID),"//first FK

@@ -294,7 +294,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=1;
 		String year="2020";
-		Object[] values = { quarter ,year, "2/2", "2/3", fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 2, 3), fuelstationID };
 		InsertTables.insertQuarterlyReport(con, values);
 
 	}
@@ -303,7 +303,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=2;
 		String year="2020";
-		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 3, 1), fuelstationID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = {quarter ,year, 20.5 };
@@ -315,7 +315,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=3;
 		String year="2020";
-		Object[] values = { quarter ,year, "3/2", "5/6", fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 4, 6), fuelstationID }; 
 		 InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter,year, 20.5 };
@@ -330,7 +330,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=1;
 		String year="2019";
-		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 4, 5), fuelstationID };
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year, 10.2 };
@@ -341,7 +341,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=2;
 		String year="2019";
-		Object[] values = { quarter ,year, "2/3", "4/2", fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 1, 14), fuelstationID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year, 20.5 };
@@ -356,7 +356,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=1;
 		String year="2018";
-		Object[] values = { quarter ,year, "5/5", "5/6", fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 1, 1), fuelstationID };
 		InsertTables.insertQuarterlyReport(con, values);
 		Object[] values2 = { quarter ,year };
 		InsertTables.insertInventroyReport(con, values2);
@@ -366,7 +366,7 @@ public class InsertDefaultTables {
 		int fuelstationID = 1;
 		int quarter=2;
 		String year="2018";
-		Object[] values = { quarter ,year, "1/1", "2/2", fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(119, 2, 3), fuelstationID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year };
@@ -542,7 +542,7 @@ public class InsertDefaultTables {
 		Object[] values4 = { generateKey,false };
 		int generateKeySale=InsertTables.insertSale(con, values4);
 		
-		Object[] values5 = { generateKeySale,15,250.54 };
+		Object[] values5 = { generateKeySale,15,250.54,new Date(120, 4, 26) };
 		InsertTables.insertSaleCommentsReport(con, values5);
 		
 //		Object[] values6 = { generateKeySale,12,230.54 };    //for checking that the relation is 1 to 1

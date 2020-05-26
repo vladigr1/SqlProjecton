@@ -70,7 +70,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] QuarterlyReport() {
-		return new String[] { "repQuarter","repYear", "fromDate", "toDate", "FK_fuelStationID" };
+		return new String[] { "repQuarter","repYear", "dateCreated", "FK_fuelStationID" };
 	}
 
 	public static String[] IncomeReport() {
@@ -110,7 +110,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] SaleCommentsReport() {
-		return new String[]{"FK_saleID","numberOfCustomersBought","sumOfPurchases" };
+		return new String[]{"FK_saleID","numberOfCustomersBought","sumOfPurchases","dateCreated" };
 	}
 	
 	public static String[] FuelStationOrder() {

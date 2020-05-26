@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class InventoryReport extends QuarterlyReport {
@@ -10,8 +11,8 @@ public class InventoryReport extends QuarterlyReport {
 	private List<ProductInStation> productInStationList = new ArrayList<>();
 	// must include at least 1
 
-	public InventoryReport(FuelStation fuelStation, int repQuareter, int year, String fromDate, String toDate) {
-		super(fuelStation, repQuareter, year, fromDate, toDate);
+	public InventoryReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated) {
+		super(fuelStation, repQuareter, year, dateCreated);
 		// TODO Auto-generated constructor stub
 	}
 

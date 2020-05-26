@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Date;
+
 public class QuarterlyReport {
 	// create hash code and equals after have sale form eldad
 
@@ -7,18 +9,16 @@ public class QuarterlyReport {
 	private FuelStation fuelStation;
 
 	// fields
-	private int repQuareter;// id?
+	private int repQuareter;
 	private int year;
-	private String fromDate;
-	private String toDate;
+	private Date dateCreated;
 
-	public QuarterlyReport(FuelStation fuelStation, int repQuareter, int year, String fromDate, String toDate) {
+	public QuarterlyReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated) {
 		super();
 		this.fuelStation = fuelStation;
 		this.repQuareter = repQuareter;
 		this.year = year;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
+		this.dateCreated = dateCreated;
 	}
 
 	public FuelStation getFuelStation() {
@@ -41,24 +41,16 @@ public class QuarterlyReport {
 		return year;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+//	public void setYear(int year) {
+//		this.year = year;
+//	}
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public String getFromDate() {
-		return fromDate;
-	}
-
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-
-	public String getToDate() {
-		return toDate;
-	}
-
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	@Override
@@ -72,7 +64,9 @@ public class QuarterlyReport {
 	@Override
 	public String toString() {
 		return "QuarterlyReport [fuelStation=" + fuelStation + ", repQuareter=" + repQuareter + ", year=" + year
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
+				+ ", dateCreated=" + dateCreated + "]";
 	}
 
+	
+	
 }
