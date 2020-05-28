@@ -20,15 +20,10 @@ public class Product {
 	private double maxPrice;
 	private double currentPrice;
 
-	public Product(List<SalesPattern> salePatternList, List<ProductRatesUpdateRequest> productRatesUpdateRequesList,
-			List<Car> carList, List<HomeFuelOrder> homeFuelOrderList, List<FastFuel> fastFuelList,
-			ProductName productName, double maxPrice, double currentPrice) {
+	
+
+	public Product(ProductName productName, double maxPrice, double currentPrice) {
 		super();
-		this.salePatternList = salePatternList;
-		this.productRatesUpdateRequesList = productRatesUpdateRequesList;
-		this.carList = carList;
-		this.homeFuelOrderList = homeFuelOrderList;
-		this.fastFuelList = fastFuelList;
 		this.productName = productName;
 		this.maxPrice = maxPrice;
 		this.currentPrice = currentPrice;

@@ -15,14 +15,15 @@ public class ProductRatesUpdateRequest {
 	private boolean assessed;
 	private boolean approved;
 	
-	public ProductRatesUpdateRequest(List<Product> productList, int updateRateRequestID, boolean assessed,
-			boolean approved) {
+	
+	public ProductRatesUpdateRequest(int updateRateRequestID, boolean assessed, boolean approved) {
 		super();
-		this.productList = productList;
 		this.updateRateRequestID = updateRateRequestID;
 		this.assessed = assessed;
 		this.approved = approved;
 	}
+	
+	
 	public List<Product> getProductList() {
 		return productList;
 	}

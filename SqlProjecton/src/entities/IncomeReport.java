@@ -9,16 +9,17 @@ public class IncomeReport extends QuarterlyReport {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private List<ProductInStation> productInStationList = new ArrayList<>();
-	// must include at least 1
+	private List<ProductInStation> productInStationList = new ArrayList<>(); // must include at least 1
+
 
 	// fields
 	private double totalAllIncome;
 
-	public IncomeReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated,
-			List<ProductInStation> productInStationList, double totalAllIncome) {
+	
+
+	public IncomeReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated,
+			double totalAllIncome) {
 		super(fuelStation, repQuareter, year, dateCreated);
-		this.productInStationList = productInStationList;
 		this.totalAllIncome = totalAllIncome;
 	}
 

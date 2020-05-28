@@ -22,20 +22,11 @@ public class ProductInStation extends Product {
 	private int thresholdLevel;
 	private double supplierPrice;
 
-	public ProductInStation(List<SalesPattern> salePatternList,
-			List<ProductRatesUpdateRequest> productRatesUpdateRequesList, List<Car> carList,
-			List<HomeFuelOrder> homeFuelOrderList, List<FastFuel> fastFuelList, ProductName productName,
-			double maxPrice, double currentPrice, FuelStation fuelStation, List<FuelStationOrder> fuelStationOrderList,
-			List<IncomeReport> incomeReportList, List<InventoryReport> inventoryReportList,
-			List<OutcomeReport> outComeReportList, int productInStaionID, int capacity, int thresholdLevel,
-			double supplierPrice) {
-		super(salePatternList, productRatesUpdateRequesList, carList, homeFuelOrderList, fastFuelList, productName,
-				maxPrice, currentPrice);
+	
+	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, FuelStation fuelStation,
+			int productInStaionID, int capacity, int thresholdLevel, double supplierPrice) {
+		super(productName, maxPrice, currentPrice);
 		this.fuelStation = fuelStation;
-		this.fuelStationOrderList = fuelStationOrderList;
-		this.incomeReportList = incomeReportList;
-		this.inventoryReportList = inventoryReportList;
-		this.outComeReportList = outComeReportList;
 		this.productInStaionID = productInStaionID;
 		this.capacity = capacity;
 		this.thresholdLevel = thresholdLevel;

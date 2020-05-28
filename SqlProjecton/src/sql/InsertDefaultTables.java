@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.Date;
 
 import enums.Affiliation;
+import enums.CustomerType;
 import enums.PricingModelName;
 import enums.ProductName;
 import enums.PurchasingProgramName;
@@ -108,14 +109,14 @@ public class InsertDefaultTables {
 		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 
-		Object[] values2 = { customerID, userName, "1331-2222-3333-4444" };
+		Object[] values2 = { customerID, userName, "1331-2222-3333-4444",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 		double customerTypeRank=0.75;
 		double fuelingHoursRank=0.89;
 		double fuelTypesRank=0.43;
 		
-		Object[] values3 = { customerTypeRank, fuelingHoursRank, fuelTypesRank ,customerID };
+		Object[] values3 = { customerTypeRank, fuelingHoursRank, fuelTypesRank ,customerID,new Date(119,2,5) };
 		InsertTables.insertRankingSheet(con, values3);
 		
 		
@@ -127,7 +128,7 @@ public class InsertDefaultTables {
 		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 
-		Object[] values2 = { customerID, userName, "1321-2222-3333-4444" };
+		Object[] values2 = { customerID, userName, "1321-2222-3333-4444",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 		String registrationPlate="65-101-33";
@@ -164,7 +165,7 @@ public class InsertDefaultTables {
 		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 
-		Object[] values2 = { customerID, userName, "1111-2222-3333-4444" };
+		Object[] values2 = { customerID, userName, "1111-2222-3333-4444" ,CustomerType.PERSON.toString()};
 		InsertTables.insertCustomer(con, values2);
 	}
 
@@ -243,7 +244,7 @@ public class InsertDefaultTables {
 		
 		
 		String fuelComapny="Sonol";
-		Object[] values4 = { "Gazim", "Road 6", generatedKey,fuelComapny };
+		Object[] values4 = { "Gazim",fkemployeeID, "Road 6",fuelComapny };
 		InsertTables.insertFuelStation(con, values4);
 
 	}
@@ -259,10 +260,10 @@ public class InsertDefaultTables {
 		int fkemployeeID = InsertTables.insertEmployee(con, values2);
 		Object[] values3 = { "22233322", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
-		Object[] values4 = { "Paz", "Road 62", generatedKey,fuelComapny };
+		Object[] values4 = { "Paz",fkemployeeID, "Road 62", fuelComapny };
 		int generatedKey2 = InsertTables.insertFuelStation(con, values4);
 
-		Object[] values5 = { ProductName.DIESEL.toString(), generatedKey2, new Date(119, 3, 3), 30, 200.19 };
+		Object[] values5 = { ProductName.DIESEL.toString(), fkemployeeID, new Date(119, 3, 3), 30, 200.19 };
 		InsertTables.insertFastFuel(con, values5);
 
 	}
@@ -281,29 +282,29 @@ public class InsertDefaultTables {
 		int fkemployeeID = InsertTables.insertEmployee(con, values2);
 		Object[] values3 = { "2443322", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
-		Object[] values4 = { "PazSad", "Road 62", generatedKey ,fuelComapny};
+		Object[] values4 = { "PazSad",fkemployeeID, "Road 62" ,fuelComapny};
 		int generatedKey2 = InsertTables.insertFuelStation(con, values4);
 
-		Object[] values5 = { ProductName.MOTORBIKEFUEL.toString(), generatedKey2, 25, 10, 6.99 };
+		Object[] values5 = { ProductName.MOTORBIKEFUEL.toString(), fkemployeeID, 25, 10, 6.99 };
 		InsertTables.insertProductInStation(con, values5);
 
 	}
 
 	public void insertDefaultQuarterlyReport(Connection con) {
 
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=1;
 		String year="2020";
-		Object[] values = { quarter ,year, new Date(120, 2, 3), fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 2, 3), fkemployeeID };
 		InsertTables.insertQuarterlyReport(con, values);
 
 	}
 
 	public void insertDefaultIncomeReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=2;
 		String year="2020";
-		Object[] values = { quarter ,year, new Date(120, 3, 1), fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 3, 1), fkemployeeID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = {quarter ,year, 20.5 };
@@ -312,10 +313,10 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultProductInIncomeReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=3;
 		String year="2020";
-		Object[] values = { quarter ,year, new Date(120, 4, 6), fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 4, 6), fkemployeeID }; 
 		 InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter,year, 20.5 };
@@ -327,10 +328,10 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultOutcomeReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=1;
 		String year="2019";
-		Object[] values = { quarter ,year, new Date(120, 4, 5), fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 4, 5), fkemployeeID };
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year, 10.2 };
@@ -338,10 +339,10 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultProductInOutcomeReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=2;
 		String year="2019";
-		Object[] values = { quarter ,year, new Date(120, 1, 14), fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(120, 1, 14), fkemployeeID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year, 20.5 };
@@ -353,20 +354,20 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultInventroyReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=1;
 		String year="2018";
-		Object[] values = { quarter ,year, new Date(120, 1, 1), fuelstationID };
+		Object[] values = { quarter ,year, new Date(120, 1, 1), fkemployeeID };
 		InsertTables.insertQuarterlyReport(con, values);
 		Object[] values2 = { quarter ,year };
 		InsertTables.insertInventroyReport(con, values2);
 	}
 
 	public void insertDefaultProductInInventroyReport(Connection con) {
-		int fuelstationID = 1;
+		int fkemployeeID = 4;
 		int quarter=2;
 		String year="2018";
-		Object[] values = { quarter ,year, new Date(119, 2, 3), fuelstationID }; 
+		Object[] values = { quarter ,year, new Date(119, 2, 3), fkemployeeID }; 
 		InsertTables.insertQuarterlyReport(con, values);
 
 		Object[] values2 = { quarter ,year };
@@ -384,7 +385,7 @@ public class InsertDefaultTables {
 		Object[] values = { userName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 
-		Object[] values2 = { customerID, userName, "1321-2222-3333-4444" };
+		Object[] values2 = { customerID, userName, "1321-2222-3333-4444",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 		
@@ -413,7 +414,7 @@ public class InsertDefaultTables {
 		
 		FSmanagerID = InsertTables.insertFuelStationManager(con, values3);
 		
-		Object[] values4 = {false, FSmanagerID};
+		Object[] values4 = {false,"" ,fkemployeeID};
 		InsertTables.insertNotification(con, values4);
 		
 	}
@@ -425,7 +426,7 @@ public class InsertDefaultTables {
 	
 	public void insertDefaultOrders(Connection con) {
 		
-		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4,"in israel" };
+		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4,"in israel",false,false };
 		InsertTables.insertOrders(con, values);
 	}
 	
@@ -438,13 +439,13 @@ public class InsertDefaultTables {
 		Object[] values = {username , "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values);
 		//generate customer
-		Object[] values2 = { customerID ,username , "hfcreditCard" };
+		Object[] values2 = { customerID ,username , "hfcreditCard",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 		Object[] values3 = {50.5 , 1.3, fkshipmentType  };
 		InsertTables.insertShipmentMethod(con, values3);
 		
-		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4,"some where in israel" };
+		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4,"some where in israel",false,false };
 		fkorders_ID =InsertTables.insertOrders(con, values4);
 		//generate homefuel order using pre set product DIESEL set in insert...product
 		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentType,fkorders_ID,ProductName.DIESEL.toString()};
@@ -482,7 +483,7 @@ public class InsertDefaultTables {
 		Object[] values1 = { customerUserName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values1);
 
-		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444" };
+		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 
@@ -517,7 +518,7 @@ public class InsertDefaultTables {
 		Object[] values1 = { customerUserName, "1234", false, "Elroye", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, values1);
 
-		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444" };
+		Object[] values2 = { fkcustomer , customerUserName, "1111-2222-3333-4444",CustomerType.PERSON.toString() };
 		InsertTables.insertCustomer(con, values2);
 		
 		
@@ -531,7 +532,7 @@ public class InsertDefaultTables {
 		InsertTables.insertFuelCompany(con, values6);
 
 		//CustomerBoughtFromCompany
-		Object[] values7 = {fkcustomer , fkfuel_Company_Name, 3.4, 34.0};
+		Object[] values7 = {fkcustomer , fkfuel_Company_Name, 3.4, 34.0,new Date(119,2,5)};
 		InsertTables.insertCustomerBoughtFromCompany(con, values7);
 	}
 	
@@ -553,11 +554,12 @@ public class InsertDefaultTables {
 	public void insertDefaultFuelStationOrder(Connection con) {
 		int orderID;
 		int productInStationID=1;
+		String reason="not enough cash";
 		
-		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4,"in israel" };
+		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4,"in israel",false,false };
 		orderID = InsertTables.insertOrders(con, values);
 		
-		Object[] values2 = { orderID,productInStationID,false,false,false,  new Date(118, 11, 3)};
+		Object[] values2 = { orderID,productInStationID,false,false,reason};
 		InsertTables.insertFuelStationOrder(con, values2);
 			
 	}

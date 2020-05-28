@@ -7,16 +7,14 @@ public class SaleCommentsReport {
 	private Sale sale;
 
 	// fields
-	private int saleCommentReportID;
 	private int numberOfCustomersBoughtInSale;
 	private double sumOfPurchases;
 	private Date dateCreated;
 
-	public SaleCommentsReport(Sale sale, int saleCommentReportID, int numberOfCustomersBoughtInSale,
+	public SaleCommentsReport(Sale sale, int numberOfCustomersBoughtInSale,
 			double sumOfPurchases,Date dateCreated) {
 		super();
 		this.sale = sale;
-		this.saleCommentReportID = saleCommentReportID;
 		this.numberOfCustomersBoughtInSale = numberOfCustomersBoughtInSale;
 		this.sumOfPurchases = sumOfPurchases;
 		this.dateCreated= dateCreated;
@@ -30,9 +28,6 @@ public class SaleCommentsReport {
 		this.sale = sale;
 	}
 
-	public int getSaleCommentReportID() {
-		return saleCommentReportID;
-	}
 //
 //	public void setSaleCommentReportID(int saleCommentReportID) {
 //		this.saleCommentReportID = saleCommentReportID;
@@ -67,13 +62,13 @@ public class SaleCommentsReport {
 		if (!(obj instanceof SaleCommentsReport))
 			return false;
 		SaleCommentsReport saleComment = (SaleCommentsReport) obj;
-		return this.saleCommentReportID == saleComment.getSaleCommentReportID();
+		return this.sale.equals(saleComment.getSale());
 	}
 
 	
 	@Override
 	public String toString() {
-		return "SaleCommentsReport [sale=" + sale + ", saleCommentReportID=" + saleCommentReportID
+		return "SaleCommentsReport [sale=" + sale + ", saleCommentReportID=" 
 				+ ", numberOfCustomersBoughtInSale=" + numberOfCustomersBoughtInSale + ", sumOfPurchases="
 				+ sumOfPurchases +"dateCreated= "+dateCreated+"]";
 	}

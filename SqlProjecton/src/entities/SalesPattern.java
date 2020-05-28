@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SalesPattern {
@@ -8,19 +9,18 @@ public class SalesPattern {
 	
 	//connections
 	private List<Sale> saleList = new ArrayList<>();
-	private List<Product> productList = new ArrayList<>();
-	//must include 1 at least
+	private List<Product> productList = new ArrayList<>(); //must include 1 at least
+	
 	
 	//fields
 	private int salesPatternID;
-	private String startTime;
-	private String endTime;
+	private Date startTime;
+	private Date endTime;
 	
-	public SalesPattern(List<Sale> saleList, List<Product> productList, int salesPatternID, String startTime,
-			String endTime) {
+	
+
+	public SalesPattern(int salesPatternID, Date startTime, Date endTime) {
 		super();
-		this.saleList = saleList;
-		this.productList = productList;
 		this.salesPatternID = salesPatternID;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -50,19 +50,19 @@ public class SalesPattern {
 //		this.salesPatternID = salesPatternID;
 //	}
 
-	public String getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 
-	public String getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(String endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 	

@@ -20,7 +20,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] RankingSheet() {
-		return new String[] { "customerTypeRank", "fuelingHoursRank", "fuelTypesRank", "FK_customerID" };
+		return new String[] { "customerTypeRank", "fuelingHoursRank", "fuelTypesRank", "FK_customerID","updatedForDate" };
 	}
 
 	
@@ -38,7 +38,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] Customer() {
-		return new String[] { "customerID", "fkUsername", "creditCard" };
+		return new String[] { "customerID", "fkUsername", "creditCard","customerType" };
 	}
 
 	public static String[] Product() {
@@ -58,19 +58,19 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] FuelStation() {
-		return new String[] { "stationName", "address", "FK_FSmanagerID","FK_fuel_Company_Name" }; // add here company name afterwards
+		return new String[] { "stationName","FK_employeeID", "address","FK_fuel_Company_Name" }; // add here company name afterwards
 	}
 
 	public static String[] FastFuel() {
-		return new String[] { "FK_productName", "FK_fuelStationID", "fastFuelTime", "amountBought", "finalPrice" };
+		return new String[] { "FK_productName", "FK_employeeID", "fastFuelTime", "amountBought", "finalPrice" };
 	}
 
 	public static String[] ProductInStation() {
-		return new String[] { "FK_productName", "FK_fuelStationID", "capacity", "threshold", "supplierPrice" };
+		return new String[] { "FK_productName", "FK_employeeID", "capacity", "threshold", "supplierPrice" };
 	}
 
 	public static String[] QuarterlyReport() {
-		return new String[] { "repQuarter","repYear", "dateCreated", "FK_fuelStationID" };
+		return new String[] { "repQuarter","repYear", "dateCreated", "FK_employeeID" };
 	}
 
 	public static String[] IncomeReport() {
@@ -114,12 +114,12 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] FuelStationOrder() {
-		return new String[]{"fk_orders_ID","FK_productInStationID","assessed","approved","supplied","timeSupplied" };
+		return new String[]{"FK_orders_ID","FK_productInStationID","assessed","approved","reason" };
 	}
 	//vlad added
 	
 	public static String[] Notification() {
-		return new String[]{"dismissed", "fkmanageID" };
+		return new String[]{"dismissed", "message","fkemployeeID" };
 	}
 	
 	public static String[] ShipmentMethod() {
@@ -127,7 +127,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] Orders() {
-		return new String[]{"order_time", "amount_bought","final_price","address"};
+		return new String[]{"order_time", "amount_bought","final_price","address","supplied","timeSupplied"};
 	}
 	
 	public static String[] HomeFuelOrder() {
@@ -147,7 +147,7 @@ public class FieldIndicatorForInsert {
 	}
 	
 	public static String[] CustomerBoughtFromCompany() {
-		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amount_Bought_From_Company","amount_Paid_Company"};
+		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amountBoughtFromCompany","amountPaidCompany","dateOfPurchase"};
 	}
 	
 	public static String[] PeriodicCustomersReport() {

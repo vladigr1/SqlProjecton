@@ -1,50 +1,70 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import enums.PricingModelName;
+
 public class PricingModelType {
-	//fields
-	private PricingModelType pricingModelType;
+	// connections
+	private List<PricingModel> pricingModelList = new ArrayList<>();
+
+	// fields
+	private PricingModelName pricingModelName;
 	private String description;
 	private double defaultDiscount;
-	
-	public PricingModelType(PricingModelType pricingModelType, String description, double defaultDiscount) {
+
+	public PricingModelType(PricingModelName pricingModelName, String description, double defaultDiscount) {
 		super();
-		this.pricingModelType = pricingModelType;
+		this.pricingModelName = pricingModelName;
 		this.description = description;
 		this.defaultDiscount = defaultDiscount;
 	}
-	public PricingModelType getPricingModelType() {
-		return pricingModelType;
+
+	public List<PricingModel> getPricingModelList() {
+		return pricingModelList;
 	}
-//	public void setPricingModelType(PricingModelType pricingModelType) {
-//		this.pricingModelType = pricingModelType;
+
+	public void setPricingModelList(List<PricingModel> pricingModelList) {
+		this.pricingModelList = pricingModelList;
+	}
+
+	public PricingModelName getPricingModelName() {
+		return pricingModelName;
+	}
+
+//	public void setPricingModelName(PricingModelName pricingModelName) {
+//		this.pricingModelName = pricingModelName;
 //	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public double getDefaultDiscount() {
 		return defaultDiscount;
 	}
+
 	public void setDefaultDiscount(double defaultDiscount) {
 		this.defaultDiscount = defaultDiscount;
 	}
 	
 	@Override
+	public String toString() {
+		return "PricingModelType [pricingModelList=" + pricingModelList + ", pricingModelName=" + pricingModelName
+				+ ", description=" + description + ", defaultDiscount=" + defaultDiscount + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof PricingModelType))
 			return false;
 		PricingModelType model = (PricingModelType) obj;
-		return this.pricingModelType == model.getPricingModelType();
+		return this.pricingModelName.equals(model.getPricingModelName());
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "PricingModelType [pricingModelType=" + pricingModelType + ", description=" + description
-				+ ", defaultDiscount=" + defaultDiscount + "]";
-	}
-		
 
 }

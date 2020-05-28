@@ -1,7 +1,7 @@
 package entities;
 
 public class FullSingleMemberMonthly extends PricingModel{
-	//fileds
+	//fields
 	private double lastMonthUtillization;
 
 	public FullSingleMemberMonthly(PricingModelType pricingModeltype, Customer customer, Car car,

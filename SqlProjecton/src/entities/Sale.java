@@ -1,26 +1,27 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Sale {
 	//connections
 	private SalesPattern salesPattern;
-	private SaleCommentsReport saleCommentReportList;
+	private SaleCommentsReport saleCommentReport;
 	private List<Customer> saleCustomerList= new ArrayList<>();
 	
 	//fields
 	private int saleID;
 	private boolean active;
-	public Sale(SalesPattern salesPattern, SaleCommentsReport saleCommentReportList, List<Customer> saleCustomerList,
-			int saleID, boolean active) {
+	
+	public Sale(SalesPattern salesPattern, SaleCommentsReport saleCommentReport, int saleID, boolean active) {
 		super();
 		this.salesPattern = salesPattern;
-		this.saleCommentReportList = saleCommentReportList;
-		this.saleCustomerList = saleCustomerList;
+		this.saleCommentReport = saleCommentReport;
 		this.saleID = saleID;
 		this.active = active;
 	}
+	
 	public SalesPattern getSalesPattern() {
 		return salesPattern;
 	}
@@ -28,10 +29,10 @@ public class Sale {
 		this.salesPattern = salesPattern;
 	}
 	public SaleCommentsReport getSaleCommentReportList() {
-		return saleCommentReportList;
+		return saleCommentReport;
 	}
 	public void setSaleCommentReportList(SaleCommentsReport saleCommentReportList) {
-		this.saleCommentReportList = saleCommentReportList;
+		this.saleCommentReport = saleCommentReportList;
 	}
 	public List<Customer> getSaleCustomerList() {
 		return saleCustomerList;
@@ -62,7 +63,7 @@ public class Sale {
 			
 	@Override
 	public String toString() {
-		return "Sale [salesPattern=" + salesPattern + ", saleCommentReportList=" + saleCommentReportList
+		return "Sale [salesPattern=" + salesPattern + ", saleCommentReportList=" + saleCommentReport
 				+ ", saleCustomerList=" + saleCustomerList + ", saleID=" + saleID + ", active=" + active + "]";
 	}
 	

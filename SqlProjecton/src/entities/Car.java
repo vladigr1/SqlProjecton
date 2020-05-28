@@ -8,6 +8,7 @@ public class Car {
 	//fields
 	private String registrationPlate;
 	private String ownerName;
+	
 	public Car(Customer customer, Product product, String registrationPlate, String ownerName) {
 		super();
 		this.customer = customer;

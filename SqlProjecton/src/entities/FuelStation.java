@@ -4,31 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuelStation {
-	// create hash code and equals after have sale form eldad
 
 	// connections
-	private List<FastFuel> fastFuelList = new ArrayList<>();
+	private List<FastFuel> fastFuelList = new ArrayList<>(); 
 	private FuelCompany fuelCompany;
 	private FuelStationManager fuelStationManager;
 	private List<QuarterlyReport> quarerlyReportList = new ArrayList<>();
-	private List<ProductInStation> productInStationList = new ArrayList<>();
-	// must include at least 1
+	private List<ProductInStation> productInStationList = new ArrayList<>();// must include at least 1
+	
 
 	// fields
-	private int fuelStationID;
 	private String stationName;
 	private String address;
 
-	public FuelStation(List<FastFuel> fastFuelList, FuelCompany fuelCompany, FuelStationManager fuelStationManager,
-			List<QuarterlyReport> quarerlyReportList, List<ProductInStation> productInStationList, int fuelStationID,
-			String stationName, String address) {
+	public FuelStation(FuelCompany fuelCompany, FuelStationManager fuelStationManager, String stationName,
+			String address) {
 		super();
-		this.fastFuelList = fastFuelList;
 		this.fuelCompany = fuelCompany;
 		this.fuelStationManager = fuelStationManager;
-		this.quarerlyReportList = quarerlyReportList;
-		this.productInStationList = productInStationList;
-		this.fuelStationID = fuelStationID;
 		this.stationName = stationName;
 		this.address = address;
 	}
@@ -73,13 +66,6 @@ public class FuelStation {
 		this.productInStationList = productInStationList;
 	}
 
-	public int getFuelStationID() {
-		return fuelStationID;
-	}
-
-//	public void setFuelStationID(int fuelStationID) {
-//		this.fuelStationID = fuelStationID;
-//	}
 
 	public String getStationName() {
 		return stationName;
@@ -101,15 +87,15 @@ public class FuelStation {
 	public boolean equals(Object obj) {
 		if (!(obj instanceof FuelStation))
 			return false;
-		FuelStation station = (FuelStation) obj;
-		return this.fuelStationID == station.getFuelStationID();
+		FuelStation other = (FuelStation) obj;
+		return this.fuelStationManager.equals(other.getFuelStationManager());
 	}
 
 	@Override
 	public String toString() {
 		return "FuelStaion [fastFuelList=" + fastFuelList + ", fuelCompanies=" + fuelCompany + ", fuelStationManager="
 				+ fuelStationManager + ", quarerlyReportList=" + quarerlyReportList + ", productInStationList="
-				+ productInStationList + ", fuelStationID=" + fuelStationID + ", stationName=" + stationName
+				+ productInStationList + ", fuelStationID=" + ", stationName=" + stationName
 				+ ", address=" + address + "]";
 	}
 

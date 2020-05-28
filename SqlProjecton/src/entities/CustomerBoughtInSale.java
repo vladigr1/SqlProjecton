@@ -10,7 +10,6 @@ public class CustomerBoughtInSale {
 	private double amountPaid;
 
 	public CustomerBoughtInSale(Sale sale, Customer customer, double amountPaid) {
-		super();
 		this.sale = sale;
 		this.customer = customer;
 		this.amountPaid = amountPaid;

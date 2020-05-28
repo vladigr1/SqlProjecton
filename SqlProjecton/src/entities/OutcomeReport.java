@@ -14,10 +14,10 @@ public class OutcomeReport extends QuarterlyReport {
 	// fields
 	private double totalOutCome;
 
-	public OutcomeReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated,
-			List<ProductInStation> productInStationList, double totalOutCome) {
+
+
+	public OutcomeReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated, double totalOutCome) {
 		super(fuelStation, repQuareter, year, dateCreated);
-		this.productInStationList = productInStationList;
 		this.totalOutCome = totalOutCome;
 	}
 

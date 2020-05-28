@@ -5,15 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 public class InventoryReport extends QuarterlyReport {
-	// create hash code and equals after have sale form eldad
 
 	// connections
-	private List<ProductInStation> productInStationList = new ArrayList<>();
-	// must include at least 1
+	private List<ProductInStation> productInStationList = new ArrayList<>(); // must include at least 1
+	
 
-	public InventoryReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated) {
+	public InventoryReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated) {
 		super(fuelStation, repQuareter, year, dateCreated);
-		// TODO Auto-generated constructor stub
 	}
 
 	public List<ProductInStation> getProductInStationList() {

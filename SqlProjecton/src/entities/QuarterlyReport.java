@@ -10,10 +10,10 @@ public class QuarterlyReport {
 
 	// fields
 	private int repQuareter;
-	private int year;
+	private String year;
 	private Date dateCreated;
 
-	public QuarterlyReport(FuelStation fuelStation, int repQuareter, int year, Date dateCreated) {
+	public QuarterlyReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated) {
 		super();
 		this.fuelStation = fuelStation;
 		this.repQuareter = repQuareter;
@@ -37,7 +37,7 @@ public class QuarterlyReport {
 //		this.repQuareter = repQuareter;
 //	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 

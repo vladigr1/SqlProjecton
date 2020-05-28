@@ -1,7 +1,8 @@
 package entities;
 
+import java.util.Date;
+
 public class FastFuel {
-	// create hash code and equals after have sale form eldad
 
 	// connections
 	private Product product;
@@ -9,11 +10,11 @@ public class FastFuel {
 
 	// fields
 	private int fastFuelID;
-	private String fastFuelTime;
+	private Date fastFuelTime;
 	private double amountBought;
 	private double finalPrice;
 
-	public FastFuel(Product product, FuelStation fuelStaion, int fastFuelID, String fastFuelTime, double amountBought,
+	public FastFuel(Product product, FuelStation fuelStaion, int fastFuelID, Date fastFuelTime, double amountBought,
 			double finalPrice) {
 		super();
 		this.product = product;
@@ -48,11 +49,11 @@ public class FastFuel {
 //		this.fastFuelID = fastFuelID;
 //	}
 
-	public String getFastFuelTime() {
+	public Date getFastFuelTime() {
 		return fastFuelTime;
 	}
 
-	public void setFastFuelTime(String fastFuelTime) {
+	public void setFastFuelTime(Date fastFuelTime) {
 		this.fastFuelTime = fastFuelTime;
 	}
 
