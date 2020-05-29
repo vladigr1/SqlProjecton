@@ -10,8 +10,8 @@ public class InventoryReport extends QuarterlyReport {
 	private List<ProductInStation> productInStationList = new ArrayList<>(); // must include at least 1
 	
 
-	public InventoryReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated) {
-		super(fuelStation, repQuareter, year, dateCreated);
+	public InventoryReport(int fuelStationID, int repQuareter, String year, Date dateCreated) {
+		super(fuelStationID, repQuareter, year, dateCreated);
 	}
 
 	public List<ProductInStation> getProductInStationList() {

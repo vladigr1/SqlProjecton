@@ -1,12 +1,14 @@
 package entities;
 
+import enums.PricingModelName;
+
 public class FullSingleMemberMonthly extends PricingModel{
 	//fields
 	private double lastMonthUtillization;
 
-	public FullSingleMemberMonthly(PricingModelType pricingModeltype, Customer customer, Car car,
-			double currentDiscount, double lastMonthUtillization) {
-		super(pricingModeltype, customer, car, currentDiscount);
+	public FullSingleMemberMonthly(PricingModelName pricingModelName, String customerID, double currentDiscount,
+			double lastMonthUtillization) {
+		super(pricingModelName, customerID, currentDiscount);
 		this.lastMonthUtillization = lastMonthUtillization;
 	}
 

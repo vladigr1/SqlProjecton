@@ -1,44 +1,47 @@
 package sql;
 
 public class FieldIndicatorForInsert {
-	//elro addiotons
-	
+	// elro addiotons
+
 	public static String[] FullSingleMemberMonthly() {
-		return new String[] { "FK_registrationPlate", "FK_customerID","lastMonthUtillization" };
+		return new String[] { "FK_customerID", "lastMonthUtillization" };
 	}
-	
+
 	public static String[] PricingModel() {
-		return new String[] { "FK_pricingModelName", "FK_registrationPlate", "FK_customerID","currentDiscount" };
+		return new String[] { "FK_pricingModelName", "FK_customerID", "currentDiscount" };
 	}
-	
+
 	public static String[] PricingModelType() {
 		return new String[] { "pricingModelName", "description", "defaultDiscount" };
 	}
-	
+
 	public static String[] Car() {
-		return new String[] { "registrationPlate", "ownerName", "FK_productName", "FK_customerID" };
+		return new String[] { "registrationPlate", "ownerName", "FK_productName", "FK_customerID", "deleted" };
 	}
 
 	public static String[] RankingSheet() {
-		return new String[] { "customerTypeRank", "fuelingHoursRank", "fuelTypesRank", "FK_customerID","updatedForDate" };
+		return new String[] { "customerTypeRank", "fuelingHoursRank", "fuelTypesRank", "FK_customerID",
+				"updatedForDate" };
 	}
 
-	
-	
 	public static String[] User() {
 		return new String[] { "username", "password", "connected", "firstName", "surname", "email" };
 	}
 
 	public static String[] Employee() {
-		return new String[] { "role", "affiliation", "fkUsername" };
+		return new String[] { "role", "affiliation", "FK_userName" };
 	}
 
 	public static String[] SalePattern() {
-		return new String[] { "startTime", "endTime" }; // add saleID?
+		return new String[] { "durationInMinutes" }; // add saleID?
 	}
 
 	public static String[] Customer() {
-		return new String[] { "customerID", "fkUsername", "creditCard","customerType" };
+		return new String[] { "customerID", "FK_userName", "creditCard", "customerType", "deleted" };
+	}
+
+	public static String[] Activity() {
+		return new String[] { "FK_employeeID", "action", "time" };
 	}
 
 	public static String[] Product() {
@@ -58,100 +61,115 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] FuelStation() {
-		return new String[] { "stationName","FK_employeeID", "address","FK_fuel_Company_Name" }; // add here company name afterwards
+		return new String[] { "stationName", "FK_employeeID", "address", "FK_fuelCompanyName" }; // add here company
+																									// name afterwards
 	}
 
 	public static String[] FastFuel() {
-		return new String[] { "FK_productName", "FK_employeeID", "fastFuelTime", "amountBought", "finalPrice" };
+		return new String[] { "FK_customerID", "FK_productInStationID", "fastFuelTime", "amountBought", "finalPrice" };
 	}
 
 	public static String[] ProductInStation() {
-		return new String[] { "FK_productName", "FK_employeeID", "capacity", "threshold", "supplierPrice" };
+		return new String[] { "FK_productName", "FK_fuelStationID", "capacity", "threshold" };
 	}
 
 	public static String[] QuarterlyReport() {
-		return new String[] { "repQuarter","repYear", "dateCreated", "FK_employeeID" };
+		return new String[] { "repQuarter", "repYear", "dateCreated", "FK_fuelStationID" };
 	}
 
 	public static String[] IncomeReport() {
-		return new String[] { "FK_repQuarter","FK_repYear","totalIncome" };
+		return new String[] { "FK_repQuarter", "FK_repYear", "totalIncome" };
 	}
 
 	public static String[] OutcomeReport() {
-		return new String[] { "FK_repQuarter","FK_repYear","totalOutcome" };
+		return new String[] { "FK_repQuarter", "FK_repYear", "totalOutcome" };
 	}
 
 	public static String[] InventroyReport() {
-		return new String[] { "FK_repQuarter","FK_repYear" };
+		return new String[] { "FK_repQuarter", "FK_repYear" };
 	}
 
 	public static String[] ProductInIncomeReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_IncomeReport","FK_repYear_IncomeReport", "income" };
+		return new String[] { "FK_productInStationID", "FK_repQuarter_IncomeReport", "FK_repYear_IncomeReport",
+				"income" };
 	}
 
 	public static String[] ProductInOutcomeReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_OutcomeReport", "FK_repYear_OutcomeReport", "outcome" };
+		return new String[] { "FK_productInStationID", "FK_repQuarter_OutcomeReport", "FK_repYear_OutcomeReport",
+				"outcome" };
 	}
 
-	public static String[] 	ProductInInventroyReport() {
-		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport","FK_repYear_inventoryReport", "amountSold" };
+	public static String[] ProductInInventroyReport() {
+		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport", "FK_repYear_inventoryReport",
+				"amountSold" };
 	}
-	
+
 	public static String[] FuelStationManager() {
-		return new String[]{"phoneNo", "fkemployeeID" };
+		return new String[] { "phoneNo", "FK_employeeID" };
 	}
-	
+
 	public static String[] Sale() {
-		return new String[]{"fk_salesPatternID","active" };
+		return new String[] { "FK_salesPatternID", "active", "startTime", "endTime" };
 	}
-	
+
 	public static String[] CustomerboughtInSale() {
-		return new String[]{"FK_saleID","FK_customerID","amountPaid" };
+		return new String[] { "FK_saleID", "FK_customerID", "amountPaid" };
 	}
-	
+
 	public static String[] SaleCommentsReport() {
-		return new String[]{"FK_saleID","numberOfCustomersBought","sumOfPurchases","dateCreated" };
+		return new String[] { "FK_saleID", "numberOfCustomersBought", "sumOfPurchases", "dateCreated" };
 	}
-	
+
 	public static String[] FuelStationOrder() {
-		return new String[]{"FK_orders_ID","FK_productInStationID","assessed","approved","reason" };
+		return new String[] { "FK_ordersID", "FK_productInStationID", "assessed", "approved", "reason" };
 	}
-	//vlad added
-	
+	// vlad added
+
 	public static String[] Notification() {
-		return new String[]{"dismissed", "message","fkemployeeID" };
+		return new String[] { "dismissed", "message", "FK_employeeID" };
 	}
-	
+
 	public static String[] ShipmentMethod() {
-		return new String[]{"shipmentPrice", "shipmentMultiplier","shipmentType" };
+		return new String[] { "shipmentPrice", "shipmentMultiplier", "shipmentType" };
 	}
-	
+
 	public static String[] Orders() {
-		return new String[]{"order_time", "amount_bought","final_price","address","supplied","timeSupplied"};
+		return new String[] { "orderTime", "amountBought", "finalPrice", "address", "supplied", "timeSupplied" };
 	}
-	
+
 	public static String[] HomeFuelOrder() {
-		return new String[]{"dutime", "fkcustomerID","fkshipmentType","fkorders_ID","fk_product_Name"};
+		return new String[] { "duetime", "FK_customerID", "FK_shipmentType", "FK_ordersID", "FK_product_Name" };
 	}
-	
+
 	public static String[] PurchasingProgramType() {
-		return new String[]{"purchasing_program_Name","description", "monthly_price"};
+		return new String[] { "purchasingProgramName", "description", "monthlyPrice" };
 	}
-	
+
 	public static String[] FuelCompany() {
-		return new String[]{"fuel_Company_Name","fkemployeeID"};
+		return new String[] { "fuelCompanyName", "FK_employeeID" };
+	}
+
+	
+	public static String[] PurchasingProgram1() {
+		return new String[] { "FK_customerID", "FK_purchasingProgramName", "FK_fuelCompanyName1" };
 	}
 	
-	public static String[] PurchasingProgram() {
-		return new String[]{"fkcustomerID","fkpurchasingProgramType", "fkfuel_Company_Name"};
+	public static String[] PurchasingProgram2() {
+		return new String[] { "FK_customerID", "FK_purchasingProgramName", "FK_fuelCompanyName1", "FK_fuelCompanyName2"  };
 	}
 	
+	public static String[] PurchasingProgram3() {
+		return new String[] { "FK_customerID", "FK_purchasingProgramName", "FK_fuelCompanyName1", "FK_fuelCompanyName2" , "FK_fuelCompanyName3"  };
+	}
+
+
 	public static String[] CustomerBoughtFromCompany() {
-		return new String[]{"fkcustomerID","fkfuel_Company_Name", "amountBoughtFromCompany","amountPaidCompany","dateOfPurchase"};
+		return new String[] { "FK_customerID", "FK_fuelCompanyName", "amountBoughtFromCompany", "amountPaidCompany",
+				"dateOfPurchase" };
 	}
-	
+
 	public static String[] PeriodicCustomersReport() {
-		return new String[]{"date_from","date_to"};
+		return new String[] { "dateFrom", "dateTo", "dateCreated" };
 	}
 
 }

@@ -9,64 +9,17 @@ public class Product {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private List<SalesPattern> salePatternList = new ArrayList<>();
-	private List<ProductRatesUpdateRequest> productRatesUpdateRequesList = new ArrayList<>();
-	private List<Car> carList = new ArrayList<>();
-	private List<HomeFuelOrder> homeFuelOrderList = new ArrayList<>();
-	private List<FastFuel> fastFuelList = new ArrayList<>();
 
 	// fields
 	private ProductName productName;
 	private double maxPrice;
 	private double currentPrice;
 
-	
-
 	public Product(ProductName productName, double maxPrice, double currentPrice) {
 		super();
 		this.productName = productName;
 		this.maxPrice = maxPrice;
 		this.currentPrice = currentPrice;
-	}
-
-	public List<SalesPattern> getSalePatternList() {
-		return salePatternList;
-	}
-
-	public void setSalePatternList(List<SalesPattern> salePatternList) {
-		this.salePatternList = salePatternList;
-	}
-
-	public List<ProductRatesUpdateRequest> getProductRatesUpdateRequesList() {
-		return productRatesUpdateRequesList;
-	}
-
-	public void setProductRatesUpdateRequesList(List<ProductRatesUpdateRequest> productRatesUpdateRequesList) {
-		this.productRatesUpdateRequesList = productRatesUpdateRequesList;
-	}
-
-	public List<Car> getCarList() {
-		return carList;
-	}
-
-	public void setCarList(List<Car> carList) {
-		this.carList = carList;
-	}
-
-	public List<HomeFuelOrder> getHomeFuelOrderList() {
-		return homeFuelOrderList;
-	}
-
-	public void setHomeFuelOrderList(List<HomeFuelOrder> homeFuelOrderList) {
-		this.homeFuelOrderList = homeFuelOrderList;
-	}
-
-	public List<FastFuel> getFastFuelList() {
-		return fastFuelList;
-	}
-
-	public void setFastFuelList(List<FastFuel> fastFuelList) {
-		this.fastFuelList = fastFuelList;
 	}
 
 	public ProductName getProductName() {
@@ -94,21 +47,17 @@ public class Product {
 	}
 
 	@Override
-    public boolean equals(Object obj) {
-		if(!(obj instanceof Product))
-			return false;
-		Product product = (Product)obj;
-		return this.productName.equals(product.getProductName());
+	public String toString() {
+		return "Product [productName=" + productName + ", maxPrice=" + maxPrice + ", currentPrice=" + currentPrice
+				+ "]";
 	}
-	
 	
 	@Override
-	public String toString() {
-		return "Product [salePatternList=" + salePatternList + ", productRatesUpdateRequesList="
-				+ productRatesUpdateRequesList + ", fastFuelList=" + fastFuelList + ", productName=" + productName
-				+ ", maxPrice=" + maxPrice + ", currentPrice=" + currentPrice + "]";
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Product))
+			return false;
+		Product other = (Product) obj;
+		return this.productName == other.getProductName();
 	}
-	
-	
 
 }

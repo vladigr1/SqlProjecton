@@ -6,27 +6,27 @@ public class QuarterlyReport {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private FuelStation fuelStation;
+	private int fuelStationID;
 
 	// fields
 	private int repQuareter;
 	private String year;
 	private Date dateCreated;
 
-	public QuarterlyReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated) {
+	public QuarterlyReport(int fuelStationID, int repQuareter, String year, Date dateCreated) {
 		super();
-		this.fuelStation = fuelStation;
+		this.fuelStationID = fuelStationID;
 		this.repQuareter = repQuareter;
 		this.year = year;
 		this.dateCreated = dateCreated;
 	}
 
-	public FuelStation getFuelStation() {
-		return fuelStation;
+	public int getFuelStationID() {
+		return fuelStationID;
 	}
 
-	public void setFuelStation(FuelStation fuelStation) {
-		this.fuelStation = fuelStation;
+	public void setFuelStationID(int fuelStationID) {
+		this.fuelStationID = fuelStationID;
 	}
 
 	public int getRepQuareter() {
@@ -41,7 +41,7 @@ public class QuarterlyReport {
 		return year;
 	}
 
-//	public void setYear(int year) {
+//	public void setYear(String year) {
 //		this.year = year;
 //	}
 
@@ -54,19 +54,16 @@ public class QuarterlyReport {
 	}
 
 	@Override
+	public String toString() {
+		return "QuarterlyReport [fuelStationID=" + fuelStationID + ", repQuareter=" + repQuareter + ", year=" + year
+				+ ", dateCreated=" + dateCreated + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof QuarterlyReport))
 			return false;
 		QuarterlyReport report = (QuarterlyReport) obj;
 		return this.repQuareter == report.getRepQuareter();
 	}
-
-	@Override
-	public String toString() {
-		return "QuarterlyReport [fuelStation=" + fuelStation + ", repQuareter=" + repQuareter + ", year=" + year
-				+ ", dateCreated=" + dateCreated + "]";
-	}
-
-	
-	
 }

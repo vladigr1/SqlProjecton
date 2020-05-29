@@ -1,22 +1,22 @@
 package enums;
 
 public enum ProductName {	
-	DIESEL {
+	Diesel {
 		public String toString() {
 			return "Diesel";
 		}
 	},
-	GASOLINE {
+	Gasoline {
 		public String toString() {
 			return "Gasoline";
 		}
 	},
-	MOTORBIKEFUEL {
+	MotorBikeFuel {
 		public String toString() {
 			return "Motor Bike Fuel";
 		}
 	},
-	HOMEFUEL {
+	HomeFuel {
 		public String toString() {
 			return "Home Fuel";
 		}

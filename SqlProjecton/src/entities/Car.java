@@ -1,58 +1,73 @@
 package entities;
 
+import enums.ProductName;
+
 public class Car {
-	//connections
-	private Customer customer;
-	private Product product;
-	
-	//fields
+	// connections
+	private String customerID;
+	private ProductName productName;
+
+	// fields
 	private String registrationPlate;
 	private String ownerName;
-	
-	public Car(Customer customer, Product product, String registrationPlate, String ownerName) {
+	private boolean deleted;
+
+	public Car(String customerID, ProductName productName, String registrationPlate, String ownerName,
+			boolean deleted) {
 		super();
-		this.customer = customer;
-		this.product = product;
+		this.customerID = customerID;
+		this.productName = productName;
 		this.registrationPlate = registrationPlate;
 		this.ownerName = ownerName;
+		this.deleted = deleted;
 	}
-	public Customer getCustomer() {
-		return customer;
+
+	public String getCustomerID() {
+		return customerID;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
-	public Product getProduct() {
-		return product;
+
+	public ProductName getProductName() {
+		return productName;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+
+	public void setProductName(ProductName productName) {
+		this.productName = productName;
 	}
+
 	public String getRegistrationPlate() {
 		return registrationPlate;
 	}
+
 //	public void setRegistrationPlate(String registrationPlate) {
 //		this.registrationPlate = registrationPlate;
 //	}
+
 	public String getOwnerName() {
 		return ownerName;
 	}
+
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-	
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Car))
 			return false;
 		Car car = (Car) obj;
-		return this.registrationPlate == car.getRegistrationPlate();
+		return this.registrationPlate.equals(car.getRegistrationPlate());
 	}
-	
-	@Override
-	public String toString() {
-		return "Car [customer=" + customer + ", product=" + product + ", registrationPlate=" + registrationPlate
-				+ ", ownerName=" + ownerName + "]";
-	}
-	
+
 }

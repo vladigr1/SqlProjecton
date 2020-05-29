@@ -2,47 +2,50 @@ package entities;
 
 import java.util.Date;
 
+import enums.ProductName;
+import enums.ShipmentType;
+
 public class HomeFuelOrder extends Orders{
 	
 	//connections
-	private ShipmentMethod shipmentMethod;
-	private Product product;
-	private Customer customerID;
+	private ShipmentType shipmentMethod;
+	private ProductName productName;
+	private String customerID;
 	
 	//fields
 	private Date dueTime;
 
 	public HomeFuelOrder(int orderID, Date orderTime, double amountBought, double finalPrice, String address,
-			boolean supplied, Date timeSupplied, ShipmentMethod shipmentMethod, Product product, Customer customerID,
-			Date dueTime) {
+			boolean supplied, Date timeSupplied, ShipmentType shipmentMethod, ProductName productName,
+			String customerID, Date dueTime) {
 		super(orderID, orderTime, amountBought, finalPrice, address, supplied, timeSupplied);
 		this.shipmentMethod = shipmentMethod;
-		this.product = product;
+		this.productName = productName;
 		this.customerID = customerID;
 		this.dueTime = dueTime;
 	}
 
-	public ShipmentMethod getShipmentMethod() {
+	public ShipmentType getShipmentMethod() {
 		return shipmentMethod;
 	}
 
-	public void setShipmentMethod(ShipmentMethod shipmentMethod) {
+	public void setShipmentMethod(ShipmentType shipmentMethod) {
 		this.shipmentMethod = shipmentMethod;
 	}
 
-	public Product getProduct() {
-		return product;
+	public ProductName getProductName() {
+		return productName;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductName(ProductName productName) {
+		this.productName = productName;
 	}
 
-	public Customer getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(Customer customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
 
@@ -56,9 +59,11 @@ public class HomeFuelOrder extends Orders{
 
 	@Override
 	public String toString() {
-		return "HomeFuelOrder [shipmentMethod=" + shipmentMethod + ", product=" + product + ", customerID=" + customerID
-				+ ", dueTime=" + dueTime + "]";
+		return "HomeFuelOrder [shipmentMethod=" + shipmentMethod + ", productName=" + productName + ", customerID="
+				+ customerID + ", dueTime=" + dueTime + "]";
 	}
+
+	
 	
 	
 	

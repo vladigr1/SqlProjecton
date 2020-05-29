@@ -3,69 +3,52 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.FuelCompanyName;
+
 public class FuelStation {
 
 	// connections
-	private List<FastFuel> fastFuelList = new ArrayList<>(); 
-	private FuelCompany fuelCompany;
-	private FuelStationManager fuelStationManager;
-	private List<QuarterlyReport> quarerlyReportList = new ArrayList<>();
-	private List<ProductInStation> productInStationList = new ArrayList<>();// must include at least 1
-	
+	private FuelCompanyName fuelCompanyName;
+	private int employeeID;
 
 	// fields
+	private int fuelStationID;
 	private String stationName;
 	private String address;
 
-	public FuelStation(FuelCompany fuelCompany, FuelStationManager fuelStationManager, String stationName,
+	public FuelStation(FuelCompanyName fuelCompanyName, int employeeID, int fuelStationID, String stationName,
 			String address) {
 		super();
-		this.fuelCompany = fuelCompany;
-		this.fuelStationManager = fuelStationManager;
+		this.fuelCompanyName = fuelCompanyName;
+		this.employeeID = employeeID;
+		this.fuelStationID = fuelStationID;
 		this.stationName = stationName;
 		this.address = address;
 	}
 
-	public List<FastFuel> getFastFuelList() {
-		return fastFuelList;
+	public FuelCompanyName getFuelCompanyName() {
+		return fuelCompanyName;
 	}
 
-	public void setFastFuelList(List<FastFuel> fastFuelList) {
-		this.fastFuelList = fastFuelList;
+	public void setFuelCompanyName(FuelCompanyName fuelCompanyName) {
+		this.fuelCompanyName = fuelCompanyName;
 	}
 
-	public FuelCompany getFuelCompanies() {
-		return fuelCompany;
+	public int getEmployeeID() {
+		return employeeID;
 	}
 
-	public void setFuelCompany(FuelCompany fuelCompany) {
-		this.fuelCompany = fuelCompany;
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
 	}
 
-	public FuelStationManager getFuelStationManager() {
-		return fuelStationManager;
+	public int getFuelStationID() {
+		return fuelStationID;
 	}
 
-	public void setFuelStationManager(FuelStationManager fuelStationManager) {
-		this.fuelStationManager = fuelStationManager;
-	}
-
-	public List<QuarterlyReport> getQuarerlyReportList() {
-		return quarerlyReportList;
-	}
-
-	public void setQuarerlyReportList(List<QuarterlyReport> quarerlyReportList) {
-		this.quarerlyReportList = quarerlyReportList;
-	}
-
-	public List<ProductInStation> getProductInStationList() {
-		return productInStationList;
-	}
-
-	public void setProductInStationList(List<ProductInStation> productInStationList) {
-		this.productInStationList = productInStationList;
-	}
-
+//	public void setFuelStationID(int fuelStationID) {
+//		this.fuelStationID = fuelStationID;
+//	}
 
 	public String getStationName() {
 		return stationName;
@@ -82,21 +65,19 @@ public class FuelStation {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	@Override
+	public String toString() {
+		return "FuelStation [fuelCompanyName=" + fuelCompanyName + ", employeeID=" + employeeID + ", fuelStationID="
+				+ fuelStationID + ", stationName=" + stationName + ", address=" + address + "]";
+	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof FuelStation))
 			return false;
 		FuelStation other = (FuelStation) obj;
-		return this.fuelStationManager.equals(other.getFuelStationManager());
-	}
-
-	@Override
-	public String toString() {
-		return "FuelStaion [fastFuelList=" + fastFuelList + ", fuelCompanies=" + fuelCompany + ", fuelStationManager="
-				+ fuelStationManager + ", quarerlyReportList=" + quarerlyReportList + ", productInStationList="
-				+ productInStationList + ", fuelStationID=" + ", stationName=" + stationName
-				+ ", address=" + address + "]";
+		return this.fuelStationID==other.getFuelStationID();
 	}
 
 }

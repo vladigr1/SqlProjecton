@@ -7,7 +7,6 @@ import enums.PricingModelName;
 
 public class PricingModelType {
 	// connections
-	private List<PricingModel> pricingModelList = new ArrayList<>();
 
 	// fields
 	private PricingModelName pricingModelName;
@@ -19,14 +18,6 @@ public class PricingModelType {
 		this.pricingModelName = pricingModelName;
 		this.description = description;
 		this.defaultDiscount = defaultDiscount;
-	}
-
-	public List<PricingModel> getPricingModelList() {
-		return pricingModelList;
-	}
-
-	public void setPricingModelList(List<PricingModel> pricingModelList) {
-		this.pricingModelList = pricingModelList;
 	}
 
 	public PricingModelName getPricingModelName() {
@@ -52,11 +43,11 @@ public class PricingModelType {
 	public void setDefaultDiscount(double defaultDiscount) {
 		this.defaultDiscount = defaultDiscount;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "PricingModelType [pricingModelList=" + pricingModelList + ", pricingModelName=" + pricingModelName
-				+ ", description=" + description + ", defaultDiscount=" + defaultDiscount + "]";
+		return "PricingModelType [pricingModelName=" + pricingModelName + ", description=" + description
+				+ ", defaultDiscount=" + defaultDiscount + "]";
 	}
 
 	@Override

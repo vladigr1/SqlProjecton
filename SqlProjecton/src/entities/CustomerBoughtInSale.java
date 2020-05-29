@@ -1,34 +1,35 @@
 package entities;
 
 public class CustomerBoughtInSale {
-	
-	//connections
-	private Sale sale;
-	private Customer customer;
-	
-	//fields
+
+	// connections
+	private int saleID;
+	private String customerID;
+
+	// fields
 	private double amountPaid;
 
-	public CustomerBoughtInSale(Sale sale, Customer customer, double amountPaid) {
-		this.sale = sale;
-		this.customer = customer;
+	public CustomerBoughtInSale(int saleID, String customerID, double amountPaid) {
+		super();
+		this.saleID = saleID;
+		this.customerID = customerID;
 		this.amountPaid = amountPaid;
 	}
 
-	public Sale getSale() {
-		return sale;
+	public int getSaleID() {
+		return saleID;
 	}
 
-//	public void setSale(Sale sale) {
-//		this.sale = sale;
+//	public void setSaleID(int saleID) {
+//		this.saleID = saleID;
 //	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
+//	public void setCustomerID(String customerID) {
+//		this.customerID = customerID;
 //	}
 
 	public double getAmountPaid() {
@@ -38,25 +39,19 @@ public class CustomerBoughtInSale {
 	public void setAmountPaid(double amountPaid) {
 		this.amountPaid = amountPaid;
 	}
-	
-	@Override
-    public boolean equals(Object obj) {
-		if(!(obj instanceof CustomerBoughtInSale))
-			return false;
-		CustomerBoughtInSale customerBought = (CustomerBoughtInSale)obj;
-		return this.sale==customerBought.getSale() && this.customer==customerBought.getCustomer();
-	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "CustomerBoughtInSale [sale=" + sale + ", customer=" + customer + ", amountPaid=" + amountPaid + "]";
+		return "CustomerBoughtInSale [saleID=" + saleID + ", customerID=" + customerID + ", amountPaid=" + amountPaid
+				+ "]";
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof CustomerBoughtInSale))
+			return false;
+		CustomerBoughtInSale other = (CustomerBoughtInSale) obj;
+		return this.customerID.equals(other.getCustomerID()) && this.saleID == other.getSaleID();
+	}
 
 }

@@ -1,44 +1,36 @@
 package entities;
 
+import enums.PricingModelName;
+
 public class PricingModel {
-	//connections
-	private PricingModelType pricingModeltype;
-	private Customer customer;
-	private Car car;
-	
-	//fields
+	// connections
+	private PricingModelName pricingModelName;
+	private String customerID;
+
+	// fields
 	private double currentDiscount;
 
-	public PricingModel(PricingModelType pricingModeltype, Customer customer, Car car, double currentDiscount) {
+	public PricingModel(PricingModelName pricingModelName, String customerID, double currentDiscount) {
 		super();
-		this.pricingModeltype = pricingModeltype;
-		this.customer = customer;
-		this.car = car;
+		this.pricingModelName = pricingModelName;
+		this.customerID = customerID;
 		this.currentDiscount = currentDiscount;
 	}
 
-	public PricingModelType getPricingModeltype() {
-		return pricingModeltype;
+	public PricingModelName getPricingModelName() {
+		return pricingModelName;
 	}
 
-	public void setPricingModeltype(PricingModelType pricingModeltype) {
-		this.pricingModeltype = pricingModeltype;
+	public void setPricingModelName(PricingModelName pricingModelName) {
+		this.pricingModelName = pricingModelName;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
-
-	public Car getCar() {
-		return car;
-	}
-
-//	public void setCar(Car car) {
-//		this.car = car;
+//	public void setCustomerID(String customerID) {
+//		this.customerID = customerID;
 //	}
 
 	public double getCurrentDiscount() {
@@ -50,26 +42,19 @@ public class PricingModel {
 	}
 	
 	
+
+	@Override
+	public String toString() {
+		return "PricingModel [pricingModelName=" + pricingModelName + ", customerID=" + customerID
+				+ ", currentDiscount=" + currentDiscount + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof PricingModel))
 			return false;
 		PricingModel other = (PricingModel) obj;
-		return (this.car.equals(other.getCar())) && (this.customer.equals(other.getCustomer()));
+		return this.customerID.equals(other.getCustomerID());
 	}
-	
-
-	@Override
-	public String toString() {
-		return "PricingModel [pricingModeltype=" + pricingModeltype + ", customer=" + customer + ", car=" + car
-				+ ", currentDiscount=" + currentDiscount + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
 
 }

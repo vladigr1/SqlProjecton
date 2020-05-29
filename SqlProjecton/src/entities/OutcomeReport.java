@@ -14,10 +14,8 @@ public class OutcomeReport extends QuarterlyReport {
 	// fields
 	private double totalOutCome;
 
-
-
-	public OutcomeReport(FuelStation fuelStation, int repQuareter, String year, Date dateCreated, double totalOutCome) {
-		super(fuelStation, repQuareter, year, dateCreated);
+	public OutcomeReport(int fuelStationID, int repQuareter, String year, Date dateCreated, double totalOutCome) {
+		super(fuelStationID, repQuareter, year, dateCreated);
 		this.totalOutCome = totalOutCome;
 	}
 

@@ -5,40 +5,39 @@ import java.util.Date;
 public class FastFuel {
 
 	// connections
-	private Product product;
-	private FuelStation fuelStaion;
-
+	private int productInStaionID;
+	private String customerID;
 	// fields
 	private int fastFuelID;
 	private Date fastFuelTime;
 	private double amountBought;
 	private double finalPrice;
 
-	public FastFuel(Product product, FuelStation fuelStaion, int fastFuelID, Date fastFuelTime, double amountBought,
+	public FastFuel(int productInStaionID, String customerID, int fastFuelID, Date fastFuelTime, double amountBought,
 			double finalPrice) {
 		super();
-		this.product = product;
-		this.fuelStaion = fuelStaion;
+		this.productInStaionID = productInStaionID;
+		this.customerID = customerID;
 		this.fastFuelID = fastFuelID;
 		this.fastFuelTime = fastFuelTime;
 		this.amountBought = amountBought;
 		this.finalPrice = finalPrice;
 	}
 
-	public Product getProduct() {
-		return product;
+	public int getProductInStaionID() {
+		return productInStaionID;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductInStaionID(int productInStaionID) {
+		this.productInStaionID = productInStaionID;
 	}
 
-	public FuelStation getFuelStaion() {
-		return fuelStaion;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	public void setFuelStaion(FuelStation fuelStaion) {
-		this.fuelStaion = fuelStaion;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 	public int getFastFuelID() {
@@ -73,19 +72,20 @@ public class FastFuel {
 		this.finalPrice = finalPrice;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "FastFuel [productInStaionID=" + productInStaionID + ", customerID=" + customerID + ", fastFuelID="
+				+ fastFuelID + ", fastFuelTime=" + fastFuelTime + ", amountBought=" + amountBought + ", finalPrice="
+				+ finalPrice + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof FastFuel))
 			return false;
 		FastFuel fuel = (FastFuel) obj;
 		return this.fastFuelID == fuel.getFastFuelID();
-	}
-
-	@Override
-	public String toString() {
-		return "FastFuel [product=" + product + ", fuelStaion=" + fuelStaion + ", fastFuelID=" + fastFuelID
-				+ ", fastFuelTime=" + fastFuelTime + ", amountBought=" + amountBought + ", finalPrice=" + finalPrice
-				+ "]";
 	}
 
 }

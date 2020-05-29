@@ -9,7 +9,6 @@ import enums.ShipmentType;
 public class ShipmentMethod {
 	
 	//connections
-	private List<HomeFuelOrder> homeFuelOrderList = new ArrayList<>();
 	
 	//fields
 	private ShipmentType shipmentType;
@@ -23,12 +22,7 @@ public class ShipmentMethod {
 		this.shipmentMultiplier = shipmentMultiplier;
 	}
 	
-	public List<HomeFuelOrder> getHomeFuelOrderList() {
-		return homeFuelOrderList;
-	}
-	public void setHomeFuelOrderList(List<HomeFuelOrder> homeFuelOrderList) {
-		this.homeFuelOrderList = homeFuelOrderList;
-	}
+
 	public ShipmentType getShipmentType() {
 		return shipmentType;
 	}
@@ -49,7 +43,7 @@ public class ShipmentMethod {
 	}
 	@Override
 	public String toString() {
-		return "ShipmentMethod [homeFuelOrderList=" + homeFuelOrderList + ", shipmentType=" + shipmentType
+		return "ShipmentMethod [homeFuelOrderList=" + ", shipmentType=" + shipmentType
 				+ ", shipmentPrice=" + shipmentPrice + ", shipmentMultiplier=" + shipmentMultiplier + "]";
 	}
 	

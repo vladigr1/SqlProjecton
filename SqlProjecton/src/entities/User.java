@@ -18,7 +18,6 @@ public class User implements Serializable {
 	private String surname;
 	private String email;
 
-
 	/**
 	 * 
 	 * @param username
@@ -62,13 +61,13 @@ public class User implements Serializable {
 		return username;
 	}
 
-	/**
-	 * 
-	 * @param username
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
+//	/**
+//	 * 
+//	 * @param username
+//	 */
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 	/**
 	 * 

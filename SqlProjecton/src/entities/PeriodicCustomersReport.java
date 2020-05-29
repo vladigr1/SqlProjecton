@@ -5,56 +5,58 @@ import java.util.Date;
 import java.util.List;
 
 public class PeriodicCustomersReport {
-	//connections
-	private List<CustomerBoughtFromCompany> customerBoughtFromCompanyList = new ArrayList<>();
-	//fields
-	private int periodicCustomerReportID;
+	// connections
+	// fields
 	private Date dateFrom;
 	private Date dateTo;
-	
-	public PeriodicCustomersReport(int periodicCustomerReportID, Date dateFrom, Date dateTo) {
+	private Date dateCreated;
+
+	public PeriodicCustomersReport(Date dateFrom, Date dateTo, Date dateCreated) {
 		super();
-		this.periodicCustomerReportID = periodicCustomerReportID;
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
+		this.dateCreated = dateCreated;
 	}
-	public List<CustomerBoughtFromCompany> getCustomerBoughtFromCompanyList() {
-		return customerBoughtFromCompanyList;
-	}
-	public void setCustomerBoughtFromCompanyList(List<CustomerBoughtFromCompany> customerBoughtFromCompanyList) {
-		this.customerBoughtFromCompanyList = customerBoughtFromCompanyList;
-	}
-	public int getPeriodicCustomerReportID() {
-		return periodicCustomerReportID;
-	}
-//	public void setPeriodicCustomerReportID(int periodicCustomerReportID) {
-//		this.periodicCustomerReportID = periodicCustomerReportID;
-//	}
+
 	public Date getDateFrom() {
 		return dateFrom;
 	}
-	public void setDateFrom(Date dateFrom) {
-		this.dateFrom = dateFrom;
-	}
+
+//	public void setDateFrom(Date dateFrom) {
+//		this.dateFrom = dateFrom;
+//	}
+
 	public Date getDateTo() {
 		return dateTo;
 	}
-	public void setDateTo(Date dateTo) {
-		this.dateTo = dateTo;
+
+//	public void setDateTo(Date dateTo) {
+//		this.dateTo = dateTo;
+//	}
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
-	@Override
-	public String toString() {
-		return "PeriodicCustomersReport [customerBoughtFromCompanyList=" + customerBoughtFromCompanyList
-				+ ", periodicCustomerReportID=" + periodicCustomerReportID + ", dateFrom=" + dateFrom + ", dateTo="
-				+ dateTo + "]";
-	}
+
+//	public void setDateCreated(Date dateCreated) {
+//		this.dateCreated = dateCreated;
+//	}
 	
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof PeriodicCustomersReport))
 			return false;
 		PeriodicCustomersReport other = (PeriodicCustomersReport) obj;
-		return this.periodicCustomerReportID== other.getPeriodicCustomerReportID();
+		return this.dateFrom.equals(other.getDateFrom()) && this.dateTo.equals(other.getDateTo());
 	}
 	
+
+	@Override
+	public String toString() {
+		return "PeriodicCustomersReport [dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", dateCreated=" + dateCreated
+				+ "]";
+	}
+
 }

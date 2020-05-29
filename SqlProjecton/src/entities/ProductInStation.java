@@ -10,76 +10,37 @@ public class ProductInStation extends Product {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private FuelStation fuelStation;
-	private List<FuelStationOrder> fuelStationOrderList = new ArrayList<>();
-	private List<IncomeReport> incomeReportList = new ArrayList<>();
-	private List<InventoryReport> inventoryReportList = new ArrayList<>();
-	private List<OutcomeReport> outComeReportList = new ArrayList<>();
+	private int fuelStationID;
 
 	// fields
 	private int productInStaionID;
 	private int capacity;
 	private int thresholdLevel;
-	private double supplierPrice;
 
-	
-	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, FuelStation fuelStation,
-			int productInStaionID, int capacity, int thresholdLevel, double supplierPrice) {
+	public ProductInStation(ProductName productName, double maxPrice, double currentPrice, int fuelStationID,
+			int productInStaionID, int capacity, int thresholdLevel) {
 		super(productName, maxPrice, currentPrice);
-		this.fuelStation = fuelStation;
+		this.fuelStationID = fuelStationID;
 		this.productInStaionID = productInStaionID;
 		this.capacity = capacity;
 		this.thresholdLevel = thresholdLevel;
-		this.supplierPrice = supplierPrice;
 	}
 
-	public FuelStation getFuelStation() {
-		return fuelStation;
+	public int getFuelStationID() {
+		return fuelStationID;
 	}
 
-	public void setFuelStation(FuelStation fuelStation) {
-		this.fuelStation = fuelStation;
-	}
-
-	public List<FuelStationOrder> getFuelStationOrderList() {
-		return fuelStationOrderList;
-	}
-
-	public void setFuelStationOrderList(List<FuelStationOrder> fuelStationOrderList) {
-		this.fuelStationOrderList = fuelStationOrderList;
-	}
-
-	public List<IncomeReport> getIncomeReportList() {
-		return incomeReportList;
-	}
-
-	public void setIncomeReportList(List<IncomeReport> incomeReportList) {
-		this.incomeReportList = incomeReportList;
-	}
-
-	public List<InventoryReport> getInventoryReportList() {
-		return inventoryReportList;
-	}
-
-	public void setInventoryReportList(List<InventoryReport> inventoryReportList) {
-		this.inventoryReportList = inventoryReportList;
-	}
-
-	public List<OutcomeReport> getOutComeReportList() {
-		return outComeReportList;
-	}
-
-	public void setOutComeReportList(List<OutcomeReport> outComeReportList) {
-		this.outComeReportList = outComeReportList;
+	public void setFuelStationID(int fuelStationID) {
+		this.fuelStationID = fuelStationID;
 	}
 
 	public int getProductInStaionID() {
 		return productInStaionID;
 	}
 
-//	public void setProductInStaionID(int productInStaionID) {
-//		this.productInStaionID = productInStaionID;
-//	}
+	public void setProductInStaionID(int productInStaionID) {
+		this.productInStaionID = productInStaionID;
+	}
 
 	public int getCapacity() {
 		return capacity;
@@ -97,12 +58,11 @@ public class ProductInStation extends Product {
 		this.thresholdLevel = thresholdLevel;
 	}
 
-	public double getSupplierPrice() {
-		return supplierPrice;
-	}
-
-	public void setSupplierPrice(double supplierPrice) {
-		this.supplierPrice = supplierPrice;
+	@Override
+	public String toString() {
+		return "ProductInStation [fuelStationID=" + fuelStationID + ", productInStaionID=" + productInStaionID
+				+ ", capacity=" + capacity + ", thresholdLevel=" + thresholdLevel + ", supplierPrice=" 
+				+ "]";
 	}
 
 	@Override
@@ -111,15 +71,6 @@ public class ProductInStation extends Product {
 			return false;
 		ProductInStation product = (ProductInStation) obj;
 		return this.productInStaionID == product.getProductInStaionID();
-	}
-
-	@Override
-	public String toString() {
-		return "ProductInStation [fuelStation=" + fuelStation + ", fuelStationOrderList=" + fuelStationOrderList
-				+ ", incomeReportList=" + incomeReportList + ", inventoryReportList=" + inventoryReportList
-				+ ", outComeReportList=" + outComeReportList + ", productInStaionID=" + productInStaionID
-				+ ", capacity=" + capacity + ", thresholdLevel=" + thresholdLevel + ", supplierPrice=" + supplierPrice
-				+ "]";
 	}
 
 }

@@ -1,17 +1,17 @@
 package enums;
 public enum PurchasingProgramName {
-	single {
+	Standard {
 		@Override
 		public String toString() {
 			// TODO Auto-generated method stub
-			return "Single";
+			return "Standard";
 		}
 	},
-	expensive {
+	Premium {
 		@Override
 		public String toString() {
 			// TODO Auto-generated method stub
-			return "Expensive";
+			return "Premium";
 		}
 	};
 }

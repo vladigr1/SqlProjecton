@@ -50,6 +50,7 @@ public class InsertTables { // insert to tables
 		    	res = rs.getInt(1);	
 		    }	   
 		} catch (SQLException ex) {/* handle any errors */
+			System.out.println("in table "+tableName);
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
@@ -86,7 +87,7 @@ public class InsertTables { // insert to tables
 	}
 	
 	public static int insertFuelStationManager(Connection con, Object[] values) {
-		return insertRow(con, "fuelStationManager", FieldIndicatorForInsert.FuelStationManager(), values);
+		return insertRow(con, "fuel_station_manager", FieldIndicatorForInsert.FuelStationManager(), values);
 	}
 
 	public static void insertProduct(Connection con, Object[] values) {
@@ -172,7 +173,7 @@ public class InsertTables { // insert to tables
 	
 	
 	public static void insertShipmentMethod(Connection con, Object[] values) {
-		insertRow(con, "ShipmentMethod", FieldIndicatorForInsert.ShipmentMethod(), values);
+		insertRow(con, "shipment_method", FieldIndicatorForInsert.ShipmentMethod(), values);
 	}
 	
 	public static int insertOrders(Connection con, Object[] values) {
@@ -180,22 +181,33 @@ public class InsertTables { // insert to tables
 	}
 	
 	public static void insertHomeFuelOrder(Connection con, Object[] values) {
-		insertRow(con, "HomeFuelOrder", FieldIndicatorForInsert.HomeFuelOrder(), values);
+		insertRow(con, "home_fuel_order", FieldIndicatorForInsert.HomeFuelOrder(), values);
 	}
 	
 	public static void insertPurchasingProgramType(Connection con, Object[] values) {
-		insertRow(con, "PurchasingProgramType", FieldIndicatorForInsert.PurchasingProgramType(), values);
+		insertRow(con, "Purchasing_program_type", FieldIndicatorForInsert.PurchasingProgramType(), values);
 	}
 	
 	public static void insertFuelCompany(Connection con, Object[] values) {
-		insertRow(con, "FuelCompany", FieldIndicatorForInsert.FuelCompany(), values);
+		insertRow(con, "fuel_company", FieldIndicatorForInsert.FuelCompany(), values);
 	}
 	
 	public static void insertPurchasingProgram(Connection con, Object[] values) {
-		insertRow(con, "PurchasingProgram", FieldIndicatorForInsert.PurchasingProgram(), values);
+		switch(values.length)
+		{
+		case 3:
+			insertRow(con, "purchasing_program", FieldIndicatorForInsert.PurchasingProgram1(), values);
+			break;
+		case 4:
+			insertRow(con, "purchasing_program", FieldIndicatorForInsert.PurchasingProgram2(), values);
+			break;
+		case 5:
+			insertRow(con, "purchasing_program", FieldIndicatorForInsert.PurchasingProgram3(), values);	
+			break;
+		}
 	}
 	public static void insertCustomerBoughtFromCompany(Connection con, Object[] values) {
-		insertRow(con, "CustomerBoughtFromCompany", FieldIndicatorForInsert.CustomerBoughtFromCompany(), values);
+		insertRow(con, "customer_bought_from_company", FieldIndicatorForInsert.CustomerBoughtFromCompany(), values);
 	}
 	
 	//vlad add
@@ -225,6 +237,12 @@ public class InsertTables { // insert to tables
 	}
 	
 	public static void insertPeriodicCustomersReport(Connection con, Object[] values) {
-		insertRow(con, "PeriodicCustomersReport", FieldIndicatorForInsert.PeriodicCustomersReport(), values);
+		insertRow(con, "periodic_customers_report", FieldIndicatorForInsert.PeriodicCustomersReport(), values);
+	}
+
+	public static void insertActivity(Connection con, Object[] values) {
+		insertRow(con, "activity", FieldIndicatorForInsert.Activity(), values);
+		
+		
 	}
 }

@@ -1,12 +1,12 @@
 package enums;
 
 public enum CustomerType {
-	COMPANY {
+	Company{
 		public String toString() {
 			return "Company";
 		}
 	},
-	PERSON {
+	Person {
 		public String toString() {
 			return "Person";
 		}

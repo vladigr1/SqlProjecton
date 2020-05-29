@@ -1,36 +1,38 @@
 package entities;
 
+import enums.ProductName;
+
 public class ProductInSalePattern {
 	// create hash code and equals after have sale form eldad
-	
-	//connections
-	private SalesPattern salesPattern;
-	private Product product;
-	
-	//fields
+
+	// connections
+	private int salesPatternID;
+	private ProductName productName;
+
+	// fields
 	private double saleDiscount;
 
-	public ProductInSalePattern(SalesPattern salesPattern, Product product, double saleDiscount) {
+	public ProductInSalePattern(int salesPatternID, ProductName productName, double saleDiscount) {
 		super();
-		this.salesPattern = salesPattern;
-		this.product = product;
+		this.salesPatternID = salesPatternID;
+		this.productName = productName;
 		this.saleDiscount = saleDiscount;
 	}
 
-	public SalesPattern getSalesPattern() {
-		return salesPattern;
+	public int getSalesPatternID() {
+		return salesPatternID;
 	}
 
-//	public void setSalesPattern(SalesPattern salesPattern) {
-//		this.salesPattern = salesPattern;
+//	public void setSalesPatternID(int salesPatternID) {
+//		this.salesPatternID = salesPatternID;
 //	}
 
-	public Product getProduct() {
-		return product;
+	public ProductName getProductName() {
+		return productName;
 	}
 
-//	public void setProduct(Product product) {
-//		this.product = product;
+//	public void setProductName(ProductName productName) {
+//		this.productName = productName;
 //	}
 
 	public double getSaleDiscount() {
@@ -40,22 +42,19 @@ public class ProductInSalePattern {
 	public void setSaleDiscount(double saleDiscount) {
 		this.saleDiscount = saleDiscount;
 	}
-	
-	@Override
-    public boolean equals(Object obj) {
-		if(!(obj instanceof ProductInSalePattern))
-			return false;
-		ProductInSalePattern pInSalePat = (ProductInSalePattern)obj;
-		return (this.product.equals(pInSalePat.getProduct()) && this.salesPattern.equals(pInSalePat.getSalesPattern()));
-	}
-	
 
 	@Override
 	public String toString() {
-		return "ProductInSalePattern [salesPattern=" + salesPattern + ", product=" + product + ", saleDiscount="
-				+ saleDiscount + "]";
+		return "ProductInSalePattern [salesPatternID=" + salesPatternID + ", productName=" + productName
+				+ ", saleDiscount=" + saleDiscount + "]";
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof ProductInSalePattern))
+			return false;
+		ProductInSalePattern other = (ProductInSalePattern) obj;
+		return this.productName.equals(other.getProductName()) && this.salesPatternID==other.getSalesPatternID();
+	}
 
 }

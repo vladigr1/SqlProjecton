@@ -1,24 +1,42 @@
 package entities;
 
+import enums.ProductName;
+
 public class ProductInRequest {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private Product product;
-	private ProductRatesUpdateRequest productRatesUpdateRequest;
+	private ProductName productName;
+	private int productRatesUpdateRequestID;
 
 	// fields
 	private double currentRate;
 	private double requestedRate;
 
-	public ProductInRequest(Product product, ProductRatesUpdateRequest productRatesUpdateRequest, double currentRate,
+	public ProductInRequest(ProductName productName, int productRatesUpdateRequestID, double currentRate,
 			double requestedRate) {
 		super();
-		this.product = product;
-		this.productRatesUpdateRequest = productRatesUpdateRequest;
+		this.productName = productName;
+		this.productRatesUpdateRequestID = productRatesUpdateRequestID;
 		this.currentRate = currentRate;
 		this.requestedRate = requestedRate;
 	}
+
+	public ProductName getProductName() {
+		return productName;
+	}
+
+//	public void setProductName(ProductName productName) {
+//		this.productName = productName;
+//	}
+
+	public int getProductRatesUpdateRequestID() {
+		return productRatesUpdateRequestID;
+	}
+
+//	public void setProductRatesUpdateRequestID(int productRatesUpdateRequestID) {
+//		this.productRatesUpdateRequestID = productRatesUpdateRequestID;
+//	}
 
 	public double getCurrentRate() {
 		return currentRate;
@@ -36,34 +54,21 @@ public class ProductInRequest {
 		this.requestedRate = requestedRate;
 	}
 
-	public Product getProduct() {
-		return product;
+	
+	
+	@Override
+	public String toString() {
+		return "ProductInRequest [productName=" + productName + ", productRatesUpdateRequestID="
+				+ productRatesUpdateRequestID + ", currentRate=" + currentRate + ", requestedRate=" + requestedRate
+				+ "]";
 	}
-
-//	public void setProduct(Product product) {
-//		this.product = product;
-//	}
-	public ProductRatesUpdateRequest getProductRatesUpdateRequest() {
-		return productRatesUpdateRequest;
-	}
-
-//	public void setProductRatesUpdateRequest(ProductRatesUpdateRequest productRatesUpdateRequest) {
-//		this.productRatesUpdateRequest = productRatesUpdateRequest;
-//	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof ProductInRequest))
 			return false;
-		ProductInRequest pInReq = (ProductInRequest) obj;
-		return (this.product.equals(pInReq.getProduct())
-				&& this.productRatesUpdateRequest.equals(pInReq.getProductRatesUpdateRequest()));
-	}
-
-	@Override
-	public String toString() {
-		return "ProductInRequest [product=" + product + ", productRatesUpdateRequest=" + productRatesUpdateRequest
-				+ ", currentRate=" + currentRate + ", requestedRate=" + requestedRate + "]";
+		ProductInRequest other = (ProductInRequest) obj;
+		return this.productName.equals(other.getProductName()) && this.productRatesUpdateRequestID == other.getProductRatesUpdateRequestID();
 	}
 
 }

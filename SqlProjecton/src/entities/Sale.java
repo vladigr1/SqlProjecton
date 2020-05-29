@@ -5,66 +5,76 @@ import java.util.Date;
 import java.util.List;
 
 public class Sale {
-	//connections
-	private SalesPattern salesPattern;
-	private SaleCommentsReport saleCommentReport;
-	private List<Customer> saleCustomerList= new ArrayList<>();
-	
-	//fields
+	// connections
+	private int salesPatternID;
+
+	// fields
 	private int saleID;
 	private boolean active;
-	
-	public Sale(SalesPattern salesPattern, SaleCommentsReport saleCommentReport, int saleID, boolean active) {
+	Date startTime;
+	Date endTime;
+
+	public Sale(int salesPatternID, int saleID, boolean active, Date startTime, Date endTime) {
 		super();
-		this.salesPattern = salesPattern;
-		this.saleCommentReport = saleCommentReport;
+		this.salesPatternID = salesPatternID;
 		this.saleID = saleID;
 		this.active = active;
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
-	
-	public SalesPattern getSalesPattern() {
-		return salesPattern;
+
+	public int getSalesPattern() {
+		return salesPatternID;
 	}
-	public void setSalesPattern(SalesPattern salesPattern) {
-		this.salesPattern = salesPattern;
+
+	public void setSalesPattern(int salesPatternID) {
+		this.salesPatternID = salesPatternID;
 	}
-	public SaleCommentsReport getSaleCommentReportList() {
-		return saleCommentReport;
-	}
-	public void setSaleCommentReportList(SaleCommentsReport saleCommentReportList) {
-		this.saleCommentReport = saleCommentReportList;
-	}
-	public List<Customer> getSaleCustomerList() {
-		return saleCustomerList;
-	}
-	public void setSaleCustomerList(List<Customer> saleCustomerList) {
-		this.saleCustomerList = saleCustomerList;
-	}
+
 	public int getSaleID() {
 		return saleID;
 	}
+
 //	public void setSaleID(int saleID) {
 //		this.saleID = saleID;
 //	}
+
 	public boolean isActive() {
 		return active;
 	}
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Sale [salesPatternID=" + salesPatternID + ", saleID=" + saleID + ", active=" + active + ", startTime="
+				+ startTime + ", endTime=" + endTime + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Sale))
 			return false;
 		Sale other = (Sale) obj;
-		return this.saleID== other.getSaleID();
+		return this.saleID == other.getSaleID();
 	}
-			
-	@Override
-	public String toString() {
-		return "Sale [salesPattern=" + salesPattern + ", saleCommentReportList=" + saleCommentReport
-				+ ", saleCustomerList=" + saleCustomerList + ", saleID=" + saleID + ", active=" + active + "]";
-	}
-	
+
 }

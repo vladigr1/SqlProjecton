@@ -8,7 +8,6 @@ import enums.PurchasingProgramName;
 public class PurchasingProgramType {
 	
 	//connections
-	private List<PurchasingProgram> purchasingProgramList =new ArrayList<>();
 	
 	//fields
 	private PurchasingProgramName purchasingProgramName;
@@ -22,12 +21,6 @@ public class PurchasingProgramType {
 	}
 	
 	
-	public List<PurchasingProgram> getPurchasingProgramList() {
-		return purchasingProgramList;
-	}
-	public void setPurchasingProgramList(List<PurchasingProgram> purchasingProgramList) {
-		this.purchasingProgramList = purchasingProgramList;
-	}
 	public PurchasingProgramName getPurchasingProgramName() {
 		return purchasingProgramName;
 	}
@@ -48,7 +41,7 @@ public class PurchasingProgramType {
 	}
 	@Override
 	public String toString() {
-		return "PurchasingProgramType [purchasingProgramList=" + purchasingProgramList + ", purchasingProgramName="
+		return "PurchasingProgramType [purchasingProgramList="  + ", purchasingProgramName="
 				+ purchasingProgramName + ", description=" + description + ", monthlyPrice=" + monthlyPrice + "]";
 	}
 	

@@ -9,7 +9,6 @@ import enums.Affiliation;
 public class Employee extends User {
 
 	// connections
-	private FuelCompany fuelCompany;
 	// fields
 	private int employeeID;
 	private String role;
@@ -23,18 +22,10 @@ public class Employee extends User {
 		this.affiliation = affiliation;
 	}
 
-	public FuelCompany getFuelCompany() {
-		return fuelCompany;
-	}
-
-	public void setFuelCompany(FuelCompany fuelCompany) {
-		this.fuelCompany = fuelCompany;
-	}
-
 	public int getEmployeeID() {
 		return employeeID;
 	}
-//
+
 //	public void setEmployeeID(int employeeID) {
 //		this.employeeID = employeeID;
 //	}
@@ -54,11 +45,10 @@ public class Employee extends User {
 	public void setAffiliation(Affiliation affiliation) {
 		this.affiliation = affiliation;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Employee [fuelCompany=" + fuelCompany + ", employeeID=" + employeeID + ", role=" + role
-				+ ", affiliation=" + affiliation + "]";
+		return "Employee [employeeID=" + employeeID + ", role=" + role + ", affiliation=" + affiliation + "]";
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 package enums;
 
 public enum ShipmentType {
-	regular {
+	Regular {
 		public String toString() {
 			return "Regular";
 		}
 	},
-	urgent {
+	Urgent {
 		public String toString() {
 			return "Urgent";
 		}

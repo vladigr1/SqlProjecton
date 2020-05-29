@@ -2,50 +2,51 @@ package entities;
 
 import java.util.Arrays;
 
+import enums.PurchasingProgramName;
+
 public class PurchasingProgram {
 
 	// connections
-	private Customer customer;
+	private String customerID;
 	private FuelCompany[] fuelCompany = new FuelCompany[3]; // max 3
-	private PurchasingProgramType purchasingProgramType;
+	private PurchasingProgramName purchasingProgramName;
 
-	public PurchasingProgram(Customer customer, FuelCompany[] fuelCompany,
-			PurchasingProgramType purchasingProgramType) {
+	public PurchasingProgram(String customerID, FuelCompany[] fuelCompany,
+			PurchasingProgramName purchasingProgramName) {
 		super();
-		this.customer = customer;
+		this.customerID = customerID;
 		this.fuelCompany = fuelCompany;
-		this.purchasingProgramType = purchasingProgramType;
+		this.purchasingProgramName = purchasingProgramName;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
+//	public void setCustomerID(String customerID) {
+//		this.customerID = customerID;
 //	}
 
 	public FuelCompany[] getFuelCompany() {
 		return fuelCompany;
 	}
 
-//	public void setFuelCompany(FuelCompany[] fuelCompany) {
-//		this.fuelCompany = fuelCompany;
-//	}
-
-	public PurchasingProgramType getPurchasingProgramType() {
-		return purchasingProgramType;
+	public void setFuelCompany(FuelCompany[] fuelCompany) {
+		this.fuelCompany = fuelCompany;
 	}
 
-	public void setPurchasingProgramType(PurchasingProgramType purchasingProgramType) {
-		this.purchasingProgramType = purchasingProgramType;
+	public PurchasingProgramName getPurchasingProgramName() {
+		return purchasingProgramName;
 	}
 
-	
+	public void setPurchasingProgramName(PurchasingProgramName purchasingProgramName) {
+		this.purchasingProgramName = purchasingProgramName;
+	}
+
 	@Override
 	public String toString() {
-		return "PurchasingProgram [customer=" + customer + ", fuelCompany=" + Arrays.toString(fuelCompany)
-				+ ", purchasingProgramType=" + purchasingProgramType + "]";
+		return "PurchasingProgram [customerID=" + customerID + ", fuelCompany=" + Arrays.toString(fuelCompany)
+				+ ", purchasingProgramName=" + purchasingProgramName + "]";
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class PurchasingProgram {
 		if (!(obj instanceof PurchasingProgram))
 			return false;
 		PurchasingProgram other = (PurchasingProgram) obj;
-		return this.customer.equals(other.getCustomer());
+		return this.customerID.equals(other.getCustomerID());
 	}
 
 }

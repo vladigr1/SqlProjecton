@@ -7,8 +7,7 @@ public class ProductRatesUpdateRequest {
 	// create hash code and equals after have sale form eldad
 	
 	//connections
-	private List<Product> productList = new ArrayList<>();
-	//must include 1 at least
+
 	
 	//fields
 	private int updateRateRequestID;
@@ -24,12 +23,6 @@ public class ProductRatesUpdateRequest {
 	}
 	
 	
-	public List<Product> getProductList() {
-		return productList;
-	}
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
-	}
 	public int getUpdateRateRequestID() {
 		return updateRateRequestID;
 	}
@@ -60,7 +53,7 @@ public class ProductRatesUpdateRequest {
 	
 	@Override
 	public String toString() {
-		return "ProductRatesUpdateRequest [productList=" + productList + ", updateRateRequestID=" + updateRateRequestID
+		return "ProductRatesUpdateRequest [productList="  + ", updateRateRequestID=" + updateRateRequestID
 				+ ", assessed=" + assessed + ", approved=" + approved + "]";
 	}
 	
