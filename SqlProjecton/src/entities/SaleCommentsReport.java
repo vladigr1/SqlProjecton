@@ -4,33 +4,27 @@ import java.util.Date;
 
 public class SaleCommentsReport {
 	// connections
-	private Sale sale;
+	private int saleID;
 
 	// fields
 	private int numberOfCustomersBoughtInSale;
 	private double sumOfPurchases;
 	private Date dateCreated;
 
-	public SaleCommentsReport(Sale sale, int numberOfCustomersBoughtInSale,
-			double sumOfPurchases,Date dateCreated) {
+	public SaleCommentsReport(int saleID, int numberOfCustomersBoughtInSale, double sumOfPurchases, Date dateCreated) {
 		super();
-		this.sale = sale;
+		this.saleID = saleID;
 		this.numberOfCustomersBoughtInSale = numberOfCustomersBoughtInSale;
 		this.sumOfPurchases = sumOfPurchases;
-		this.dateCreated= dateCreated;
+		this.dateCreated = dateCreated;
 	}
 
-	public Sale getSale() {
-		return sale;
+	public int getSaleID() {
+		return saleID;
 	}
 
-	public void setSale(Sale sale) {
-		this.sale = sale;
-	}
-
-//
-//	public void setSaleCommentReportID(int saleCommentReportID) {
-//		this.saleCommentReportID = saleCommentReportID;
+//	public void setSaleID(int saleID) {
+//		this.saleID = saleID;
 //	}
 
 	public int getNumberOfCustomersBoughtInSale() {
@@ -48,7 +42,7 @@ public class SaleCommentsReport {
 	public void setSumOfPurchases(double sumOfPurchases) {
 		this.sumOfPurchases = sumOfPurchases;
 	}
-	
+
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -58,21 +52,18 @@ public class SaleCommentsReport {
 	}
 
 	@Override
+	public String toString() {
+		return "SaleCommentsReport [saleID=" + saleID + ", numberOfCustomersBoughtInSale="
+				+ numberOfCustomersBoughtInSale + ", sumOfPurchases=" + sumOfPurchases + ", dateCreated=" + dateCreated
+				+ "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof SaleCommentsReport))
 			return false;
 		SaleCommentsReport saleComment = (SaleCommentsReport) obj;
-		return this.sale.equals(saleComment.getSale());
+		return this.saleID == saleComment.getSaleID();
 	}
-
-	
-	@Override
-	public String toString() {
-		return "SaleCommentsReport [sale=" + sale + ", saleCommentReportID=" 
-				+ ", numberOfCustomersBoughtInSale=" + numberOfCustomersBoughtInSale + ", sumOfPurchases="
-				+ sumOfPurchases +"dateCreated= "+dateCreated+"]";
-	}
-
-		
 
 }

@@ -82,7 +82,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] OutcomeReport() {
-		return new String[] { "FK_repQuarter", "FK_repYear", "totalOutcome" };
+		return new String[] { "FK_repQuarter", "FK_repYear" };
 	}
 
 	public static String[] InventroyReport() {
@@ -91,17 +91,17 @@ public class FieldIndicatorForInsert {
 
 	public static String[] ProductInIncomeReport() {
 		return new String[] { "FK_productInStationID", "FK_repQuarter_IncomeReport", "FK_repYear_IncomeReport",
-				"income" };
+				"incomePerProduct","avgPrice" };
 	}
 
 	public static String[] ProductInOutcomeReport() {
 		return new String[] { "FK_productInStationID", "FK_repQuarter_OutcomeReport", "FK_repYear_OutcomeReport",
-				"outcome" };
+				"amountBoughtFromSupplier" };
 	}
 
 	public static String[] ProductInInventroyReport() {
 		return new String[] { "FK_productInStationID", "FK_repQuarter_inventoryReport", "FK_repYear_inventoryReport",
-				"amountSold" };
+				"amountSold","amountBegin","amountEnd" };
 	}
 
 	public static String[] FuelStationManager() {
@@ -121,7 +121,7 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] FuelStationOrder() {
-		return new String[] { "FK_ordersID", "FK_productInStationID", "assessed", "approved", "reason" };
+		return new String[] { "FK_ordersID", "FK_productInStationID", "assessed", "approved", "reasonDismissal","supplied" };
 	}
 	// vlad added
 
@@ -130,11 +130,11 @@ public class FieldIndicatorForInsert {
 	}
 
 	public static String[] ShipmentMethod() {
-		return new String[] { "shipmentPrice", "shipmentMultiplier", "shipmentType" };
+		return new String[] { "shipmentPrice", "shipmentMultiplier", "shipmentType","deliveryTime" };
 	}
 
 	public static String[] Orders() {
-		return new String[] { "orderTime", "amountBought", "finalPrice", "address", "supplied", "timeSupplied" };
+		return new String[] { "orderTime", "amountBought", "finalPrice", "address" };
 	}
 
 	public static String[] HomeFuelOrder() {

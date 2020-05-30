@@ -60,14 +60,6 @@ public class InsertTables { // insert to tables
 		return res;
 	}
 	
-	//elro additions
-	
-	
-	
-	
-	
-	
-
 	// only add inserts method!
 	public static int insertUser(Connection con, Object[] values) {
 		return insertRow(con, "user", FieldIndicatorForInsert.User(), values);

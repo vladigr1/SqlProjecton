@@ -1,11 +1,23 @@
 package enums;
 
 public enum FuelCompanyName {
-	Gazim{
+	Sonol {
 		public String toString() {
-			return "Gazim";
+			return "Sonol";
 		}
-		
+
+	},
+	Paz {
+		public String toString() {
+			return "Paz";
+		}
+
+	},
+	Delek {
+		public String toString() {
+			return "Delek";
+		}
+
 	};
 
 }

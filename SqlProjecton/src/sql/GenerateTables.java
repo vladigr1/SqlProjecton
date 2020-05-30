@@ -124,7 +124,7 @@ public class GenerateTables { // creating the tables if they are not exists
 	public void generatePricingModelType(Connection con) {
 		String tableName = "pricing_model_type";
 		String values = "( " + "pricingModelName varchar(32) NOT NULL,"
-		        + " description varchar(32) NOT NULL ,"
+		        + " description varchar(520) NOT NULL ,"
 		        + " defaultDiscount DOUBLE(32,2) NOT NULL ,"
 				+ "PRIMARY KEY (pricingModelName) )";	
 		generateTable(con, tableName, values);
@@ -419,7 +419,8 @@ public class GenerateTables { // creating the tables if they are not exists
 				"( " + "FK_productInStationID INT NOT NULL ,"
 				+ "FK_repQuarter_IncomeReport INT NOT NULL,"
 				+ "FK_repYear_IncomeReport varchar(32) NOT NULL,"
-				+ "income DOUBLE(32,2) NOT NULL,"
+				+ "incomePerProduct DOUBLE(32,2) NOT NULL,"				
+				+ "avgPrice DOUBLE(32,2) NOT NULL,"
 				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_IncomeReport,FK_repYear_IncomeReport),"	
 				
 				+ " KEY product_in_income_report_ibfk_1 (FK_productInStationID),"//first FK
@@ -443,7 +444,6 @@ public class GenerateTables { // creating the tables if they are not exists
 		String values =
 				"( " + "FK_repQuarter INT NOT NULL,"
 				+ "FK_repYear varchar(32) NOT NULL ,"
-				+ " totalOutcome DOUBLE(32,2) NOT NULL , " 		
 				+ " PRIMARY KEY (FK_repQuarter,FK_repYear) ,"
 				+ " KEY outcome_report_ibfk_1 (FK_repQuarter,FK_repYear),"
 				+ " CONSTRAINT outcome_report_ibfk_1 FOREIGN KEY (FK_repQuarter,FK_repYear) "
@@ -462,7 +462,7 @@ public class GenerateTables { // creating the tables if they are not exists
 				"( " + "FK_productInStationID INT NOT NULL ,"
 				+ "FK_repQuarter_OutcomeReport INT NOT NULL,"
 				+ "FK_repYear_OutcomeReport varchar(32) NOT NULL,"
-				+ "outcome DOUBLE(32,2) NOT NULL,"
+				+ "amountBoughtFromSupplier DOUBLE(32,2) NOT NULL,"
 				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_OutcomeReport,FK_repYear_OutcomeReport),"	
 				
 				+ " KEY product_in_outcome_report_ibfk_1 (FK_productInStationID),"//first FK
@@ -503,6 +503,8 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ "FK_repQuarter_inventoryReport INT NOT NULL,"
 				+ "FK_repYear_inventoryReport varchar(32) NOT NULL,"
 				+ "amountSold DOUBLE(32,2) NOT NULL,"
+				+ "amountBegin DOUBLE(32,2) NOT NULL,"
+				+ "amountEnd DOUBLE(32,2) NOT NULL,"
 				+ " PRIMARY KEY (FK_productInStationID, FK_repQuarter_inventoryReport,FK_repYear_inventoryReport),"	
 				
 				+ " KEY product_in_inventory_report_ibfk_1 (FK_productInStationID),"//first FK
@@ -560,7 +562,9 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ "FK_productInStationID INT NOT NULL ,"
 				+ "assessed varchar(1) NOT NULL,"
 				+ "approved varchar(1) NOT NULL,"
-				+ "reason varchar(64) NOT NULL ,"
+				+ "reasonDismissal varchar(64) NOT NULL ,"
+				+ "supplied varchar(1) NOT NULL ,"
+				+ "timeSupplied TIMESTAMP ,"
 				+ " PRIMARY KEY (fk_ordersID),"
 				+ " KEY fuel_station_order_ibfk_1 (FK_productInStationID),"
 				+ " CONSTRAINT fuel_station_order_ibfk_1 FOREIGN KEY (FK_productInStationID) "
@@ -591,6 +595,7 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " shipmentPrice DOUBLE(32,2) NOT NULL ," 
 				+ " shipmentMultiplier DOUBLE(32,2) NOT NULL ,"
 				+ " shipmentType varchar(32) NOT NULL ," 
+				+ " deliveryTime varchar(32) NOT NULL ," 
 				+ " PRIMARY KEY (shipmentType) )";
 		generateTable(con, tableName, values);
 	}
@@ -603,8 +608,6 @@ public class GenerateTables { // creating the tables if they are not exists
 				+ " amountBought DOUBLE(32,2) NOT NULL ,"
 				+ " finalPrice DOUBLE(32,2) NOT NULL ," 
 				+ " address varchar(32) NOT NULL ,"
-				+ "supplied varchar(1) NOT NULL,"
-				+ "timeSupplied TIMESTAMP NOT NULL ,"
 				+ " PRIMARY KEY (ordersID) )";
 		generateTable(con, tableName, values);
 	}
@@ -638,7 +641,7 @@ public class GenerateTables { // creating the tables if they are not exists
 		String tableName = "Purchasing_program_type";
 		String values = "( " 
 				+ " purchasingProgramName varchar(32) NOT NULL ,"
-				+ " description varchar(32) NOT NULL ," 
+				+ " description varchar(520) NOT NULL ," 
 				+ " monthlyPrice DOUBLE(32,2) NOT NULL ,"
 				+ " PRIMARY KEY (purchasingProgramName) )";
 		generateTable(con, tableName, values);

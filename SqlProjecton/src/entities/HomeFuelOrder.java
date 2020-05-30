@@ -16,9 +16,9 @@ public class HomeFuelOrder extends Orders{
 	private Date dueTime;
 
 	public HomeFuelOrder(int orderID, Date orderTime, double amountBought, double finalPrice, String address,
-			boolean supplied, Date timeSupplied, ShipmentType shipmentMethod, ProductName productName,
+			 ShipmentType shipmentMethod, ProductName productName,
 			String customerID, Date dueTime) {
-		super(orderID, orderTime, amountBought, finalPrice, address, supplied, timeSupplied);
+		super(orderID, orderTime, amountBought, finalPrice, address);
 		this.shipmentMethod = shipmentMethod;
 		this.productName = productName;
 		this.customerID = customerID;

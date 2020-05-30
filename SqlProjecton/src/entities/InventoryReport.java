@@ -6,27 +6,10 @@ import java.util.List;
 
 public class InventoryReport extends QuarterlyReport {
 
-	// connections
-	private List<ProductInStation> productInStationList = new ArrayList<>(); // must include at least 1
-	
 
-	public InventoryReport(int fuelStationID, int repQuareter, String year, Date dateCreated) {
-		super(fuelStationID, repQuareter, year, dateCreated);
+	public InventoryReport (int fuelStationID, int repQuareter, String year, Date dateCreated)
+	{
+		super(fuelStationID,repQuareter,year,dateCreated);
 	}
-
-	public List<ProductInStation> getProductInStationList() {
-		return productInStationList;
-	}
-
-	public void setProductInStationList(List<ProductInStation> productInStationList) {
-		this.productInStationList = productInStationList;
-	}
-
-	@Override
-	public String toString() {
-		return "InventoryReport [productInStationList=" + productInStationList + "]";
-	}
-
-	
 
 }

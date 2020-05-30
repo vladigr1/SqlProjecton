@@ -4,56 +4,68 @@ public class ProductInOutcomeReport {
 	// create hash code and equals after have sale form eldad
 
 	// connections
-	private ProductInStation productInStation;
-	private OutcomeReport outComeReport;
+	private int productInStationID;
+	private int repQuareter;
+	private String year;
 
 	// fields
-	private double outcome;
+	private double amountBoughtFromSupplier;
 
-	public ProductInOutcomeReport(ProductInStation productInStation, OutcomeReport outComeReport, double outcome) {
+	public ProductInOutcomeReport(int productInStationID, int repQuareter, String year,
+			double amountBoughtFromSupplier) {
 		super();
-		this.productInStation = productInStation;
-		this.outComeReport = outComeReport;
-		this.outcome = outcome;
+		this.productInStationID = productInStationID;
+		this.repQuareter = repQuareter;
+		this.year = year;
+		this.amountBoughtFromSupplier = amountBoughtFromSupplier;
 	}
 
-	public ProductInStation getProductInStation() {
-		return productInStation;
+	public int getProductInStationID() {
+		return productInStationID;
+	}
+//
+//	public void setProductInStationID(int productInStationID) {
+//		this.productInStationID = productInStationID;
+//	}
+
+	public int getRepQuareter() {
+		return repQuareter;
 	}
 
-//		public void setProductInStation(ProductInStation productInStation) {
-//			this.productInStation = productInStation;
-//		}
+//	public void setRepQuareter(int repQuareter) {
+//		this.repQuareter = repQuareter;
+//	}
 
-	public OutcomeReport getOutComeReport() {
-		return outComeReport;
+	public String getYear() {
+		return year;
 	}
 
-//		public void setOutComeReport(OutcomeReport outComeReport) {
-//			this.outComeReport = outComeReport;
-//		}
+//	public void setYear(String year) {
+//		this.year = year;
+//	}
 
-	public double getOutcome() {
-		return outcome;
+	public double getAmountBoughtFromSupplier() {
+		return amountBoughtFromSupplier;
 	}
 
-	public void setOutcome(double outcome) {
-		this.outcome = outcome;
+	public void setAmountBoughtFromSupplier(double amountBoughtFromSupplier) {
+		this.amountBoughtFromSupplier = amountBoughtFromSupplier;
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "ProductInOutcomeReport [productInStationID=" + productInStationID + ", repQuareter=" + repQuareter
+				+ ", year=" + year + ", amountBoughtFromSupplier=" + amountBoughtFromSupplier + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof ProductInOutcomeReport))
 			return false;
-		ProductInOutcomeReport report = (ProductInOutcomeReport) obj;
-		return this.productInStation.equals(report.getProductInStation())
-				&& this.outComeReport.equals(report.getOutComeReport());
-	}
-
-	@Override
-	public String toString() {
-		return "ProductInOutcomeReport [productInStation=" + productInStation + ", outComeReport=" + outComeReport
-				+ ", outcome=" + outcome + "]";
+		ProductInOutcomeReport other = (ProductInOutcomeReport) obj;
+		return this.productInStationID==other.getProductInStationID() && this.repQuareter==other.getRepQuareter() && this.year.equals(other.getYear()); 
 	}
 
 }

@@ -90,12 +90,35 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultPricingModelType(Connection con) {
-		String pricingModelType = PricingModelName.MonthlyProgramMultipleCars.toString();
-		String description = "some desc";
-		double defaultDiscount = 0.2;
+		String pricingModelType = PricingModelName.PayInPlace.toString();
+		String description = "Max price (per liter)";
+		double defaultDiscount = 0;
 
 		Object[] values = { pricingModelType, description, defaultDiscount };
 		InsertTables.insertPricingModelType(con, values);
+		
+		String pricingModelType2 = PricingModelName.MonthlyProgramSingleCar.toString();
+		String description2 = "4% discount from max price (per liter)";
+		double defaultDiscount2 = 0.04;
+		
+		Object[] values2 = { pricingModelType2, description2, defaultDiscount2 };
+		InsertTables.insertPricingModelType(con, values2);
+		
+		String pricingModelType3 = PricingModelName.MonthlyProgramMultipleCars.toString();
+		String description3 = "Like 'Monthly Program Single Car' x number of cars + general discount of 10% (per liter)";
+		double defaultDiscount3 = 0.1;
+		
+		Object[] values3 = { pricingModelType3, description3, defaultDiscount3 };
+		InsertTables.insertPricingModelType(con, values3);
+		
+		String pricingModelType4 = PricingModelName.FullProgramSingleCar.toString();
+		String description4 = "Payment every month for the amount bought in practice in the previous month, by price like 'Monthly Program Multiple Cars' + extra discount of 3% (per liter)";
+		double defaultDiscount4 = 0.13;
+		
+		Object[] values4 = { pricingModelType4, description4, defaultDiscount4 };
+		InsertTables.insertPricingModelType(con, values4);
+		
+		
 
 	}
 
@@ -146,6 +169,7 @@ public class InsertDefaultTables {
 
 		Object[] values2 = { "MarketingRepresentative", Affiliation.Marketing.toString(), userName };
 		InsertTables.insertEmployee(con, values2);
+		
 	}
 
 	public void insertDefaultCustomer(Connection con) {
@@ -229,7 +253,7 @@ public class InsertDefaultTables {
 		Object[] values3 = { "111111", fkemployeeID };
 		int generatedKey = InsertTables.insertFuelStationManager(con, values3);
 
-		String fuelComapny = FuelCompanyName.Gazim.toString();
+		String fuelComapny = FuelCompanyName.Sonol.toString();
 		Object[] values4 = { "Gazim", fkemployeeID, "Road 6",fuelComapny };
 		InsertTables.insertFuelStation(con, values4);
 
@@ -251,7 +275,7 @@ public class InsertDefaultTables {
 		InsertTables.insertProduct(con, values);
 
 		String userName = "ManagerSad";
-		String fuelComapny = FuelCompanyName.Gazim.toString();
+		String fuelComapny = FuelCompanyName.Sonol.toString();
 		Object[] valuess = { userName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
 		InsertTables.insertUser(con, valuess);
 
@@ -300,7 +324,7 @@ public class InsertDefaultTables {
 		InsertTables.insertIncomeReport(con, values2);
 
 		int productInStation = 1; // already created such product in station
-		Object[] values3 = { productInStation, quarter, year, 100.82 };
+		Object[] values3 = { productInStation, quarter, year, 100.82,52.2 };
 		InsertTables.insertProductInIncomeReport(con, values3);
 	}
 
@@ -311,7 +335,7 @@ public class InsertDefaultTables {
 		Object[] values = { quarter, year, new Date(120, 4, 5), fuelStationID };
 		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { quarter, year, 10.2 };
+		Object[] values2 = { quarter, year};
 		InsertTables.insertOutcomeReport(con, values2);
 	}
 
@@ -322,7 +346,7 @@ public class InsertDefaultTables {
 		Object[] values = { quarter, year, new Date(120, 1, 14), fuelStationID };
 		InsertTables.insertQuarterlyReport(con, values);
 
-		Object[] values2 = { quarter, year, 20.5 };
+		Object[] values2 = { quarter, year };
 		InsertTables.insertOutcomeReport(con, values2);
 
 		int productInStation = 1;
@@ -352,7 +376,7 @@ public class InsertDefaultTables {
 
 		int productInStation = 1;
 
-		Object[] values3 = { productInStation, quarter, year, 25 };
+		Object[] values3 = { productInStation, quarter, year, 25,32.4,33.3 };
 		InsertTables.insertProductInInventroyReport(con, values3);
 	}
 
@@ -396,13 +420,13 @@ public class InsertDefaultTables {
 	}
 
 	public void insertDefaultShipmentMethod(Connection con) {
-		Object[] values3 = { 50.5, 1.3, ShipmentType.Regular.toString() };
+		Object[] values3 = { 5.5, 1, ShipmentType.Regular.toString(),"5-10 Days" };
 		InsertTables.insertShipmentMethod(con, values3);
 	}
 
 	public void insertDefaultOrders(Connection con) {
 
-		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4, "in israel", false, false };
+		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4, "in israel" };
 		InsertTables.insertOrders(con, values);
 	}
 
@@ -418,10 +442,10 @@ public class InsertDefaultTables {
 		Object[] values2 = { customerID, username, "hfcreditCard", CustomerType.Person.toString(), false };
 		InsertTables.insertCustomer(con, values2);
 
-		Object[] values3 = { 50.5, 1.3, fkshipmentType };
+		Object[] values3 = { 6.5, 2, fkshipmentType,"6 Hours" };
 		InsertTables.insertShipmentMethod(con, values3);
 
-		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4, "some where in israel", false, false };
+		Object[] values4 = { new Date(System.currentTimeMillis()), 5.5, 100.4, "some where in israel" };
 		fkorders_ID = InsertTables.insertOrders(con, values4);
 		// generate homefuel order using pre set product DIESEL set in insert...product
 		Object[] values5 = { new Date(System.currentTimeMillis()), customerID, fkshipmentType, fkorders_ID,
@@ -431,8 +455,12 @@ public class InsertDefaultTables {
 
 	public void insertDefaultPurchasingProgramType(Connection con) {
 
-		Object[] values = { PurchasingProgramName.Standard.toString(), "for single car", 100.4 };
+		Object[] values = { PurchasingProgramName.Standard.toString(), "Fast fueling in fuel stations of only 1 fuel company", 10 };
 		InsertTables.insertPurchasingProgramType(con, values);
+		
+		Object[] values2 = { PurchasingProgramName.Premium.toString(), "Fast fueling in fuel stations of 2-3 fuel companies", 20 };
+		InsertTables.insertPurchasingProgramType(con, values2);
+		
 	}
 
 	public void insertDefaultFuelCompany(Connection con) {
@@ -444,7 +472,7 @@ public class InsertDefaultTables {
 		Object[] values2 = { "role", Affiliation.Marketing.toString(), userName };
 		fkemployeeID = InsertTables.insertEmployee(con, values2);
 
-		Object[] values3 = { FuelCompanyName.Gazim.toString(), fkemployeeID };
+		Object[] values3 = { FuelCompanyName.Sonol.toString(), fkemployeeID };
 		InsertTables.insertFuelCompany(con, values3);
 	}
 
@@ -464,9 +492,9 @@ public class InsertDefaultTables {
 				false };
 		InsertTables.insertCustomer(con, values2);
 
-		// PurchasingProgramType
-		Object[] values3 = { fkpurchasingProgramType, "for not single car", 100.4 };
-		InsertTables.insertPurchasingProgramType(con, values3);
+//		// PurchasingProgramType
+//		Object[] values3 = { fkpurchasingProgramType, "for not single car", 100.4 };
+//		InsertTables.insertPurchasingProgramType(con, values3);
 
 		// fuelCompany
 		Object[] values4 = { supplieruserName, "11", false, "Moshe", "Cahana", "Mail@mai.com" };
@@ -532,10 +560,10 @@ public class InsertDefaultTables {
 		int productInStationID = 1;
 		String reason = "not enough cash";
 
-		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4, "in israel", false, false };
+		Object[] values = { new Date(System.currentTimeMillis()), 5.5, 100.4, "in israel" };
 		orderID = InsertTables.insertOrders(con, values);
 
-		Object[] values2 = { orderID, productInStationID, false, false, reason };
+		Object[] values2 = { orderID, productInStationID, false, false, reason,false };
 		InsertTables.insertFuelStationOrder(con, values2);
 
 	}
